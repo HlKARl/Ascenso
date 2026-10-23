@@ -100,3 +100,21 @@ nav button{font-size:9px;letter-spacing:-.15px}nav button span{font-size:19px}
 @media(max-width:360px){nav button{font-size:8px}nav{padding-left:1px;padding-right:1px}.nina-portrait-frame{width:77%}.nina-emotion-buttons button{font-size:9px}}
 @media(min-width:600px){.nina-stage{max-width:510px;margin:auto}.nina-chat-panel,.nina-try,.nina-privacy{max-width:510px;margin-left:auto;margin-right:auto}}
 @media(prefers-reduced-motion:reduce){.nina-stage.offline .nina-portrait-frame img{animation:none}}
+
+/* ASCENSO 3.3 · Nina conversational UI */
+.nina-messages{display:flex;flex-direction:column;gap:10px;min-height:80px;max-height:320px;overflow-y:auto;padding:8px 2px 13px;overscroll-behavior:contain}
+.nina-chat-empty{color:var(--muted);font-size:12px;line-height:1.6;text-align:center;padding:15px 8px}
+.nina-bubble{padding:10px 12px;border-radius:14px;max-width:92%;font-size:12px;line-height:1.55;overflow-wrap:anywhere}
+.nina-bubble small{display:block;font-size:10px;font-weight:800;letter-spacing:.4px;margin-bottom:4px;opacity:.75}
+.nina-bubble p{margin:0;white-space:pre-wrap}
+.nina-bubble.mine{align-self:flex-end;background:#493563;color:#f9f4ff;border-bottom-right-radius:4px}
+.nina-bubble.hers{align-self:flex-start;background:#272434;border:1px solid #514367;color:#eee8f9;border-bottom-left-radius:4px}
+.nina-composer{margin:3px 0 8px}.nina-composer button{flex:0 0 46px}
+.nina-config{border-top:1px solid var(--border);padding-top:10px;margin-top:8px}
+.nina-config summary{font-size:11px;color:#d0b9ff;cursor:pointer;list-style:revert;padding:5px 0}
+.nina-config-inner{display:grid;gap:9px;margin-top:10px}
+.nina-config-inner label{font-size:11px;color:var(--muted)}
+.nina-config-inner input{font-size:12px}.nina-config-inner .secondary{width:100%}
+#ninaConfigStatus{font-size:11px;color:#aee8cc}
+.nina-clear{display:block;border:0;background:transparent;color:var(--muted);font-size:10px;text-decoration:underline;margin:12px auto 0;padding:6px}
+.nina-error{font-size:11px;line-height:1.5;color:#ffc2c8;background:#432c38;padding:10px;border-radius:10px;margin:0}

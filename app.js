@@ -208,7 +208,7 @@ fetch('plan.json').then(r=>{if(!r.ok)throw Error('No se encontró el plan de mis
 if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(console.warn);
 
 
-// NINA · Stage 1: images and expression preview; real Gemini chat is not connected yet.
+// ASCENSO 3.3 · Nina: chat with Cloudflare Worker, local history and offline portraits.
 const NINA_EMOTIONS={
  normal:{label:'Normal',alt:'Nina con una sonrisa tranquila',speech:'¡Hey! Soy Nina. Bienvenido a mi rinconcito de ASCENSO. 💜'},
  feliz:{label:'Feliz',alt:'Nina sonriendo alegremente',speech:'¡Esooo! ¡Me encantan las buenas noticias! ✨'},
@@ -219,23 +219,76 @@ const NINA_EMOTIONS={
  sorprendida:{label:'Sorprendida',alt:'Nina sorprendida con los ojos muy abiertos',speech:'¿¡QUÉ!? JAJAJA. ¡No me esperaba esa!'},
  dormida:{label:'Dormida',alt:'Nina dormida plácidamente con los ojos cerrados',speech:'Zzz… 💜'}
 };
-let ninaPreview=null;
+const NINA_URL_KEY='ascenso_nina_worker_url_v1',NINA_CHAT_KEY='ascenso_nina_chat_v1';
+let ninaPreview=null,ninaReply=null,ninaReplyEmotion='normal',ninaBusy=false;
+let ninaWorkerUrl=localStorage.getItem(NINA_URL_KEY)||'';
+let ninaChat=[];
+try{const saved=JSON.parse(localStorage.getItem(NINA_CHAT_KEY));if(Array.isArray(saved))ninaChat=saved.filter(x=>x&&['user','model'].includes(x.role)&&typeof x.text==='string').slice(-40).map(x=>({role:x.role,text:x.text.slice(0,4000)}))}catch{}
+function validNinaUrl(value){
+ try{const url=new URL(value.trim());return url.protocol==='https:'&&url.hostname.endsWith('.workers.dev')&&url.hostname.length>12&&!url.username&&!url.password&&!url.search&&!url.hash&&url.pathname==='/'?url.origin:null}catch{return null}
+}
+function renderNinaChat(){
+ const log=$('ninaMessages');log.replaceChildren();
+ if(!ninaChat.length){const p=document.createElement('p');p.className='nina-chat-empty';p.textContent='¡Hola! Cuando conectes tu Worker, podremos conversar aquí. ✨';log.append(p)}
+ for(const item of ninaChat){const bubble=document.createElement('div');bubble.className='nina-bubble '+(item.role==='user'?'mine':'hers');const label=document.createElement('small');label.textContent=item.role==='user'?'Tú':'Nina';const text=document.createElement('p');text.textContent=item.text;bubble.append(label,text);log.append(bubble)}
+ log.scrollTop=log.scrollHeight;
+}
+function saveNinaChat(){try{localStorage.setItem(NINA_CHAT_KEY,JSON.stringify(ninaChat.slice(-40)))}catch{}}
+function setNinaEmotion(mode){const info=NINA_EMOTIONS[mode]||NINA_EMOTIONS.normal;const img=$('ninaPortrait');if(img.dataset.mode!==mode){img.src='nina/'+mode+'.webp';img.alt=info.alt;img.dataset.mode=mode}$('ninaEmotion').textContent=info.label}
 function updateNina(){
- const offline=!navigator.onLine,mode=ninaPreview||(offline?'dormida':'normal'),info=NINA_EMOTIONS[mode];
- const stage=$('ninaStage'),img=$('ninaPortrait');
- stage.classList.toggle('offline',offline&&ninaPreview===null);
- if(img.dataset.mode!==mode){img.src='nina/'+mode+'.webp';img.alt=info.alt;img.dataset.mode=mode}
- $('ninaEmotion').textContent=info.label;
- $('ninaDot').setAttribute('aria-hidden','true');
- $('ninaPresence').textContent=offline?'Sin internet · descansando':'En línea · Gemini pendiente';
- $('ninaSpeech').textContent=ninaPreview?info.speech:(offline?'Zzz… Estoy dormidita. ¡Nos vemos cuando regrese internet! 💤':info.speech);
- $('ninaChatNote').textContent=offline?'No hay internet, pero ASCENSO y mis retratos siguen funcionando. ¡Vuelvo cuando tengas conexión! 💜':'Mi chat todavía no está conectado con Gemini. Mientras tanto puedes probar mis expresiones. 💜';
+ const offline=!navigator.onLine,configured=!!validNinaUrl(ninaWorkerUrl);
+ const mode=ninaPreview||(offline?'dormida':ninaReply?ninaReplyEmotion:'normal');
+ $('ninaStage').classList.toggle('offline',offline&&ninaPreview===null);
+ setNinaEmotion(mode);
+ $('ninaPresence').textContent=offline?'Sin internet · descansando':!configured?'Conexión pendiente':ninaBusy?'Nina está pensando…':'En línea · lista para hablar';
+ $('ninaSpeech').textContent=ninaPreview?NINA_EMOTIONS[mode].speech:offline?'Zzz… Estoy dormidita. ¡Nos vemos cuando regrese internet! 💤':ninaReply||NINA_EMOTIONS.normal.speech;
+ $('ninaChatNote').textContent=offline?'Sin internet. Tus conversaciones anteriores siguen disponibles. 💜':!configured?'Abre «Configurar conexión con Nina» y pega la dirección de tu Worker.':ninaBusy?'Nina está escribiendo…':'Nina está lista para escucharte. 💜';
+ $('ninaChatInput').disabled=offline||!configured||ninaBusy;
+ $('ninaSend').disabled=offline||!configured||ninaBusy;
+ $('ninaChatInput').placeholder=offline?'Nina está dormidita…':!configured?'Configura tu Worker primero…':ninaBusy?'Esperando respuesta…':'Escríbele a Nina…';
  document.querySelectorAll('[data-nina-emotion]').forEach(b=>b.setAttribute('aria-pressed',String(ninaPreview===b.dataset.ninaEmotion)));
  $('ninaAuto').disabled=ninaPreview===null;
 }
 $('ninaEmotionButtons').innerHTML=Object.entries(NINA_EMOTIONS).map(([id,v])=>'<button type="button" data-nina-emotion="'+id+'" aria-pressed="false">'+v.label+'</button>').join('');
 $('ninaEmotionButtons').addEventListener('click',e=>{const b=e.target.closest('[data-nina-emotion]');if(!b)return;ninaPreview=b.dataset.ninaEmotion;updateNina()});
 $('ninaAuto').addEventListener('click',()=>{ninaPreview=null;updateNina()});
+$('ninaWorkerUrl').value=ninaWorkerUrl;
+$('ninaSaveWorker').addEventListener('click',()=>{
+ const url=validNinaUrl($('ninaWorkerUrl').value);
+ if(!url){$('ninaConfigStatus').textContent='Usa una dirección HTTPS válida que termine en .workers.dev (sin rutas ni parámetros).';return}
+ ninaWorkerUrl=url;localStorage.setItem(NINA_URL_KEY,url);$('ninaWorkerUrl').value=url;
+ $('ninaConfigStatus').textContent='✓ Conexión guardada en este dispositivo.';
+ $('ninaConfig').open=false;updateNina();$('ninaChatInput').focus();
+});
+$('ninaClearChat').addEventListener('click',()=>{
+ if(!ninaChat.length)return;
+ if(!confirm('¿Borrar la conversación de Nina guardada en este dispositivo?'))return;
+ ninaChat=[];ninaReply=null;ninaReplyEmotion='normal';localStorage.removeItem(NINA_CHAT_KEY);renderNinaChat();updateNina();
+});
+$('ninaChatForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const input=$('ninaChatInput'),message=input.value.trim(),url=validNinaUrl(ninaWorkerUrl);
+ if(ninaBusy||!navigator.onLine||!url||!message)return;
+ if(message.length>4000){$('ninaChatNote').textContent='El mensaje es demasiado largo.';return}
+ const history=ninaChat.slice(-12).map(x=>({role:x.role,text:x.text}));
+ ninaChat.push({role:'user',text:message});ninaChat=ninaChat.slice(-40);saveNinaChat();renderNinaChat();input.value='';
+ ninaBusy=true;ninaPreview=null;ninaReply='Un momento, estoy pensando… ✨';ninaReplyEmotion='pensativa';updateNina();
+ const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),25000);
+ try{
+  const response=await fetch(url,{method:'POST',mode:'cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({message,history}),signal:controller.signal,cache:'no-store'});
+  let result={};try{result=await response.json()}catch{}
+  if(!response.ok)throw new Error(result.error||('Error del servidor ('+response.status+')'));
+  if(typeof result.reply!=='string'||!result.reply.trim())throw new Error('Nina recibió una respuesta vacía.');
+  const reply=result.reply.trim().slice(0,10000);
+  ninaReply=reply;ninaReplyEmotion=Object.hasOwn(NINA_EMOTIONS,result.emotion)&&result.emotion!=='dormida'?result.emotion:'normal';
+  ninaChat.push({role:'model',text:reply});ninaChat=ninaChat.slice(-40);saveNinaChat();renderNinaChat();
+ }catch(err){
+  ninaReply=null;ninaReplyEmotion='normal';
+  const info=document.createElement('p');info.className='nina-error';
+  info.textContent=err.name==='AbortError'?'La respuesta tardó demasiado. Intenta de nuevo.':'No pude contactar con Nina: '+(err.message||'error de red')+'. Revisa la URL, el Worker y ALLOWED_ORIGIN.';
+  $('ninaMessages').append(info);$('ninaMessages').scrollTop=$('ninaMessages').scrollHeight;
+ }finally{clearTimeout(timeout);ninaBusy=false;updateNina();if(navigator.onLine)input.focus()}
+});
 window.addEventListener('online',updateNina);
 window.addEventListener('offline',updateNina);
-updateNina();
+renderNinaChat();updateNina();

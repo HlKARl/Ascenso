@@ -1,4 +1,4 @@
-const CACHE='andy-ascenso-v32-nina-20261023a';
+const CACHE='andy-ascenso-v33-nina-chat-20261023a';
 const ASSETS=['./','./index.html','./style.css','./app.js','./plan.json','./manifest.webmanifest','./icon.svg','./nina/normal.webp','./nina/feliz.webp','./nina/emocionada.webp','./nina/pensativa.webp','./nina/empatica.webp','./nina/picara.webp','./nina/sorprendida.webp','./nina/dormida.webp'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('andy-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));

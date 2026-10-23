@@ -1,34 +1,18 @@
-ASCENSO 3.2 — NINA: GALERÍA DE EXPRESIONES
-===========================================
-ETAPA 1: INTERFAZ VISUAL, SIN CONEXIÓN A GEMINI
+ASCENSO 3.3 · Nina ya puede conversar (Gemini mediante Cloudflare Worker)
 
-Incluye:
-• Nueva pestaña Nina (ahora seis pestañas).
-• Ocho retratos ligeros WebP: normal, feliz, emocionada, pensativa, empática, pícara, sorprendida y dormida.
-• Estado offline: Nina duerme y tiene un movimiento lento y sutil.
-• Estado online: Nina aparece despierta.
-• Menú «Probar expresiones» para verlas todas (es una VISTA PREVIA, no un chat).
-• Chat dibujado, pero INACTIVO hasta que añadamos el intermediario seguro de Gemini.
-• Todos los retratos quedan guardados sin conexión mediante el service worker.
-• Misiones, talentos, cronómetro, diario, ficha, configuración y almacenamiento local de ASCENSO 3.1 se mantienen.
+INSTALACIÓN
+1. Haz una exportación de respaldo de ASCENSO antes de actualizar.
+2. Descomprime el ZIP. En GitHub > tu repositorio > Add file > Upload files, sube el CONTENIDO descomprimido, incluyendo la carpeta nina/. Confirma los cambios.
+3. Espera a que GitHub Pages publique la actualización. Si aparece la versión anterior, cierra/reabre la app o recarga.
+4. En Cloudflare Worker cambia ALLOWED_ORIGIN a https://hlkarl.github.io y pulsa Deploy.
+5. En ASCENSO > Nina > Configurar conexión con Nina, pega tu URL pública HTTPS terminada en .workers.dev. Pulsa Guardar conexión. NO pegues tu clave API.
+6. Envía un mensaje para probar. Nina cambiará de expresión según el campo emotion devuelto por tu Worker.
 
-¡MUY IMPORTANTE!:
-• Esta versión NO consulta Gemini ni envía mensajes.
-• NO pongas tu clave API en index.html, app.js o el repositorio público.
-• Una conexión a internet no significa que Gemini ya esté configurado.
-• El cambio automático de expresiones según las RESPUESTAS de Gemini vendrá en la etapa siguiente.
-
-INSTALACIÓN:
-1. Abre tu ASCENSO actual en el celular, entra a Configuración > Mis datos > Exportar y guarda un respaldo JSON.
-2. Extrae el ZIP. Abre la carpeta ASCENSO_3_2_Nina.
-3. Sube a la RAÍZ de tu repositorio GitHub Pages los archivos index.html, app.js, style.css, plan.json, icon.svg, manifest.webmanifest, sw.js, LEEME.txt y toda la carpeta nina (con 8 .webp).
-4. Reemplaza los archivos existentes y haz Commit Changes.
-5. Recarga tu página de ASCENSO con internet, y espera que se instale la actualización. Si el acceso directo instalado todavía muestra la versión antigua, cierra y vuelve a abrir la app.
-6. La clave de datos local sigue siendo `andy1_v1`. Tus registros deben permanecer en el mismo dispositivo y sitio. Importa el respaldo solo si es necesario: IMPORTAR REEMPLAZA tus registros actuales.
-7. Abre «Nina» y luego «Probar expresiones». Prueba también el modo avión tras abrirla una vez conectado para que los archivos se guarden en caché.
-
-NOTAS:
-• El detector navigator.onLine informa sobre el estado de la conexión del navegador y puede no garantizar conectividad real a Internet.
-• Las imágenes tienen aspecto vertical 3:4 y se muestran adaptadas al ancho de pantalla.
-• La animación respeta la opción «Reducir animaciones».
-• Próxima etapa: backend seguro (por ejemplo Cloudflare Worker) + API Gemini + prompt final de Nina, chats y estados dinámicos.
+NOTAS DE SEGURIDAD Y PRIVACIDAD
+- El sitio NO almacena la clave API de Gemini; esta permanece como Secret en Cloudflare.
+- El historial de chat se almacena localmente en el navegador del dispositivo y se puede borrar desde la pestaña Nina. Los mensajes y hasta 12 turnos previos se envían a tu Worker y Gemini para generar respuestas.
+- El resto de los datos de ASCENSO NO se comparte automáticamente con Gemini.
+- La URL pública del Worker no es una credencial. ALLOWED_ORIGIN/CORS NO son autenticación ni detienen llamadas directas. Antes de difundir públicamente tu app, configura autenticación, cuotas y límites de uso en Cloudflare.
+- El modo sin internet conserva ASCENSO y muestra a Nina dormida.
+- No se han modificado las claves de almacenamiento de misiones y estadísticas de ASCENSO 3.1/3.2.
+- El filtro actual acepta Worker con dominio *.workers.dev.

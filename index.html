@@ -40,12 +40,15 @@
     <div class="nina-intro"><strong>Nina <span>✦</span></strong><p id="ninaSpeech" aria-live="polite">¡Bienvenido a mi rincón de ASCENSO! 💜</p></div>
   </div>
   <div class="nina-chat-panel" aria-label="Chat de Nina">
-    <div class="nina-chat-title"><span>✧ Conversación</span><small>Próxima fase · Gemini</small></div>
-    <p class="nina-chat-note" id="ninaChatNote">Estamos preparando mi conexión segura con Gemini. ¡Pronto podremos hablar por aquí! 💜</p>
-    <div class="nina-composer"><input id="ninaChatInput" type="text" disabled placeholder="Chat disponible próximamente…" aria-label="Mensaje para Nina"><button type="button" disabled aria-label="Enviar mensaje">➤</button></div>
+    <div class="nina-chat-title"><span>✧ Conversación</span><small>Gemini · mediante Cloudflare</small></div>
+    <p class="nina-chat-note" id="ninaChatNote" role="status">Configura la dirección de tu Worker para conversar con Nina. 💜</p>
+    <div class="nina-messages" id="ninaMessages" role="log" aria-label="Mensajes de Nina" aria-live="polite" aria-relevant="additions text"></div>
+    <form class="nina-composer" id="ninaChatForm"><input id="ninaChatInput" type="text" maxlength="4000" autocomplete="off" disabled placeholder="Configura tu Worker primero…" aria-label="Mensaje para Nina"><button type="submit" id="ninaSend" disabled aria-label="Enviar mensaje">➤</button></form>
+    <details class="nina-config" id="ninaConfig"><summary>⚙ Configurar conexión con Nina</summary><div class="nina-config-inner"><label for="ninaWorkerUrl">Dirección pública de tu Cloudflare Worker</label><input id="ninaWorkerUrl" type="url" inputmode="url" autocomplete="url" placeholder="https://ascenso-nina.tu-cuenta.workers.dev" spellcheck="false"><p class="hint">Pega únicamente la dirección del Worker (no la clave de Gemini). La dirección se guarda solo en este dispositivo.</p><button class="secondary" type="button" id="ninaSaveWorker">Guardar conexión</button><span id="ninaConfigStatus" role="status"></span></div></details>
+    <button class="nina-clear" type="button" id="ninaClearChat">Borrar conversación de este dispositivo</button>
   </div>
   <details class="fold nina-try"><summary>Probar expresiones <span>✧</span></summary><div class="fold-content"><p class="hint nina-try-hint">Vista previa de sus ocho retratos. El botón Automático restaura el modo dormida cuando estás sin internet.</p><div class="nina-emotion-buttons" id="ninaEmotionButtons" role="group" aria-label="Expresiones de Nina"></div><button class="secondary nina-auto" type="button" id="ninaAuto">↺ Automático</button></div></details>
-  <p class="nina-privacy">🔒 Tu clave de Gemini no se guarda en ASCENSO ni se publica en GitHub.</p>
+  <p class="nina-privacy">🔒 Tu clave de Gemini permanece en Cloudflare. El historial del chat se guarda en este dispositivo y los mensajes que envías se procesan mediante Cloudflare y Gemini. No compartimos automáticamente tus estadísticas de ASCENSO.</p>
 </section>
 <section id="train" class="view">
   <div class="eyebrow">ENTRENAMIENTO</div><h1>Supera tu<br><em>marca.</em></h1>
