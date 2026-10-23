@@ -24,7 +24,7 @@ h3{font-size:17px;margin:24px 0 12px}.eyebrow{margin-bottom:12px}
 .form,.panel{padding:15px;gap:13px}.minimal-form{padding:0;border:0;background:transparent}
 .finance-cards{grid-template-columns:1fr 1fr}.finance-cards article:first-child{grid-column:auto}.finance-cards strong{font-size:20px}
 .tree-heading{margin:23px 0 12px}.tree-heading h2{font-size:18px}.tree-graph{padding:0;min-height:0;background:radial-gradient(ellipse at 50% 0%,#281e3c,transparent 67%),#15131e;scrollbar-width:thin;scrollbar-color:#554466 transparent}
-.tree-graph svg{max-height:none;max-width:none;min-width:0;width:auto!important;min-height:260px}
+.tree-graph svg{max-height:none;max-width:none;min-width:0;min-height:260px}
 .tree-node text{user-select:none}.tree-hint{text-align:center;margin:9px 0 0}
 .skill-detail{margin-top:13px;padding:17px}.skill-detail h3{margin:6px 0 15px}.skill-effect{padding:10px 12px;line-height:1.55;margin-top:2px}.link-action{margin-top:12px}
 .attribute-list{padding:0;background:transparent;border:0;gap:9px;grid-template-columns:1fr 1fr}
@@ -39,3 +39,34 @@ h3{font-size:17px;margin:24px 0 12px}.eyebrow{margin-bottom:12px}
 nav{max-width:720px;padding-top:12px;padding-bottom:max(11px,env(safe-area-inset-bottom))}
 nav button{font-size:10px;gap:3px}nav button span{font-size:20px}
 @media(max-width:440px){.shell{padding-left:15px;padding-right:15px}.tree-tabs button{font-size:9.5px}.tree-tabs{gap:5px}.tree-graph{margin-left:-3px;margin-right:-3px}.stats article{padding:12px 10px}.metric strong{font-size:17px}}
+
+/* ASCENSO 3.1 · Navigable touch tree and minimal settings */
+.tree-graph{height:clamp(350px,56dvh,500px);overflow:auto;overscroll-behavior:contain;touch-action:none;cursor:grab;-webkit-overflow-scrolling:touch;position:relative}
+.tree-graph.dragging{cursor:grabbing}
+.tree-graph svg{display:block;max-height:none;max-width:none;min-width:0;min-height:0;touch-action:none;user-select:none;-webkit-user-select:none}
+.tree-graph .tree-node{-webkit-tap-highlight-color:transparent}
+.tree-tools{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:10px 1px 0}
+.tree-tools .tree-hint{margin:0;text-align:left}
+.tree-center{white-space:nowrap;border:1px solid var(--border);color:var(--text);background:var(--surface);font-size:11px;padding:8px 11px;border-radius:9px}
+#settingsOpen{font-size:22px;display:grid;place-items:center}
+.settings-dialog{box-sizing:border-box;width:min(440px,calc(100vw - 28px));max-height:min(88dvh,790px);padding:0;border-radius:21px;border:1px solid var(--border);background:var(--surface);color:var(--text);box-shadow:0 20px 85px #000b;overflow:auto;overscroll-behavior:contain}
+.settings-dialog::backdrop{background:#070710c9;backdrop-filter:blur(5px)}
+.settings-head{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;padding:22px 20px 16px;border-bottom:1px solid var(--border);background:var(--surface)}
+.settings-head .eyebrow{display:block;font-size:9px;margin-bottom:5px}.settings-head h2{margin:0;font-size:23px}.settings-head .round{height:37px;width:37px;font-size:25px}
+.settings-body{padding:5px 20px 24px}.setting-section{padding:12px 0 17px;border-bottom:1px solid var(--border)}.setting-section:last-child{border:0;padding-bottom:0}
+.setting-section h3{margin:8px 0 17px;font-size:14px}.setting-row{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:40px;margin-bottom:10px;font-size:13px}
+.accent-choices,.setting-options{display:flex;gap:7px}.accent-choices button{width:30px;height:30px;border-radius:50%;border:3px solid transparent;box-shadow:0 0 0 1px #7775}.accent-choices button[aria-pressed=true]{box-shadow:0 0 0 2px var(--text);border-color:var(--surface)}
+.accent-choices [data-accent=violet]{background:#ba9cff}.accent-choices [data-accent=cyan]{background:#85e2e0}.accent-choices [data-accent=green]{background:#83dcb8}
+.setting-options button{background:var(--surface2);color:var(--muted);border:1px solid var(--border);border-radius:9px;padding:9px 11px;font-size:11px}.setting-options [aria-pressed=true]{color:var(--text);border-color:var(--violet)}
+#treeScale{width:100%;accent-color:var(--violet);padding:0;margin:0 0 14px;height:24px;cursor:pointer}
+.toggle-line{display:flex;align-items:center;justify-content:space-between;font-size:13px;gap:14px}
+.toggle-line input{width:19px;height:19px;accent-color:var(--violet)}.setting-section .hint{margin:-5px 0 13px}
+.setting-backup{display:grid;grid-template-columns:1fr 1fr;gap:9px}.setting-backup>*{display:flex;align-items:center;justify-content:center;min-height:43px;cursor:pointer}
+:root[data-accent=cyan]{--violet:#85e2e0;--glow:#12383d}
+:root[data-accent=green]{--violet:#83dcb8;--glow:#153929}
+:root[data-accent=violet]{--glow:#271b3d}
+:root[data-accent] body{background:radial-gradient(ellipse 70% 25% at 50% -8%,var(--glow) 0,transparent 72%),var(--bg)}
+:root[data-accent] .hero{border-color:var(--border);background:linear-gradient(140deg,var(--glow),var(--surface) 80%)}
+:root[data-theme=black]{--bg:#050507;--surface:#111117;--surface2:#191920;--border:#302e38}
+:root.reduce-motion *, :root.reduce-motion *::before,:root.reduce-motion *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+@media(max-width:440px){.tree-graph{height:clamp(335px,53dvh,455px)}.settings-dialog{width:calc(100vw - 20px);max-height:88dvh}.settings-body{padding-left:16px;padding-right:16px}}

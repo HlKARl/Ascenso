@@ -11,6 +11,12 @@ const formatDuration=ms=>{ms=Math.max(0,Math.floor(ms));const mins=Math.floor(ms
 const parseTime=s=>{const m=String(s).trim().match(/^(\d{1,4}):([0-5]\d)(?:\.(\d{1,3}))?$/);return m?(Number(m[1])*60+Number(m[2])+Number(('0.'+(m[3]||'0'))))*1000:NaN};
 function readData(){let d;try{d=JSON.parse(localStorage.getItem(KEY))}catch{}if(!d||typeof d!=='object'||!d.done||typeof d.done!=='object'||!Array.isArray(d.transactions))d={done:{},transactions:[]};return{done:d.done,transactions:d.transactions,workouts:Array.isArray(d.workouts)?d.workouts:[],circuits:Array.isArray(d.circuits)?d.circuits:[],evidence:Array.isArray(d.evidence)?d.evidence:[],timer:validTimer(d.timer)?d.timer:{running:false,startedAt:null,elapsed:0}}}
 function validTimer(t){return t&&typeof t==='object'&&typeof t.running==='boolean'&&Number.isFinite(t.elapsed)&&t.elapsed>=0&&(!t.running||Number.isFinite(t.startedAt))}
+const SETTINGS_KEY='ascenso_settings_v1';
+function normalizeSettings(raw){const s=raw&&typeof raw==='object'?raw:{};return{accent:['violet','cyan','green'].includes(s.accent)?s.accent:'violet',theme:['dark','black'].includes(s.theme)?s.theme:'dark',treeScale:[80,90,100,110,120,130,140].includes(Number(s.treeScale))?Number(s.treeScale):100,reduceMotion:s.reduceMotion===true}}
+function loadSettings(){try{return normalizeSettings(JSON.parse(localStorage.getItem(SETTINGS_KEY)))}catch{return normalizeSettings({})}}
+let settings=loadSettings();
+function applySettings(){document.documentElement.dataset.accent=settings.accent;document.documentElement.dataset.theme=settings.theme;document.documentElement.classList.toggle('reduce-motion',settings.reduceMotion);document.querySelectorAll('[data-accent]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.accent===settings.accent)));document.querySelectorAll('[data-theme]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.theme===settings.theme)));$('treeScale').value=settings.treeScale;$('treeScaleValue').textContent=settings.treeScale+' %';$('reduceMotion').checked=settings.reduceMotion}
+function saveSettings(){localStorage.setItem(SETTINGS_KEY,JSON.stringify(settings));applySettings()}
 let data=readData(),plan=[],selectedTree='personal',selectedSkill=null;
 function persist(){localStorage.setItem(KEY,JSON.stringify(data))}
 function missionId(w,d){return `w${w}d${d}`}
@@ -113,23 +119,32 @@ function renderTree(){
  let leaf=0,maxDepth=0;const pos={};
  function place(id,depth){maxDepth=Math.max(maxDepth,depth);const cs=children[id];let x;if(!cs.length)x=leaf++;else{x=cs.map(ch=>place(ch,depth+1)).reduce((a,b)=>a+b,0)/cs.length}pos[id]={x,depth};return x}
  roots.forEach(id=>place(id,0));
- const step=105,width=Math.max(330,leaf*step+80),height=(maxDepth+1)*122+75;
+ const step=135,width=Math.max(330,leaf*step+80),height=(maxDepth+1)*122+75,scale=settings.treeScale/100;
  const x=id=>40+pos[id].x*step+(Math.max(0,330-(leaf*step+80))/2),y=id=>45+pos[id].depth*122;
- let svg=`<svg viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Árbol real de habilidades con bifurcaciones">`;
+ let svg=`<svg viewBox="0 0 ${width} ${height}" width="${Math.round(width*scale)}" height="${Math.round(height*scale)}" style="width:${Math.round(width*scale)}px;height:${Math.round(height*scale)}px" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Árbol real de habilidades con bifurcaciones">`;
  for(const s of skills){if(!s.from||!byId[s.from])continue;const px=x(s.from),py=y(s.from),cx=x(s.id),cy=y(s.id),active=status[s.id]&&status[s.from],isPath=s.id===selectedSkill||s.from===selectedSkill;
   svg+=`<path d="M${px} ${py+24} C${px} ${py+69} ${cx} ${cy-69} ${cx} ${cy-24}" fill="none" stroke="${active?'#bc9aff':isPath?'#9180ba':'#4c435d'}" stroke-width="${active||isPath?3:2}" stroke-dasharray="${active?'':'3 5'}" stroke-linecap="round"/>`}
  for(const s of skills){const sx=x(s.id),sy=y(s.id),unlocked=status[s.id],ready=!s.from||status[s.from],selected=selectedSkill===s.id;
   const fill=unlocked?'#4c3576':ready?'#27243b':'#1c1c27',border=selected?'#faf1ff':unlocked?'#b6a0ff':ready?'#9d8cb7':'#555062',symbol=unlocked?'✓':ready?'✦':'·';
   const words=s.name.split(' '),lines=[''];for(const word of words){let i=lines.length-1;if((lines[i]+' '+word).trim().length<=15)lines[i]=(lines[i]+' '+word).trim();else if(lines.length<3)lines.push(word);else lines[i]+='…'}
-  svg+=`<g class="tree-node" role="button" tabindex="0" data-skill="${safe(s.id)}" aria-label="${safe(s.name)}, ${unlocked?'desbloqueada':ready?'disponible':'bloqueada'}"><circle cx="${sx}" cy="${sy}" r="${selected?26:23}" fill="${fill}" stroke="${border}" stroke-width="${selected?3:2}"/><text x="${sx}" y="${sy+7}" fill="${unlocked?'#f0dfff':'#cec0e9'}" font-size="22" text-anchor="middle">${symbol}</text>${lines.map((t,i)=>`<text x="${sx}" y="${sy+42+i*12}" fill="${unlocked?'#f3eaff':'#d3ccdf'}" font-size="10.5" text-anchor="middle">${safe(t)}</text>`).join('')}</g>`
+  svg+=`<g class="tree-node" role="button" tabindex="0" data-skill="${safe(s.id)}" aria-label="${safe(s.name)}, ${unlocked?'desbloqueada':ready?'disponible':'bloqueada'}"><circle cx="${sx}" cy="${sy}" r="${selected?26:23}" fill="${fill}" stroke="${border}" stroke-width="${selected?3:2}"/><text x="${sx}" y="${sy+7}" fill="${unlocked?'#f0dfff':'#cec0e9'}" font-size="22" text-anchor="middle">${symbol}</text><rect x="${sx-65}" y="${sy+28}" width="130" height="${lines.length*12+8}" rx="5" fill="#191622" fill-opacity="0.95"/>${lines.map((t,i)=>`<text x="${sx}" y="${sy+42+i*12}" fill="${unlocked?'#f3eaff':'#d3ccdf'}" font-size="10.5" text-anchor="middle">${safe(t)}</text>`).join('')}</g>`
  }
  svg+='</svg>';
- const graph=$('treeGraph'),oldArea=graph.dataset.currentTree;graph.innerHTML=svg;
+ const graph=$('treeGraph'),oldArea=graph.dataset.currentTree;graph.innerHTML=svg;graph.dataset.rootX=String(x(roots[0])*scale);
  // Keep selected node visible after clicking, while preserving tree exploration scroll.
- if(oldArea!==selectedTree){graph.dataset.currentTree=selectedTree;const rootX=x(roots[0]);graph.scrollLeft=Math.max(0,rootX-graph.clientWidth/2)}
+ if(oldArea!==selectedTree){graph.dataset.currentTree=selectedTree;graph.scrollTop=0;requestAnimationFrame(()=>centerTree())}
  const skill=byId[selectedSkill],parent=skill.from?byId[skill.from]:null,unlocked=status[skill.id],ready=!parent||status[parent.id];
  $('skillDetail').innerHTML=`<div class="between"><small>HABILIDAD</small><span class="skill-status ${unlocked?'unlocked':''}">${unlocked?'✓ DESBLOQUEADA':ready?'POR DESBLOQUEAR':'BLOQUEADA'}</span></div><h3>${safe(skill.name)}</h3><div class="skill-effect"><b>✦ ${unlocked?'Ya puedes':'Potencial'}</b><br>${safe(skill.effect)}</div><div class="skill-req"><b>Para desbloquear:</b> ${safe(skill.need)}</div>${parent&&!status[parent.id]?`<div class="skill-req">Antes: ${safe(parent.name)}</div>`:''}`;
 }
+function centerTree(){const graph=$('treeGraph');if(!graph||!graph.clientWidth)return;graph.scrollLeft=Math.max(0,Number(graph.dataset.rootX||0)-graph.clientWidth/2);graph.scrollTop=0}
+// Pan both axes with a finger or mouse. Deliberate drags do not accidentally activate nodes.
+(function setupTreePan(){const graph=$('treeGraph');let drag=null,suppressUntil=0;
+ graph.addEventListener('pointerdown',e=>{if(!e.isPrimary||e.button!==0)return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,lastX:e.clientX,lastY:e.clientY,moved:false};try{graph.setPointerCapture(e.pointerId)}catch{} });
+ graph.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;const dx=e.clientX-drag.lastX,dy=e.clientY-drag.lastY;if(!drag.moved&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>7){drag.moved=true;graph.classList.add('dragging')}if(drag.moved){graph.scrollLeft-=dx;graph.scrollTop-=dy;e.preventDefault()}drag.lastX=e.clientX;drag.lastY=e.clientY});
+ const stop=e=>{if(!drag||e.pointerId!==drag.id)return;if(drag.moved)suppressUntil=performance.now()+450;drag=null;graph.classList.remove('dragging');if(graph.hasPointerCapture(e.pointerId))graph.releasePointerCapture(e.pointerId)};
+ graph.addEventListener('pointerup',stop);graph.addEventListener('pointercancel',stop);graph.addEventListener('lostpointercapture',()=>{graph.classList.remove('dragging');drag=null});
+ document.addEventListener('click',e=>{if(graph.contains(e.target)&&performance.now()<suppressUntil){e.preventDefault();e.stopImmediatePropagation()}},true);
+})();
 function renderAttributes(){
  const status=unlockedMap();$('attributes').innerHTML=Object.entries(TREE_INFO).map(([id,info])=>{
  const skills=SKILLS.filter(s=>s.tree===id),n=skills.filter(s=>status[s.id]).length;
@@ -146,7 +161,7 @@ function renderEvidence(){
  $('evidenceHistory').innerHTML=data.evidence.length?data.evidence.slice().reverse().slice(0,20).map(e=>`<div class="transaction"><div>${safe(EVIDENCE_TYPES[e.kind]||e.kind)}<small>${safe(e.date)} · ${safe(e.note)}</small></div><button data-delete-evidence="${safe(e.id)}" title="Eliminar acción">✕</button></div>`).join(''):'<div class="empty">No hay registros todavía.</div>';
 }
 function renderAll(){if(!plan.length)return;renderHome();renderFinance();renderCircuits();renderWorkoutHistory();renderTree();renderAttributes();renderEvidence();updateMetrics();renderTimer()}
-function exportData(){const payload={version:3,exported:new Date().toISOString(),...data};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='ascenso-respaldo.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function exportData(){const payload={version:4,exported:new Date().toISOString(),...data,settings};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='ascenso-respaldo.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 function validateImport(o){if(!o||typeof o!=='object'||!o.done||typeof o.done!=='object'||Array.isArray(o.done)||!Array.isArray(o.transactions)||o.transactions.some(t=>!['income','expense'].includes(t.type)||!Number.isFinite(t.amount)||t.amount<=0||typeof t.note!=='string')||!['undefined','object'].includes(typeof o.workouts)||!['undefined','object'].includes(typeof o.circuits)||!['undefined','object'].includes(typeof o.evidence))throw Error('Archivo de respaldo no válido');for(const name of ['workouts','circuits','evidence'])if(o[name]!==undefined&&!Array.isArray(o[name]))throw Error('Sección '+name+' inválida');if((o.workouts||[]).some(w=>!Number.isFinite(w.km)||w.km<=0||!Number.isFinite(w.ms)||w.ms<=0||!['run','jog','walk'].includes(w.mode)||!localDay(w.date)))throw Error('Pruebas físicas inválidas');if((o.circuits||[]).some(c=>!Number.isFinite(c.meters)||c.meters<=0||typeof c.name!=='string'))throw Error('Circuitos inválidos');if((o.evidence||[]).some(e=>!EVIDENCE_TYPES[e.kind]||typeof e.note!=='string'||!localDay(e.date)))throw Error('Evidencias inválidas')}
 // Stopwatch uses real-world elapsed time (Date.now), so UI throttling does not alter elapsed time.
 function elapsedTimer(){const t=data.timer;return Math.max(0,t.elapsed+(t.running?Date.now()-t.startedAt:0))}
@@ -164,6 +179,7 @@ function navigate(tab,area){
  if(area&&TREE_INFO[area]){selectedTree=area;selectedSkill=null;renderTree()}
  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('selected',b.dataset.tab===tab));
  document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===tab));
+ if(tab==='talents')requestAnimationFrame(()=>{if(area||!$('treeGraph').dataset.everCentered){centerTree();$('treeGraph').dataset.everCentered='yes'}});
  window.scrollTo(0,0)
 }
 document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.tab)));
@@ -176,8 +192,17 @@ for(const id of ['distanceExpr','distanceUnit','workoutMode','workoutTime','work
 $('saveWorkout').addEventListener('click',()=>{const w=derivedWorkout();if(!w.valid){$('workoutMessage').textContent='Revisa la distancia, el tiempo y la fecha.';return}const before=unlockedMap();data.workouts.push({...w,id:uid(),recordedAt:new Date().toISOString()});data.workouts.sort((a,b)=>(a.date+' '+a.recordedAt).localeCompare(b.date+' '+b.recordedAt));persist();renderAll();$('workoutMessage').textContent=`✓ Registrado: ${w.km.toFixed(3)} km en ${formatDuration(w.ms)}.`;toast('✦ ¡Prueba registrada en tu historial!');announceNewSkills(before)});
 $('evidenceArea').addEventListener('change',updateEvidenceOptions);$('evidenceKind').addEventListener('change',updateEvidenceOptions);
 $('evidenceForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target),kind=f.get('kind'),note=String(f.get('note')||'').trim(),date=f.get('date'),minutes=Number(f.get('minutes')||0);if(!EVIDENCE_TYPES[kind]||note.length<6||!localDay(date)||date>today()||(kind==='study'&&minutes<25)){toast(kind==='study'?'Una sesión concentrada requiere al menos 25 minutos.':'Revisa los datos de la evidencia.');return}const before=unlockedMap();data.evidence.push({id:uid(),kind,note,date,minutes:kind==='study'?minutes:0,recordedAt:new Date().toISOString()});persist();const lastArea=EVIDENCE_AREAS[$('evidenceArea').value]?$('evidenceArea').value:'personal';e.target.reset();$('evidenceArea').value=lastArea;updateEvidenceOptions();$('evidenceDate').value=today();renderAll();toast('Acción registrada.');announceNewSkills(before)});
-$('exportBtn').addEventListener('click',exportData);$('exportTop').addEventListener('click',exportData);
-$('importFile').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>4*1024*1024)throw Error('El archivo excede 4 MB');const obj=JSON.parse(await file.text());validateImport(obj);if(confirm('¿Reemplazar los datos de este dispositivo con el respaldo? Exporta antes tu progreso actual si deseas conservarlo.')){data={done:obj.done,transactions:obj.transactions,workouts:obj.workouts||[],circuits:obj.circuits||[],evidence:obj.evidence||[],timer:validTimer(obj.timer)?obj.timer:{running:false,startedAt:null,elapsed:0}};persist();renderAll();toast('Respaldo importado correctamente.')}}catch(err){alert('No se pudo importar: '+err.message)}e.target.value=''});
+$('exportBtn').addEventListener('click',exportData);
+$('centerTree').addEventListener('click',centerTree);
+$('settingsOpen').addEventListener('click',()=>{$('settingsDialog').showModal()});
+$('settingsClose').addEventListener('click',()=>$('settingsDialog').close());
+$('settingsDialog').addEventListener('click',e=>{if(e.target===$('settingsDialog'))$('settingsDialog').close()});
+document.querySelectorAll('[data-accent]').forEach(b=>b.addEventListener('click',()=>{settings.accent=b.dataset.accent;saveSettings()}));
+document.querySelectorAll('[data-theme]').forEach(b=>b.addEventListener('click',()=>{settings.theme=b.dataset.theme;saveSettings()}));
+$('treeScale').addEventListener('input',e=>{settings.treeScale=Number(e.target.value);saveSettings();const wasOpen=$('talents').classList.contains('active');renderTree();if(wasOpen)requestAnimationFrame(centerTree)});
+$('reduceMotion').addEventListener('change',e=>{settings.reduceMotion=e.target.checked;saveSettings()});
+applySettings();
+$('importFile').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>4*1024*1024)throw Error('El archivo excede 4 MB');const obj=JSON.parse(await file.text());validateImport(obj);if(confirm('¿Reemplazar los datos de este dispositivo con el respaldo? Exporta antes tu progreso actual si deseas conservarlo.')){data={done:obj.done,transactions:obj.transactions,workouts:obj.workouts||[],circuits:obj.circuits||[],evidence:obj.evidence||[],timer:validTimer(obj.timer)?obj.timer:{running:false,startedAt:null,elapsed:0}};persist();if(obj.settings){settings=normalizeSettings(obj.settings);saveSettings()}renderAll();toast('Respaldo importado correctamente.')}}catch(err){alert('No se pudo importar: '+err.message)}e.target.value=''});
 $('workoutDate').value=today();$('evidenceDate').value=today();updateEvidenceOptions();renderTimer();renderCircuits();updateMetrics();
 fetch('plan.json').then(r=>{if(!r.ok)throw Error('No se encontró el plan de misiones');return r.json()}).then(p=>{if(!Array.isArray(p)||p.length!==13||p.some(w=>!Array.isArray(w.days)||w.days.length!==7))throw Error('El plan está incompleto');plan=p;renderAll()}).catch(err=>{$('todayTasks').innerHTML=`<div class="empty">No se pudo cargar el plan. Abre la aplicación desde GitHub Pages o un servidor local.</div>`;console.error(err)});
 if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(console.warn);

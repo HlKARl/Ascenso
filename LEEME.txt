@@ -1,3 +1,13 @@
+ASCENSO 3.1 — Ajustes y árbol táctil
+=======================================
+Novedades:
+• Desliza el árbol con el dedo en ambas direcciones o utiliza el ratón.
+• La ventana del árbol ahora tiene altura limitada para evitar perder el lugar en el celular.
+• Botón «Centrar» para regresar al nodo principal.
+• El icono superior abre Configuración: acento, fondo, tamaño del árbol, reducir animaciones y respaldos.
+• Los respaldos de ASCENSO 3.1 incorporan también las preferencias (compatibles con respaldos viejos).
+• Conserva misiones, cronómetro, circuitos, habilidades y progreso de ASCENSO 3.0.
+
 ASCENSO — ACTUALIZACIÓN MINIMALISTA
 
 NOVEDADES
