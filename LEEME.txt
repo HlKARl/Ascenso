@@ -1,0 +1,9 @@
+ANDY 1.0 · ASCENSO — primera versión funcional
+
+1. Para probar en PC: abre una terminal dentro de esta carpeta y ejecuta: python -m http.server 8000
+2. Visita http://localhost:8000 desde el navegador de tu PC.
+3. Para usar en el celular: sube el contenido de esta carpeta a un repositorio público de GitHub y activa Settings > Pages > Deploy from branch > main / (root). Abre la URL HTTPS generada en el celular y usa Agregar a pantalla de inicio / Instalar aplicación.
+4. Tus datos se guardan únicamente en el navegador y dispositivo donde los registras. Exporta respaldos desde Progreso. Para migrar a otro dispositivo, importa el respaldo. No hay sincronización automática.
+5. La app está precargada con las 91 misiones diarias del plan Word original, distribuidas en 13 semanas. Cada misión diaria otorga 20 XP una sola vez; desmarcarla retira esos puntos. Los compromisos semanales son referencias y no dan XP adicional.
+6. No uses los $10 de pasajes como capital de riesgo.
+7. La PWA funciona sin conexión después de la primera carga online en HTTPS, siempre que el navegador permita service workers. Para una instalación más compatible con Android/iOS, pueden añadirse iconos PNG en una siguiente versión.

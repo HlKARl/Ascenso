@@ -1,0 +1,639 @@
+[
+  {
+    "week": 1,
+    "title": "Diagnóstico y sistema",
+    "days": [
+      {
+        "day": "Lunes",
+        "date": "26/10",
+        "task": "Organizar entregas y calendarizar estudio (6 h/semana). Crear horario personal y priorizar las 5 materias."
+      },
+      {
+        "day": "Martes",
+        "date": "27/10",
+        "task": "Registrar los $10 de pasajes y cualquier gasto real sin comprometer el transporte. · entrenamiento o caminata según calendario."
+      },
+      {
+        "day": "Miércoles",
+        "date": "28/10",
+        "task": "Diseñar el presupuesto inicial del arroz relleno sin comprar todavía. · revisión breve de gastos y avances académicos."
+      },
+      {
+        "day": "Jueves",
+        "date": "29/10",
+        "task": "Realizar 2 entrenamientos cortos de 20–25 min. · cerrar los deberes más urgentes."
+      },
+      {
+        "day": "Viernes",
+        "date": "30/10",
+        "task": "Escribir a dos amigos y proponer una conversación o encuentro. · revisar negocio y próximos compromisos."
+      },
+      {
+        "day": "Sábado",
+        "date": "31/10",
+        "task": "Establecer hora viable de sueño y un rincón de estudio distinto de la cama. · espacio para hobby, fe o amigos."
+      },
+      {
+        "day": "Domingo",
+        "date": "01/11",
+        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+      }
+    ],
+    "commitments": [
+      "Crear horario personal y priorizar las 5 materias.",
+      "Registrar los $10 de pasajes y cualquier gasto real sin comprometer el transporte.",
+      "Diseñar el presupuesto inicial del arroz relleno sin comprar todavía.",
+      "Realizar 2 entrenamientos cortos de 20–25 min.",
+      "Escribir a dos amigos y proponer una conversación o encuentro.",
+      "Establecer hora viable de sueño y un rincón de estudio distinto de la cama."
+    ]
+  },
+  {
+    "week": 2,
+    "title": "Primera prueba pequeña",
+    "days": [
+      {
+        "day": "Lunes",
+        "date": "02/11",
+        "task": "Organizar entregas y calendarizar estudio (7 h/semana). Pedir cotizaciones de ingredientes, envases y transporte."
+      },
+      {
+        "day": "Martes",
+        "date": "03/11",
+        "task": "Definir una receta pequeña y el costo por porción. · entrenamiento o caminata según calendario."
+      },
+      {
+        "day": "Miércoles",
+        "date": "04/11",
+        "task": "Encuestar a 5 posibles compradores y preguntar cuánto pagarían. · revisión breve de gastos y avances académicos."
+      },
+      {
+        "day": "Jueves",
+        "date": "05/11",
+        "task": "Completar 2–3 sesiones de actividad física. · cerrar los deberes más urgentes."
+      },
+      {
+        "day": "Viernes",
+        "date": "06/11",
+        "task": "Aplicar bloques de concentración 50/10 para tareas. · revisar negocio y próximos compromisos."
+      },
+      {
+        "day": "Sábado",
+        "date": "07/11",
+        "task": "Tener una conversación individual de calidad con un amigo. · espacio para hobby, fe o amigos."
+      },
+      {
+        "day": "Domingo",
+        "date": "08/11",
+        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+      }
+    ],
+    "commitments": [
+      "Pedir cotizaciones de ingredientes, envases y transporte.",
+      "Definir una receta pequeña y el costo por porción.",
+      "Encuestar a 5 posibles compradores y preguntar cuánto pagarían.",
+      "Completar 2–3 sesiones de actividad física.",
+      "Aplicar bloques de concentración 50/10 para tareas.",
+      "Tener una conversación individual de calidad con un amigo."
+    ]
+  },
+  {
+    "week": 3,
+    "title": "Piloto por preventa",
+    "days": [
+      {
+        "day": "Lunes",
+        "date": "09/11",
+        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Fijar un precio calculado que cubra costos y margen."
+      },
+      {
+        "day": "Martes",
+        "date": "10/11",
+        "task": "Ofrecer preventa a conocidos, sin prometer cantidades mayores a las posibles. · entrenamiento o caminata según calendario."
+      },
+      {
+        "day": "Miércoles",
+        "date": "11/11",
+        "task": "Preparar un lote de prueba solo con pedidos o presupuesto disponible. · revisión breve de gastos y avances académicos."
+      },
+      {
+        "day": "Jueves",
+        "date": "12/11",
+        "task": "Registrar ingresos, gastos y devoluciones del piloto. · cerrar los deberes más urgentes."
+      },
+      {
+        "day": "Viernes",
+        "date": "13/11",
+        "task": "Entrenar 3 días y mantener estudio programado. · revisar negocio y próximos compromisos."
+      },
+      {
+        "day": "Sábado",
+        "date": "14/11",
+        "task": "Organizar una salida sencilla o conversación significativa. · espacio para hobby, fe o amigos."
+      },
+      {
+        "day": "Domingo",
+        "date": "15/11",
+        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+      }
+    ],
+    "commitments": [
+      "Fijar un precio calculado que cubra costos y margen.",
+      "Ofrecer preventa a conocidos, sin prometer cantidades mayores a las posibles.",
+      "Preparar un lote de prueba solo con pedidos o presupuesto disponible.",
+      "Registrar ingresos, gastos y devoluciones del piloto.",
+      "Entrenar 3 días y mantener estudio programado.",
+      "Organizar una salida sencilla o conversación significativa."
+    ]
+  },
+  {
+    "week": 4,
+    "title": "Revisión mensual 1",
+    "days": [
+      {
+        "day": "Lunes",
+        "date": "16/11",
+        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Cerrar ingresos/gastos y comparar con el presupuesto."
+      },
+      {
+        "day": "Martes",
+        "date": "17/11",
+        "task": "Calcular margen unitario y decidir continuar, ajustar o pausar el arroz relleno. · entrenamiento o caminata según calendario."
+      },
+      {
+        "day": "Miércoles",
+        "date": "18/11",
+        "task": "Revisar notas y fechas de evaluaciones en las cinco materias. · revisión breve de gastos y avances académicos."
+      },
+      {
+        "day": "Jueves",
+        "date": "19/11",
+        "task": "Entrenar 3 veces y corregir problemas de adherencia. · cerrar los deberes más urgentes."
+      },
+      {
+        "day": "Viernes",
+        "date": "20/11",
+        "task": "Evaluar si los contactos sociales se sintieron recíprocos. · revisar negocio y próximos compromisos."
+      },
+      {
+        "day": "Sábado",
+        "date": "21/11",
+        "task": "Hacer revisión mensual: 3 avances, 3 obstáculos y 3 decisiones. · espacio para hobby, fe o amigos."
+      },
+      {
+        "day": "Domingo",
+        "date": "22/11",
+        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+      }
+    ],
+    "commitments": [
+      "Cerrar ingresos/gastos y comparar con el presupuesto.",
+      "Calcular margen unitario y decidir continuar, ajustar o pausar el arroz relleno.",
+      "Revisar notas y fechas de evaluaciones en las cinco materias.",
+      "Entrenar 3 veces y corregir problemas de adherencia.",
+      "Evaluar si los contactos sociales se sintieron recíprocos.",
+      "Hacer revisión mensual: 3 avances, 3 obstáculos y 3 decisiones."
+    ]
+  },
+  {
+    "week": 5,
+    "title": "Ventas repetibles",
+    "days": [
+      {
+        "day": "Lunes",
+        "date": "23/11",
+        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Establecer un día de pedidos y uno de entrega, si es viable."
+      },
+      {
+        "day": "Martes",
+        "date": "24/11",
+        "task": "Separar dinero de reposición, utilidad y ahorro. · entrenamiento o caminata según calendario."
+      },
+      {
+        "day": "Miércoles",
+        "date": "25/11",
+        "task": "Revisar dos temas difíciles de las materias más exigentes. · revisión breve de gastos y avances académicos."
+      },
+      {
+        "day": "Jueves",
+        "date": "26/11",
+        "task": "Ejercitarse 3 veces y caminar otros 2 días. · cerrar los deberes más urgentes."
+      },
+      {
+        "day": "Viernes",
+        "date": "27/11",
+        "task": "Reservar un encuentro o actividad compartida con amigos. · revisar negocio y próximos compromisos."
+      },
+      {
+        "day": "Sábado",
+        "date": "28/11",
+        "task": "Bloquear entretenimiento después de estudio prioritario. · espacio para hobby, fe o amigos."
+      },
+      {
+        "day": "Domingo",
+        "date": "29/11",
+        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+      }
+    ],
+    "commitments": [
+      "Establecer un día de pedidos y uno de entrega, si es viable.",
+      "Separar dinero de reposición, utilidad y ahorro.",
+      "Revisar dos temas difíciles de las materias más exigentes.",
+      "Ejercitarse 3 veces y caminar otros 2 días.",
+      "Reservar un encuentro o actividad compartida con amigos.",
+      "Bloquear entretenimiento después de estudio prioritario."
+    ]
+  },
+  {
+    "week": 6,
+    "title": "Mejora de productividad",
+    "days": [
+      {
+        "day": "Lunes",
+        "date": "30/11",
+        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Hacer un bloque semanal de planificación de exámenes y entregas."
+      },
+      {
+        "day": "Martes",
+        "date": "01/12",
+        "task": "Completar cuatro sesiones de estudio profundo de 2 horas. · entrenamiento o caminata según calendario."
+      },
+      {
+        "day": "Miércoles",
+        "date": "02/12",
+        "task": "Simplificar compras y preparación del producto. · revisión breve de gastos y avances académicos."
+      },
+      {
+        "day": "Jueves",
+        "date": "03/12",
+        "task": "Entrenar 3–4 veces de forma progresiva. · cerrar los deberes más urgentes."
+      },
+      {
+        "day": "Viernes",
+        "date": "04/12",
+        "task": "Conversar con un amigo sobre un interés o dificultad real, sin forzar apertura. · revisar negocio y próximos compromisos."
+      },
+      {
+        "day": "Sábado",
+        "date": "05/12",
+        "task": "Sostener un bloque para un hobby creativo. · espacio para hobby, fe o amigos."
+      },
+      {
+        "day": "Domingo",
+        "date": "06/12",
+        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+      }
+    ],
+    "commitments": [
+      "Hacer un bloque semanal de planificación de exámenes y entregas.",
+      "Completar cuatro sesiones de estudio profundo de 2 horas.",
+      "Simplificar compras y preparación del producto.",
+      "Entrenar 3–4 veces de forma progresiva.",
+      "Conversar con un amigo sobre un interés o dificultad real, sin forzar apertura.",
+      "Sostener un bloque para un hobby creativo."
+    ]
+  },
+  {
+    "week": 7,
+    "title": "Relaciones con intención",
+    "days": [
+      {
+        "day": "Lunes",
+        "date": "07/12",
+        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Proponer tiempo uno a uno con un amigo de confianza."
+      },
+      {
+        "day": "Martes",
+        "date": "08/12",
+        "task": "Practicar escucha y compartir algo personal de forma gradual si te nace. · entrenamiento o caminata según calendario."
+      },
+      {
+        "day": "Miércoles",
+        "date": "09/12",
+        "task": "Planificar al menos una actividad social que no requiera mucho dinero. · revisión breve de gastos y avances académicos."
+      },
+      {
+        "day": "Jueves",
+        "date": "10/12",
+        "task": "Mantener ventas solo si no afectan universidad y descanso. · cerrar los deberes más urgentes."
+      },
+      {
+        "day": "Viernes",
+        "date": "11/12",
+        "task": "Entrenar 4 veces ajustando intensidad. · revisar negocio y próximos compromisos."
+      },
+      {
+        "day": "Sábado",
+        "date": "12/12",
+        "task": "Revisar avances de cada una de las cinco materias. · espacio para hobby, fe o amigos."
+      },
+      {
+        "day": "Domingo",
+        "date": "13/12",
+        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+      }
+    ],
+    "commitments": [
+      "Proponer tiempo uno a uno con un amigo de confianza.",
+      "Practicar escucha y compartir algo personal de forma gradual si te nace.",
+      "Planificar al menos una actividad social que no requiera mucho dinero.",
+      "Mantener ventas solo si no afectan universidad y descanso.",
+      "Entrenar 4 veces ajustando intensidad.",
+      "Revisar avances de cada una de las cinco materias."
+    ]
+  },
+  {
+    "week": 8,
+    "title": "Revisión mensual 2",
+    "days": [
+      {
+        "day": "Lunes",
+        "date": "14/12",
+        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Calcular ingreso neto de las últimas cuatro semanas."
+      },
+      {
+        "day": "Martes",
+        "date": "15/12",
+        "task": "Comprobar que el negocio no use el dinero de transporte. · entrenamiento o caminata según calendario."
+      },
+      {
+        "day": "Miércoles",
+        "date": "16/12",
+        "task": "Revisar calificaciones, pendientes y prioridades académicas. · revisión breve de gastos y avances académicos."
+      },
+      {
+        "day": "Jueves",
+        "date": "17/12",
+        "task": "Mantener 4 entrenamientos o adaptar si hay sobrecarga. · cerrar los deberes más urgentes."
+      },
+      {
+        "day": "Viernes",
+        "date": "18/12",
+        "task": "Evaluar la calidad de las dos amistades que deseas cultivar. · revisar negocio y próximos compromisos."
+      },
+      {
+        "day": "Sábado",
+        "date": "19/12",
+        "task": "Escribir 3 modificaciones concretas al plan. · espacio para hobby, fe o amigos."
+      },
+      {
+        "day": "Domingo",
+        "date": "20/12",
+        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+      }
+    ],
+    "commitments": [
+      "Calcular ingreso neto de las últimas cuatro semanas.",
+      "Comprobar que el negocio no use el dinero de transporte.",
+      "Revisar calificaciones, pendientes y prioridades académicas.",
+      "Mantener 4 entrenamientos o adaptar si hay sobrecarga.",
+      "Evaluar la calidad de las dos amistades que deseas cultivar.",
+      "Escribir 3 modificaciones concretas al plan."
+    ]
+  },
+  {
+    "week": 9,
+    "title": "Cierre de año consciente",
+    "days": [
+      {
+        "day": "Lunes",
+        "date": "21/12",
+        "task": "Organizar entregas y calendarizar estudio (6 h/semana). Planear compromisos de fin de año y proteger el descanso."
+      },
+      {
+        "day": "Martes",
+        "date": "22/12",
+        "task": "Cerrar registros de diciembre y preparar presupuesto de enero. · entrenamiento o caminata según calendario."
+      },
+      {
+        "day": "Miércoles",
+        "date": "23/12",
+        "task": "Mantener un mínimo académico según entregas vigentes. · revisión breve de gastos y avances académicos."
+      },
+      {
+        "day": "Jueves",
+        "date": "24/12",
+        "task": "Entrenar 3 veces si los días festivos alteran la rutina. · cerrar los deberes más urgentes."
+      },
+      {
+        "day": "Viernes",
+        "date": "25/12",
+        "task": "Dedicar tiempo de calidad a familia, amigos y fe. · revisar negocio y próximos compromisos."
+      },
+      {
+        "day": "Sábado",
+        "date": "26/12",
+        "task": "Dedicar un bloque creativo a Nahomi, música u otro hobby. · espacio para hobby, fe o amigos."
+      },
+      {
+        "day": "Domingo",
+        "date": "27/12",
+        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+      }
+    ],
+    "commitments": [
+      "Planear compromisos de fin de año y proteger el descanso.",
+      "Cerrar registros de diciembre y preparar presupuesto de enero.",
+      "Mantener un mínimo académico según entregas vigentes.",
+      "Entrenar 3 veces si los días festivos alteran la rutina.",
+      "Dedicar tiempo de calidad a familia, amigos y fe.",
+      "Dedicar un bloque creativo a Nahomi, música u otro hobby."
+    ]
+  },
+  {
+    "week": 10,
+    "title": "Reinicio ordenado",
+    "days": [
+      {
+        "day": "Lunes",
+        "date": "28/12",
+        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Actualizar horario académico según el período vigente."
+      },
+      {
+        "day": "Martes",
+        "date": "29/12",
+        "task": "Reactivar o ajustar las preventas según demanda real. · entrenamiento o caminata según calendario."
+      },
+      {
+        "day": "Miércoles",
+        "date": "30/12",
+        "task": "Revisar contenidos académicos pendientes. · revisión breve de gastos y avances académicos."
+      },
+      {
+        "day": "Jueves",
+        "date": "31/12",
+        "task": "Retomar 4 entrenamientos progresivamente. · cerrar los deberes más urgentes."
+      },
+      {
+        "day": "Viernes",
+        "date": "01/01",
+        "task": "Proponer un plan social sencillo para enero. · revisar negocio y próximos compromisos."
+      },
+      {
+        "day": "Sábado",
+        "date": "02/01",
+        "task": "Definir un objetivo concreto de sueño y concentración. · espacio para hobby, fe o amigos."
+      },
+      {
+        "day": "Domingo",
+        "date": "03/01",
+        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+      }
+    ],
+    "commitments": [
+      "Actualizar horario académico según el período vigente.",
+      "Reactivar o ajustar las preventas según demanda real.",
+      "Revisar contenidos académicos pendientes.",
+      "Retomar 4 entrenamientos progresivamente.",
+      "Proponer un plan social sencillo para enero.",
+      "Definir un objetivo concreto de sueño y concentración."
+    ]
+  },
+  {
+    "week": 11,
+    "title": "Calidad y consistencia",
+    "days": [
+      {
+        "day": "Lunes",
+        "date": "04/01",
+        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Revisar cuál actividad tiene el mayor efecto positivo en tus días."
+      },
+      {
+        "day": "Martes",
+        "date": "05/01",
+        "task": "Optimizar el margen por porción sin sacrificar calidad. · entrenamiento o caminata según calendario."
+      },
+      {
+        "day": "Miércoles",
+        "date": "06/01",
+        "task": "Cerrar tareas académicas importantes antes del último momento. · revisión breve de gastos y avances académicos."
+      },
+      {
+        "day": "Jueves",
+        "date": "07/01",
+        "task": "Mantener 4 entrenamientos y un día de recuperación. · cerrar los deberes más urgentes."
+      },
+      {
+        "day": "Viernes",
+        "date": "08/01",
+        "task": "Compartir tiempo con amigos y evaluar satisfacción personal. · revisar negocio y próximos compromisos."
+      },
+      {
+        "day": "Sábado",
+        "date": "09/01",
+        "task": "Registrar 2 bloques de hobbies y reflexión personal. · espacio para hobby, fe o amigos."
+      },
+      {
+        "day": "Domingo",
+        "date": "10/01",
+        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+      }
+    ],
+    "commitments": [
+      "Revisar cuál actividad tiene el mayor efecto positivo en tus días.",
+      "Optimizar el margen por porción sin sacrificar calidad.",
+      "Cerrar tareas académicas importantes antes del último momento.",
+      "Mantener 4 entrenamientos y un día de recuperación.",
+      "Compartir tiempo con amigos y evaluar satisfacción personal.",
+      "Registrar 2 bloques de hobbies y reflexión personal."
+    ]
+  },
+  {
+    "week": 12,
+    "title": "Auditoría personal",
+    "days": [
+      {
+        "day": "Lunes",
+        "date": "11/01",
+        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Sumar ingresos netos y costos totales del trimestre."
+      },
+      {
+        "day": "Martes",
+        "date": "12/01",
+        "task": "Calcular tasa de sesiones de ejercicio y horas de estudio. · entrenamiento o caminata según calendario."
+      },
+      {
+        "day": "Miércoles",
+        "date": "13/01",
+        "task": "Revisar tendencias de sueño, estrés y energía de forma cualitativa. · revisión breve de gastos y avances académicos."
+      },
+      {
+        "day": "Jueves",
+        "date": "14/01",
+        "task": "Valorar avances en amistades sin convertir personas en puntuaciones. · cerrar los deberes más urgentes."
+      },
+      {
+        "day": "Viernes",
+        "date": "15/01",
+        "task": "Identificar tres hábitos que seguirás sosteniendo. · revisar negocio y próximos compromisos."
+      },
+      {
+        "day": "Sábado",
+        "date": "16/01",
+        "task": "Preparar un borrador del siguiente trimestre. · espacio para hobby, fe o amigos."
+      },
+      {
+        "day": "Domingo",
+        "date": "17/01",
+        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+      }
+    ],
+    "commitments": [
+      "Sumar ingresos netos y costos totales del trimestre.",
+      "Calcular tasa de sesiones de ejercicio y horas de estudio.",
+      "Revisar tendencias de sueño, estrés y energía de forma cualitativa.",
+      "Valorar avances en amistades sin convertir personas en puntuaciones.",
+      "Identificar tres hábitos que seguirás sosteniendo.",
+      "Preparar un borrador del siguiente trimestre."
+    ]
+  },
+  {
+    "week": 13,
+    "title": "Cierre y ANDY 2.0",
+    "days": [
+      {
+        "day": "Lunes",
+        "date": "18/01",
+        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Cerrar todas las entradas pendientes del tablero."
+      },
+      {
+        "day": "Martes",
+        "date": "19/01",
+        "task": "Evaluar factibilidad del emprendimiento y próximas ventas. · entrenamiento o caminata según calendario."
+      },
+      {
+        "day": "Miércoles",
+        "date": "20/01",
+        "task": "Revisar resultados académicos disponibles sin atribuirte notas aún no publicadas. · revisión breve de gastos y avances académicos."
+      },
+      {
+        "day": "Jueves",
+        "date": "21/01",
+        "task": "Completar actividad física adaptada a la semana. · cerrar los deberes más urgentes."
+      },
+      {
+        "day": "Viernes",
+        "date": "22/01",
+        "task": "Agradecer y cuidar los vínculos que has cultivado. · revisar negocio y próximos compromisos."
+      },
+      {
+        "day": "Sábado",
+        "date": "23/01",
+        "task": "Redactar el informe de cierre y tres objetivos del trimestre siguiente. · espacio para hobby, fe o amigos."
+      },
+      {
+        "day": "Domingo",
+        "date": "24/01",
+        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+      }
+    ],
+    "commitments": [
+      "Cerrar todas las entradas pendientes del tablero.",
+      "Evaluar factibilidad del emprendimiento y próximas ventas.",
+      "Revisar resultados académicos disponibles sin atribuirte notas aún no publicadas.",
+      "Completar actividad física adaptada a la semana.",
+      "Agradecer y cuidar los vínculos que has cultivado.",
+      "Redactar el informe de cierre y tres objetivos del trimestre siguiente."
+    ]
+  }
+]
