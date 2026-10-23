@@ -1,1 +1,0 @@
-ASCENSO 3.7\n- Integradas las expresiones refinadas: normal, feliz, emocionada, pensativa, empática, pícara, sorprendida y dormida.\n- Pestaña de Nina mantenida en formato 40/60 con personaje sujetando el borde del chat.\n- Árbol de habilidades centrado con wrapper real (tree-canvas) y recenter adicional al abrir.\n

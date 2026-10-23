@@ -1,1 +1,0 @@
-ASCENSO 3.6\n- Nina rediseñada: personaje transparente agarrándose del borde del chat.\n- Árbol: centrado inicial por nodo raíz.\n- Frontend: tolera mejor respuestas no JSON del Worker.\n

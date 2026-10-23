@@ -1,33 +1,4 @@
-ASCENSO 3.5 — Nina a pantalla completa (23 de octubre de 2026)
-
-CAMBIOS
-1. Árboles verdaderamente centrados al entrar o cambiar de árbol; conservan desplazamiento táctil libre.
-2. Nina ahora aparece como retrato vertical de fondo 9:16, detrás del chat semitransparente.
-3. Ocho expresiones nuevas recortadas de la nueva ilustración generada, exportadas por separado
-   en nina/*.webp y extras/*_9x16.png. Los retratos no tienen las etiquetas de la lámina.
-4. Código CLOUDFLARE_Worker_Nina_3_5.txt entregado por separado: usa respuesta JSON estructurada, distingue bloques de
-   pensamiento y reintenta una sola vez si Gemini devuelve JSON incompleto o inválido.
-   Usa Gemini 3.5 Flash-Lite con pensamiento LOW.
-
-INSTALACIÓN APP
-- EXPORTA primero tu respaldo desde Configuración.
-- Extrae el ZIP y sube el contenido de esta carpeta a la raíz del repositorio GitHub Pages
-  (index.html, app.js, style.css, sw.js, plan.json, manifest.webmanifest, icon.svg y carpeta nina/).
-- El código de Cloudflare va en el archivo .txt descargable por separado.
-  NO subas ese archivo a GitHub; cópialo en Cloudflare. No contiene la clave API.
-- No elimines almacenamiento local de la app: conserva misiones, URL del Worker y chat.
-- Abre de nuevo ASCENSO. Si conserva imágenes antiguas, cierra completamente la PWA y reabre.
-
-INSTALACIÓN WORKER (NECESARIA PARA CORREGIR EL ERROR JSON)
-- Abre Cloudflare > Workers & Pages > ascenso-nina > Edit code.
-- Reemplaza TODO el código por el contenido de CLOUDFLARE_Worker_Nina_3_5.txt, luego Deploy.
-- Mantén el secreto GEMINI_API_KEY en Cloudflare; NUNCA pegues la clave en GitHub.
-- El reintento (solo si Gemini devuelve un formato inválido) consume una petición adicional.
-- El CORS no impide llamadas externas directas; si compartes ASCENSO, añade autenticación
-  y rate limiting para que otras personas no consuman tu cuota de Gemini.
-
-IMÁGENES
-- nina/*.webp: ocho imágenes optimizadas en proporción exacta 9:16 para la web.
-- Las ocho versiones PNG están en Nina_8_Expresiones_9x16_PNG.zip (descarga opcional).
-- Incluidas desde un conjunto de ilustraciones generado por IA; su extensión vertical inferior
-  es un fondo desenfocado de la misma escena para que el chat cubra sin tapar la cara de Nina.
+ASCENSO 3.8
+Sube TODO el contenido de esta carpeta a la raíz del repositorio.
+Incluye: app.js, index.html, style.css, nina/, sw.js, manifest, plan.json, icon.svg.
+No incluye archivos antiguos de Cloudflare.

@@ -266,3 +266,35 @@ body.nina-focus #nina.view.active{position:relative;display:grid;grid-template-r
 
 /* ASCENSO 3.7 — centrado real del árbol */
 .tree-canvas{width:max-content;min-width:100%;display:flex;justify-content:center;align-items:flex-start}.tree-canvas svg{flex:none;margin-inline:auto}
+
+
+/* ASCENSO 3.8 — overrides finales limpios */
+nav button{font-size:0;gap:0;min-width:0;justify-content:center;padding:10px 0}
+nav button span{font-size:24px;line-height:1}
+nav button::after{display:none}
+
+.tree-graph{overflow:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.tree-canvas{width:max-content;min-width:100%;display:block}
+.tree-canvas svg{display:block;margin:0 auto}
+
+body.nina-focus #nina.view.active{position:relative;display:grid!important;grid-template-rows:40% 60%;gap:0;min-height:0;flex:1;overflow:hidden;border:0;border-radius:0;background:transparent;box-shadow:none}
+#nina .nina-stage{position:relative;min-height:0;height:100%;width:100%;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;isolation:isolate}
+#nina .nina-stage::before,#nina .nina-stage::after{display:none!important;content:none!important}
+#nina .nina-stage-top{position:absolute;top:0;left:0;right:0;z-index:5;padding:10px 12px 0;background:linear-gradient(to bottom,#110e1fb8 0%,#110e1f00 100%)}
+#nina .nina-intro{position:absolute;left:14px;right:14px;top:48px;bottom:auto;z-index:5;padding:0!important;background:none!important;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+#nina .nina-intro-line{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+#nina .nina-intro strong{font-size:19px}
+#nina .nina-intro small{font-size:11px;color:#ddd0f0}
+#nina .nina-intro p{font-size:12px;white-space:normal;max-width:92%;line-height:1.4;color:#f1e9ff}
+#nina .nina-portrait-frame{position:absolute!important;left:50%!important;bottom:-14px!important;transform:translateX(-50%)!important;width:min(92vw,360px)!important;height:calc(100% + 14px)!important;border:0!important;border-radius:0!important;overflow:visible!important;z-index:4!important;background:none!important;box-shadow:none!important;pointer-events:none!important;inset:auto!important}
+#nina .nina-portrait-frame img{display:block;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center bottom!important;filter:drop-shadow(0 12px 24px rgba(0,0,0,.28));background:transparent!important}
+#nina .nina-chat-panel{position:relative;z-index:3;width:100%;height:100%;min-height:0;margin:-10px 0 0!important;padding:16px 12px 10px!important;border:1px solid #53406b!important;border-top:1px solid #8667ad!important;border-radius:24px 24px 0 0!important;background:linear-gradient(180deg,#1f1830f7 0%,#171420fb 70%,#12101afb 100%)!important;box-shadow:0 -18px 34px rgba(0,0,0,.24)!important;overflow:hidden;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+#nina .nina-chat-title{padding-top:6px!important;padding-bottom:8px!important;border-bottom:1px solid #ffffff12}
+#nina .nina-chat-note{background:#2a213df0!important;color:#f0e6ff!important;border:1px solid #65517d!important}
+#nina .nina-messages{flex:1;min-height:0;overflow-y:auto;padding:10px 2px}
+#nina .nina-bubble.mine{background:#5f4781ee!important;border-color:#9c84c3!important}
+#nina .nina-bubble.hers{background:#231b33ef!important;border-color:#55456c!important}
+#nina .nina-composer{padding-top:8px!important;border-top:1px solid #ffffff18!important}
+#nina .nina-composer input{background:#241d36f0!important;border-color:#665380!important}
+#nina .nina-composer button{background:var(--violet)!important;color:#1d1230!important;border:none!important}
+@media (max-height:690px){body.nina-focus #nina.view.active{grid-template-rows:38% 62%}#nina .nina-portrait-frame{width:min(94vw,320px)!important;bottom:-12px!important}#nina .nina-intro{top:42px}}

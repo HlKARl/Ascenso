@@ -132,11 +132,11 @@ function renderTree(){
  svg+='</svg>';
  const graph=$('treeGraph'),oldArea=graph.dataset.currentTree;graph.innerHTML='<div class="tree-canvas">'+svg+'</div>';graph.dataset.rootX=String(x(roots[0])*scale);
  // Keep selected node visible after clicking, while preserving tree exploration scroll.
- if(oldArea!==selectedTree){graph.dataset.currentTree=selectedTree;graph.scrollTop=0;requestAnimationFrame(()=>{centerTree();setTimeout(centerTree,40)})}
+ if(oldArea!==selectedTree){graph.dataset.currentTree=selectedTree;graph.scrollTop=0;requestAnimationFrame(()=>{centerTree();setTimeout(centerTree,50);setTimeout(centerTree,180)})}
  const skill=byId[selectedSkill],parent=skill.from?byId[skill.from]:null,unlocked=status[skill.id],ready=!parent||status[parent.id];
  $('skillDetail').innerHTML=`<div class="between"><small>HABILIDAD</small><span class="skill-status ${unlocked?'unlocked':''}">${unlocked?'✓ DESBLOQUEADA':ready?'POR DESBLOQUEAR':'BLOQUEADA'}</span></div><h3>${safe(skill.name)}</h3><div class="skill-effect"><b>✦ ${unlocked?'Ya puedes':'Potencial'}</b><br>${safe(skill.effect)}</div><div class="skill-req"><b>Para desbloquear:</b> ${safe(skill.need)}</div>${parent&&!status[parent.id]?`<div class="skill-req">Antes: ${safe(parent.name)}</div>`:''}`;
 }
-function centerTree(){const graph=$('treeGraph');if(!graph||!graph.clientWidth)return;const canvas=graph.querySelector('.tree-canvas');const contentWidth=canvas?canvas.scrollWidth:graph.scrollWidth;const maxScroll=Math.max(0,contentWidth-graph.clientWidth);const rootX=Number(graph.dataset.rootX||0);const target=rootX>0?Math.min(maxScroll,Math.max(0,rootX-graph.clientWidth/2)):Math.max(0,maxScroll/2);graph.scrollTo({left:target,top:0,behavior:'instant'})}
+function centerTree(){const graph=$('treeGraph');if(!graph||!graph.clientWidth)return;const target=Math.max(0,(graph.scrollWidth-graph.clientWidth)/2);graph.scrollTo({left:target,top:0,behavior:'instant'})}
 // Pan both axes with a finger or mouse. Deliberate drags do not accidentally activate nodes.
 (function setupTreePan(){const graph=$('treeGraph');let drag=null,suppressUntil=0;
  graph.addEventListener('pointerdown',e=>{if(!e.isPrimary||e.button!==0)return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,lastX:e.clientX,lastY:e.clientY,moved:false};try{graph.setPointerCapture(e.pointerId)}catch{} });
@@ -180,7 +180,7 @@ function navigate(tab,area){
  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('selected',b.dataset.tab===tab));
  document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===tab));
  document.body.classList.toggle('nina-focus',tab==='nina');
- if(tab==='talents')requestAnimationFrame(()=>requestAnimationFrame(()=>{if(area||!$('treeGraph').dataset.everCentered){centerTree();setTimeout(centerTree,60);$('treeGraph').dataset.everCentered='yes'}}));
+ if(tab==='talents')requestAnimationFrame(()=>requestAnimationFrame(()=>{centerTree();setTimeout(centerTree,80);setTimeout(centerTree,200);$('treeGraph').dataset.everCentered='yes'}));
  window.scrollTo(0,0)
 }
 document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.tab)));
@@ -237,7 +237,7 @@ function renderNinaChat(){
  log.scrollTop=log.scrollHeight;
 }
 function saveNinaChat(){try{localStorage.setItem(NINA_CHAT_KEY,JSON.stringify(ninaChat.slice(-40)))}catch{}}
-function setNinaEmotion(mode){const info=NINA_EMOTIONS[mode]||NINA_EMOTIONS.normal;const img=$('ninaPortrait');if(img.dataset.mode!==mode){img.src='nina/'+mode+'.webp';img.alt=info.alt;img.dataset.mode=mode}$('ninaEmotion').textContent=info.label;const thumb=$('ninaSettingsPreview');if(thumb&&thumb.dataset.mode!==mode){thumb.src='nina/'+mode+'.webp';thumb.alt=info.alt;thumb.dataset.mode=mode}}
+function setNinaEmotion(mode){const info=NINA_EMOTIONS[mode]||NINA_EMOTIONS.normal;const img=$('ninaPortrait');if(img.dataset.mode!==mode){img.src='nina/nina-'+mode+'-v2.webp';img.alt=info.alt;img.dataset.mode=mode}$('ninaEmotion').textContent=info.label;const thumb=$('ninaSettingsPreview');if(thumb&&thumb.dataset.mode!==mode){thumb.src='nina/nina-'+mode+'-v2.webp';thumb.alt=info.alt;thumb.dataset.mode=mode}}
 function updateNina(){
  const offline=!navigator.onLine,configured=!!validNinaUrl(ninaWorkerUrl);
  const mode=ninaPreview||(offline?'dormida':ninaReply?ninaReplyEmotion:'normal');
