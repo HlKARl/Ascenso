@@ -1,9 +1,38 @@
-ANDY 1.0 · ASCENSO — primera versión funcional
+ASCENSO 2.0 — ÁRBOLES DE HABILIDADES Y PRUEBAS REALES
+Proyecto ANDY 1.0 | 91 días: del 26/10/2026 al 24/01/2027
 
-1. Para probar en PC: abre una terminal dentro de esta carpeta y ejecuta: python -m http.server 8000
-2. Visita http://localhost:8000 desde el navegador de tu PC.
-3. Para usar en el celular: sube el contenido de esta carpeta a un repositorio público de GitHub y activa Settings > Pages > Deploy from branch > main / (root). Abre la URL HTTPS generada en el celular y usa Agregar a pantalla de inicio / Instalar aplicación.
-4. Tus datos se guardan únicamente en el navegador y dispositivo donde los registras. Exporta respaldos desde Progreso. Para migrar a otro dispositivo, importa el respaldo. No hay sincronización automática.
-5. La app está precargada con las 91 misiones diarias del plan Word original, distribuidas en 13 semanas. Cada misión diaria otorga 20 XP una sola vez; desmarcarla retira esos puntos. Los compromisos semanales son referencias y no dan XP adicional.
-6. No uses los $10 de pasajes como capital de riesgo.
-7. La PWA funciona sin conexión después de la primera carga online en HTTPS, siempre que el navegador permita service workers. Para una instalación más compatible con Android/iOS, pueden añadirse iconos PNG en una siguiente versión.
+NOVEDADES
+- Cuatro árboles RPG con nodos conectados, requisitos y descripciones de capacidades reales.
+- 29 habilidades: Personal (11), Social (6), Académico (6), Espiritual (6).
+- Atributos del personaje calculados por las habilidades desbloqueadas.
+- Cronómetro offline con iniciar, pausar, reanudar, detener y reiniciar. El tiempo pasa a la calculadora al detenerse.
+- Circuitos guardados y número de vueltas; operaciones como 450 × 5, (450 + 200) × 3 o 2.5 × 2.
+- Distancia, velocidad media, ritmo, tiempo y comparación porcentual con una prueba anterior comparable.
+- Historial de entrenamientos con opción de eliminar registros erróneos.
+- Registro de evidencias sociales, académicas y espirituales con descripción y fecha.
+- Una sola misión nueva se revela por día; las incompletas de días anteriores siguen disponibles.
+- Finanzas de la versión original, insignias y exportación/importación de respaldos.
+
+CÓMO ACTUALIZAR TU GITHUB PAGES
+1. Antes de actualizar, abre tu web actual y ve a Progreso > Exportar respaldo. Guarda el archivo JSON.
+2. Extrae ESTE ZIP y sube TODOS los archivos que aparecen en la carpeta extraída (sin crear una subcarpeta adicional) a la raíz de tu repositorio GitHub Pages.
+3. En GitHub, confirma los cambios (Commit changes) en la rama main.
+4. Tu web existente mantendrá la misma URL. Si continúa apareciendo la versión antigua, vuelve a cargarla; la PWA puede necesitar cerrarse y abrirse nuevamente después de actualizar su caché.
+5. Tus datos anteriores se conservan si mantienes el mismo navegador/perfil/dispositivo y dominio, pues la clave local (andy1_v1) no cambió. Por seguridad, haz respaldo antes de actualizar.
+6. Si se han perdido registros, en Ficha > Importar respaldo puedes recuperar archivos JSON tanto de la v1 como de la v2. La importación REEMPLAZA los datos actuales.
+
+CÓMO PROBARLO EN COMPUTADORA SIN GITHUB
+- En una terminal, dentro de la carpeta de archivos, ejecuta: python -m http.server 8000
+- Abre en el navegador: http://localhost:8000
+- No abras index.html como archivo local (file://), porque el plan requiere ser leído desde un servidor.
+
+CONEXIÓN Y LIMITACIONES
+- La PWA funciona offline después de abrirla con conexión por primera vez y después de que el navegador almacene los archivos; los datos quedan localmente en el dispositivo.
+- Cronómetro sin GPS: debes introducir la distancia medida por ti y elegir modalidad. El cronómetro se basa en tiempo real transcurrido, incluso si la pantalla deja de actualizarse, siempre que el navegador conserve su estado. En móviles, las restricciones del sistema pueden interrumpir la sesión. Verifica tu marca.
+- Comparación de velocidad: misma distancia (margen de ±5 m), misma modalidad y continuidad, en días distintos. +10 % de velocidad no equivale a -10 % del tiempo: la app calcula ambas por separado.
+- Los puntos de atributos son simbólicos. Las capacidades se describen solo según registros verificados/afirmados por el usuario. El progreso espiritual no pretende medir la relación con Dios.
+- No existe inicio de sesión ni sincronización entre navegadores o dispositivos. Exporta respaldos periódicos.
+- No comprometas el presupuesto de transporte para el emprendimiento.
+
+ARCHIVOS
+index.html, app.js, style.css, plan.json, icon.svg, manifest.webmanifest, sw.js, LEEME.txt.
