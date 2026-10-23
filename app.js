@@ -130,13 +130,13 @@ function renderTree(){
   svg+=`<g class="tree-node" role="button" tabindex="0" data-skill="${safe(s.id)}" aria-label="${safe(s.name)}, ${unlocked?'desbloqueada':ready?'disponible':'bloqueada'}"><circle cx="${sx}" cy="${sy}" r="${selected?26:23}" fill="${fill}" stroke="${border}" stroke-width="${selected?3:2}"/><text x="${sx}" y="${sy+7}" fill="${unlocked?'#f0dfff':'#cec0e9'}" font-size="22" text-anchor="middle">${symbol}</text><rect x="${sx-65}" y="${sy+28}" width="130" height="${lines.length*12+8}" rx="5" fill="#191622" fill-opacity="0.95"/>${lines.map((t,i)=>`<text x="${sx}" y="${sy+42+i*12}" fill="${unlocked?'#f3eaff':'#d3ccdf'}" font-size="10.5" text-anchor="middle">${safe(t)}</text>`).join('')}</g>`
  }
  svg+='</svg>';
- const graph=$('treeGraph'),oldArea=graph.dataset.currentTree;graph.innerHTML=svg;graph.dataset.rootX=String(x(roots[0])*scale);
+ const graph=$('treeGraph'),oldArea=graph.dataset.currentTree;graph.innerHTML='<div class="tree-canvas">'+svg+'</div>';graph.dataset.rootX=String(x(roots[0])*scale);
  // Keep selected node visible after clicking, while preserving tree exploration scroll.
- if(oldArea!==selectedTree){graph.dataset.currentTree=selectedTree;graph.scrollTop=0;requestAnimationFrame(()=>centerTree())}
+ if(oldArea!==selectedTree){graph.dataset.currentTree=selectedTree;graph.scrollTop=0;requestAnimationFrame(()=>{centerTree();setTimeout(centerTree,40)})}
  const skill=byId[selectedSkill],parent=skill.from?byId[skill.from]:null,unlocked=status[skill.id],ready=!parent||status[parent.id];
  $('skillDetail').innerHTML=`<div class="between"><small>HABILIDAD</small><span class="skill-status ${unlocked?'unlocked':''}">${unlocked?'✓ DESBLOQUEADA':ready?'POR DESBLOQUEAR':'BLOQUEADA'}</span></div><h3>${safe(skill.name)}</h3><div class="skill-effect"><b>✦ ${unlocked?'Ya puedes':'Potencial'}</b><br>${safe(skill.effect)}</div><div class="skill-req"><b>Para desbloquear:</b> ${safe(skill.need)}</div>${parent&&!status[parent.id]?`<div class="skill-req">Antes: ${safe(parent.name)}</div>`:''}`;
 }
-function centerTree(){const graph=$('treeGraph');if(!graph||!graph.clientWidth)return;graph.scrollLeft=Math.max(0,(graph.scrollWidth-graph.clientWidth)/2);graph.scrollTop=0}
+function centerTree(){const graph=$('treeGraph');if(!graph||!graph.clientWidth)return;const canvas=graph.querySelector('.tree-canvas');const contentWidth=canvas?canvas.scrollWidth:graph.scrollWidth;const maxScroll=Math.max(0,contentWidth-graph.clientWidth);const rootX=Number(graph.dataset.rootX||0);const target=rootX>0?Math.min(maxScroll,Math.max(0,rootX-graph.clientWidth/2)):Math.max(0,maxScroll/2);graph.scrollTo({left:target,top:0,behavior:'instant'})}
 // Pan both axes with a finger or mouse. Deliberate drags do not accidentally activate nodes.
 (function setupTreePan(){const graph=$('treeGraph');let drag=null,suppressUntil=0;
  graph.addEventListener('pointerdown',e=>{if(!e.isPrimary||e.button!==0)return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,lastX:e.clientX,lastY:e.clientY,moved:false};try{graph.setPointerCapture(e.pointerId)}catch{} });
@@ -180,7 +180,7 @@ function navigate(tab,area){
  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('selected',b.dataset.tab===tab));
  document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===tab));
  document.body.classList.toggle('nina-focus',tab==='nina');
- if(tab==='talents')requestAnimationFrame(()=>{if(area||!$('treeGraph').dataset.everCentered){centerTree();$('treeGraph').dataset.everCentered='yes'}});
+ if(tab==='talents')requestAnimationFrame(()=>requestAnimationFrame(()=>{if(area||!$('treeGraph').dataset.everCentered){centerTree();setTimeout(centerTree,60);$('treeGraph').dataset.everCentered='yes'}}));
  window.scrollTo(0,0)
 }
 document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.tab)));
@@ -201,7 +201,7 @@ $('settingsClose').addEventListener('click',()=>$('settingsDialog').close());
 $('settingsDialog').addEventListener('click',e=>{if(e.target===$('settingsDialog'))$('settingsDialog').close()});
 document.querySelectorAll('[data-accent]').forEach(b=>b.addEventListener('click',()=>{settings.accent=b.dataset.accent;saveSettings()}));
 document.querySelectorAll('[data-theme]').forEach(b=>b.addEventListener('click',()=>{settings.theme=b.dataset.theme;saveSettings()}));
-$('treeScale').addEventListener('input',e=>{settings.treeScale=Number(e.target.value);saveSettings();const wasOpen=$('talents').classList.contains('active');renderTree();if(wasOpen)requestAnimationFrame(centerTree)});
+$('treeScale').addEventListener('input',e=>{settings.treeScale=Number(e.target.value);saveSettings();const wasOpen=$('talents').classList.contains('active');renderTree();if(wasOpen)requestAnimationFrame(()=>requestAnimationFrame(centerTree))});
 $('reduceMotion').addEventListener('change',e=>{settings.reduceMotion=e.target.checked;saveSettings()});
 applySettings();
 $('importFile').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>4*1024*1024)throw Error('El archivo excede 4 MB');const obj=JSON.parse(await file.text());validateImport(obj);if(confirm('¿Reemplazar los datos de este dispositivo con el respaldo? Exporta antes tu progreso actual si deseas conservarlo.')){data={done:obj.done,transactions:obj.transactions,workouts:obj.workouts||[],circuits:obj.circuits||[],evidence:obj.evidence||[],timer:validTimer(obj.timer)?obj.timer:{running:false,startedAt:null,elapsed:0}};persist();if(obj.settings){settings=normalizeSettings(obj.settings);saveSettings()}renderAll();toast('Respaldo importado correctamente.')}}catch(err){alert('No se pudo importar: '+err.message)}e.target.value=''});
@@ -280,9 +280,15 @@ $('ninaChatForm').addEventListener('submit',async e=>{
  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),26000);
  try{
   const response=await fetch(url,{method:'POST',mode:'cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({message,history}),signal:controller.signal,cache:'no-store'});
-  let result={};try{result=await response.json()}catch{}
+  let result={};
+  const contentType=(response.headers.get('content-type')||'').toLowerCase();
+  if(contentType.includes('application/json')){try{result=await response.json()}catch{result={}}}
+  else{let raw='';try{raw=await response.text()}catch{};try{result=JSON.parse(raw)}catch{result={reply:raw}}}
+  if(typeof result==='string')result={reply:result};
+  if(typeof result.reply!=='string'){for(const key of ['text','message','response','output']){if(typeof result[key]==='string'&&result[key].trim()){result.reply=result[key];break}}}
+  if(typeof result.emotion!=='string'){for(const key of ['mood','expression']){if(typeof result[key]==='string'){result.emotion=result[key];break}}}
   if(!response.ok)throw new Error(result.error||('Error del servidor ('+response.status+')'));
-  if(typeof result.reply!=='string'||!result.reply.trim())throw new Error('Nina recibió una respuesta vacía.');
+  if(typeof result.reply!=='string'||!result.reply.trim())throw new Error('Formato de respuesta inválido o vacío.');
   const reply=result.reply.trim().slice(0,10000);
   ninaReply=reply;let nextEmotion=Object.hasOwn(NINA_EMOTIONS,result.emotion)&&result.emotion!=='dormida'?result.emotion:'normal';
   if(nextEmotion==='picara'&&ninaRecentEmotions.slice(-4).includes('picara'))nextEmotion='feliz';
@@ -295,6 +301,7 @@ $('ninaChatForm').addEventListener('submit',async e=>{
   $('ninaMessages').append(info);$('ninaMessages').scrollTop=$('ninaMessages').scrollHeight;
  }finally{clearTimeout(timeout);ninaBusy=false;updateNina();if(navigator.onLine)input.focus()}
 });
+window.addEventListener('resize',()=>{if($('talents').classList.contains('active'))requestAnimationFrame(()=>requestAnimationFrame(centerTree));});
 window.addEventListener('online',updateNina);
 window.addEventListener('offline',updateNina);
 renderNinaChat();updateNina();

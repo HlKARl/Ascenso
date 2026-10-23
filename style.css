@@ -242,3 +242,27 @@ body.nina-focus #nina.view.active{
  #nina .nina-stage{max-width:none}
 }
 @media (prefers-reduced-motion:reduce){#nina .nina-portrait-frame img{animation:none!important}}
+
+
+/* ASCENSO 3.6 — Nina al borde del chat + centrado robusto del árbol */
+body.nina-focus #nina.view.active{position:relative;display:grid;grid-template-rows:minmax(0,40fr) minmax(0,60fr);gap:0;min-height:0;flex:1;overflow:hidden;border:0;border-radius:0;background:transparent;box-shadow:none}
+#nina .nina-stage{position:relative;min-height:0;height:100%;width:100%;border:0;border-radius:24px 24px 0 0;background:radial-gradient(ellipse at 50% 8%,#3c2c5a 0%,#20182f 38%,#120f1d 72%,transparent 100%);box-shadow:none;overflow:visible}
+#nina .nina-stage::after{display:none}
+#nina .nina-stage-top{position:absolute;top:0;left:0;right:0;z-index:4;padding:14px 12px 0;background:linear-gradient(to bottom,#110e1fd8 0%,#110e1f00 100%)}
+#nina .nina-intro{position:absolute;left:14px;right:14px;top:58px;bottom:auto;z-index:4;padding:0;background:none}
+#nina .nina-intro p{white-space:normal;max-width:92%;line-height:1.45}
+#nina .nina-portrait-frame{position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);width:min(96%,420px);height:calc(100% + 10px);border:0;overflow:visible;z-index:5;background:none;box-shadow:none;pointer-events:none}
+#nina .nina-portrait-frame img{width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 14px 28px rgba(0,0,0,.34))}
+#nina .nina-chat-panel{position:relative;z-index:3;width:100%;height:100%;min-height:0;margin:0;padding:18px 12px 11px;border:1px solid #4f4164;border-top:1px solid #7b65a3;border-radius:24px 24px 0 0;background:linear-gradient(180deg,#1f1830 0%,#171420 62%,#12101a 100%);box-shadow:0 -18px 34px rgba(0,0,0,.25);overflow:hidden;backdrop-filter:none;-webkit-backdrop-filter:none}
+#nina .nina-chat-title{padding-top:4px}
+#nina .nina-chat-note{background:#2c2440;color:#eadfff;border:1px solid #5f5177}
+#nina .nina-bubble.mine{background:#5d4680;border-color:#8b72b5}
+#nina .nina-bubble.hers{background:#221d31;border-color:#473b5d}
+#nina .nina-composer input{background:#241d36;border-color:#5f5177}
+#nina .nina-composer button{background:var(--violet);color:#1d1230;border:none}
+@media (max-height:690px){body.nina-focus #nina.view.active{grid-template-rows:minmax(0,37fr) minmax(0,63fr)}#nina .nina-portrait-frame{width:min(98%,375px);bottom:-18px;height:calc(100% + 8px)}#nina .nina-intro{top:50px}}
+@media (min-width:590px){#nina .nina-portrait-frame{width:min(85%,460px)}}
+
+
+/* ASCENSO 3.7 — centrado real del árbol */
+.tree-canvas{width:max-content;min-width:100%;display:flex;justify-content:center;align-items:flex-start}.tree-canvas svg{flex:none;margin-inline:auto}
