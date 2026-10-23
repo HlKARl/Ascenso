@@ -70,3 +70,33 @@ nav button{font-size:10px;gap:3px}nav button span{font-size:20px}
 :root[data-theme=black]{--bg:#050507;--surface:#111117;--surface2:#191920;--border:#302e38}
 :root.reduce-motion *, :root.reduce-motion *::before,:root.reduce-motion *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 @media(max-width:440px){.tree-graph{height:clamp(335px,53dvh,455px)}.settings-dialog{width:calc(100vw - 20px);max-height:88dvh}.settings-body{padding-left:16px;padding-right:16px}}
+
+
+/* ASCENSO 3.2 · Nina: lightweight 2D expression gallery and offline state */
+#nina h1{margin-bottom:19px}
+.nina-stage{overflow:hidden;border:1px solid #655283;border-radius:22px;background:linear-gradient(155deg,#2b213d 0%,#191623 80%);position:relative;box-shadow:0 15px 35px #0003}
+.nina-stage-top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px 15px 2px;font-size:10px;color:#c9c0dc;letter-spacing:.4px}
+.nina-presence{display:flex;align-items:center;gap:8px;min-width:0}
+.nina-dot{width:8px;height:8px;flex-shrink:0;background:#84dcb8;border-radius:50%;box-shadow:0 0 0 3px #84dcb821}
+.nina-stage.offline .nina-dot{background:#9c95ab;box-shadow:none}
+.nina-expression-name{border:1px solid #ffffff22;border-radius:50px;padding:5px 10px;white-space:nowrap}
+.nina-portrait-frame{width:min(78%,302px);aspect-ratio:3/4;margin:5px auto 0;position:relative;border-radius:18px 18px 0 0;overflow:hidden;box-shadow:0 18px 48px #0006}
+.nina-portrait-frame img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;transition:opacity .22s ease,transform .22s ease}
+.nina-stage.offline .nina-portrait-frame img{animation:ninaBreathe 3.2s ease-in-out infinite;filter:saturate(.87)}
+.nina-intro{padding:14px 16px 17px;min-height:93px;background:#16131fcf;text-align:center}
+.nina-intro strong{font-size:16px;letter-spacing:.4px}.nina-intro strong span{color:#ba9cff}
+.nina-intro p{margin:7px auto 0;color:#d7d2e1;font-size:12px;line-height:1.5;max-width:34ch}
+.nina-chat-panel{margin:14px 0 0;border:1px solid var(--border);background:var(--surface);border-radius:17px;padding:15px}
+.nina-chat-title{display:flex;align-items:center;justify-content:space-between;gap:9px;font-size:13px;font-weight:750}.nina-chat-title small{color:var(--muted);font-size:10px;font-weight:500}
+.nina-chat-note{font-size:12px;line-height:1.55;color:var(--muted);margin:14px 0}
+.nina-composer{display:flex;gap:8px}.nina-composer input{font-size:12px;flex:1;min-width:0}.nina-composer button{width:46px;border:0;border-radius:11px;background:var(--violet);color:#141019;font-size:21px}
+.nina-try{margin-top:13px}.nina-try .fold-content{gap:12px}.nina-try-hint{font-size:11px;margin:0;line-height:1.5}
+.nina-emotion-buttons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.nina-emotion-buttons button{font-size:10px;padding:10px 2px;line-height:1.4;color:var(--muted);background:var(--surface2);border:1px solid var(--border);border-radius:10px}
+.nina-emotion-buttons button[aria-pressed=true]{color:var(--text);border-color:var(--violet);background:#322644}
+.nina-auto{width:100%;font-size:12px;padding:10px}.nina-privacy{margin:13px 4px;color:var(--muted);font-size:10px;line-height:1.6;text-align:center}
+@keyframes ninaBreathe{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+nav button{font-size:9px;letter-spacing:-.15px}nav button span{font-size:19px}
+@media(max-width:360px){nav button{font-size:8px}nav{padding-left:1px;padding-right:1px}.nina-portrait-frame{width:77%}.nina-emotion-buttons button{font-size:9px}}
+@media(min-width:600px){.nina-stage{max-width:510px;margin:auto}.nina-chat-panel,.nina-try,.nina-privacy{max-width:510px;margin-left:auto;margin-right:auto}}
+@media(prefers-reduced-motion:reduce){.nina-stage.offline .nina-portrait-frame img{animation:none}}

@@ -31,6 +31,22 @@
   <div class="skill-detail" id="skillDetail"></div>
   <button class="secondary wide link-action" data-go="register" type="button">+ Registrar una acción ↗</button>
 </section>
+<section id="nina" class="view" aria-labelledby="ninaHeading">
+  <div class="eyebrow">TU COMPAÑERA DE AVENTURA</div>
+  <h1 id="ninaHeading">Conoce a <em>Nina.</em></h1>
+  <div class="nina-stage" id="ninaStage">
+    <div class="nina-stage-top"><span class="nina-presence"><span class="nina-dot" id="ninaDot"></span><span id="ninaPresence" role="status">Comprobando conexión…</span></span><span class="nina-expression-name" id="ninaEmotion">Normal</span></div>
+    <div class="nina-portrait-frame"><img id="ninaPortrait" src="nina/normal.webp" width="600" height="800" alt="Nina con una sonrisa tranquila" decoding="async"></div>
+    <div class="nina-intro"><strong>Nina <span>✦</span></strong><p id="ninaSpeech" aria-live="polite">¡Bienvenido a mi rincón de ASCENSO! 💜</p></div>
+  </div>
+  <div class="nina-chat-panel" aria-label="Chat de Nina">
+    <div class="nina-chat-title"><span>✧ Conversación</span><small>Próxima fase · Gemini</small></div>
+    <p class="nina-chat-note" id="ninaChatNote">Estamos preparando mi conexión segura con Gemini. ¡Pronto podremos hablar por aquí! 💜</p>
+    <div class="nina-composer"><input id="ninaChatInput" type="text" disabled placeholder="Chat disponible próximamente…" aria-label="Mensaje para Nina"><button type="button" disabled aria-label="Enviar mensaje">➤</button></div>
+  </div>
+  <details class="fold nina-try"><summary>Probar expresiones <span>✧</span></summary><div class="fold-content"><p class="hint nina-try-hint">Vista previa de sus ocho retratos. El botón Automático restaura el modo dormida cuando estás sin internet.</p><div class="nina-emotion-buttons" id="ninaEmotionButtons" role="group" aria-label="Expresiones de Nina"></div><button class="secondary nina-auto" type="button" id="ninaAuto">↺ Automático</button></div></details>
+  <p class="nina-privacy">🔒 Tu clave de Gemini no se guarda en ASCENSO ni se publica en GitHub.</p>
+</section>
 <section id="train" class="view">
   <div class="eyebrow">ENTRENAMIENTO</div><h1>Supera tu<br><em>marca.</em></h1>
   <div class="timer-panel"><div class="timer-caption" id="timerStatus">CRONÓMETRO · LISTO</div><div class="timer-time" id="timerDisplay">00:00.0</div>
@@ -85,6 +101,6 @@
     <section class="setting-section"><h3>Mis datos</h3><p class="hint">El progreso se guarda en este dispositivo. Exporta un respaldo antes de borrar los datos del navegador o cambiar de teléfono.</p><div class="setting-backup"><button type="button" class="secondary" id="exportBtn">⇩ Exportar</button><label class="secondary filebtn">⇧ Importar<input id="importFile" type="file" accept="application/json,.json" hidden></label></div></section>
   </div>
 </dialog>
-<nav aria-label="Navegación principal"><button type="button" data-tab="home" class="selected"><span>⌂</span>Hoy</button><button type="button" data-tab="talents"><span>✧</span>Árbol</button><button type="button" data-tab="train"><span>◷</span>Entrenar</button><button type="button" data-tab="register"><span>＋</span>Diario</button><button type="button" data-tab="stats"><span>▥</span>Ficha</button></nav>
+<nav aria-label="Navegación principal"><button type="button" data-tab="home" class="selected"><span>⌂</span>Hoy</button><button type="button" data-tab="talents"><span>✧</span>Árbol</button><button type="button" data-tab="nina"><span>♡</span>Nina</button><button type="button" data-tab="train"><span>◷</span>Entrenar</button><button type="button" data-tab="register"><span>＋</span>Diario</button><button type="button" data-tab="stats"><span>▥</span>Ficha</button></nav>
 </div><script src="app.js"></script>
 </body></html>

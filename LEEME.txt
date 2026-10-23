@@ -1,36 +1,34 @@
-ASCENSO 3.1 — Ajustes y árbol táctil
-=======================================
-Novedades:
-• Desliza el árbol con el dedo en ambas direcciones o utiliza el ratón.
-• La ventana del árbol ahora tiene altura limitada para evitar perder el lugar en el celular.
-• Botón «Centrar» para regresar al nodo principal.
-• El icono superior abre Configuración: acento, fondo, tamaño del árbol, reducir animaciones y respaldos.
-• Los respaldos de ASCENSO 3.1 incorporan también las preferencias (compatibles con respaldos viejos).
-• Conserva misiones, cronómetro, circuitos, habilidades y progreso de ASCENSO 3.0.
+ASCENSO 3.2 — NINA: GALERÍA DE EXPRESIONES
+===========================================
+ETAPA 1: INTERFAZ VISUAL, SIN CONEXIÓN A GEMINI
 
-ASCENSO — ACTUALIZACIÓN MINIMALISTA
+Incluye:
+• Nueva pestaña Nina (ahora seis pestañas).
+• Ocho retratos ligeros WebP: normal, feliz, emocionada, pensativa, empática, pícara, sorprendida y dormida.
+• Estado offline: Nina duerme y tiene un movimiento lento y sutil.
+• Estado online: Nina aparece despierta.
+• Menú «Probar expresiones» para verlas todas (es una VISTA PREVIA, no un chat).
+• Chat dibujado, pero INACTIVO hasta que añadamos el intermediario seguro de Gemini.
+• Todos los retratos quedan guardados sin conexión mediante el service worker.
+• Misiones, talentos, cronómetro, diario, ficha, configuración y almacenamiento local de ASCENSO 3.1 se mantienen.
 
-NOVEDADES
-• Nombre único: ASCENSO (sin subtítulos «Proyecto Andy 1.0»).
-• Cinco secciones: Hoy, Árbol, Entrenar, Diario y Ficha. La parte financiera está en Diario > Mi dinero.
-• Árboles jerárquicos: nacen de un único nodo y se bifurcan con conexiones a habilidades reales. Si el árbol es ancho, desliza horizontalmente.
-• 31 habilidades. Cuatro áreas: Personal, Social, Académico y Espiritual.
-• Todos los atributos empiezan en 0 en una instalación sin registros. Ninguna habilidad está desbloqueada sin cumplir su requisito.
-• En Ficha puedes pulsar cada área para abrir directamente su árbol.
-• En Diario se elige una de cuatro áreas y después la acción concreta, que determina los desbloqueos verificables.
-• Cronómetro, distancias con operaciones, circuitos, historial, finanzas, respaldos y misiones diarias conservados.
-• Las misiones del futuro quedan ocultas. Las anteriores incompletas pasan al día siguiente.
+¡MUY IMPORTANTE!:
+• Esta versión NO consulta Gemini ni envía mensajes.
+• NO pongas tu clave API en index.html, app.js o el repositorio público.
+• Una conexión a internet no significa que Gemini ya esté configurado.
+• El cambio automático de expresiones según las RESPUESTAS de Gemini vendrá en la etapa siguiente.
 
-INSTALACIÓN EN GITHUB PAGES
-1. Exporta primero el respaldo JSON de ASCENSO actual.
-2. Extrae este ZIP y sube los ocho archivos a la RAÍZ del mismo repositorio de GitHub Pages (no a una subcarpeta).
-3. Haz Commit Changes en main. Recarga o reabre la PWA cuando GitHub termine de publicar.
-4. La URL anterior se mantiene. Se conserva la clave local `andy1_v1`, así que no se borran registros anteriores en ese mismo navegador.
-5. Si no aparecen tus registros, importa el respaldo desde Ficha > Respaldo. Importar REEMPLAZA el estado actual.
+INSTALACIÓN:
+1. Abre tu ASCENSO actual en el celular, entra a Configuración > Mis datos > Exportar y guarda un respaldo JSON.
+2. Extrae el ZIP. Abre la carpeta ASCENSO_3_2_Nina.
+3. Sube a la RAÍZ de tu repositorio GitHub Pages los archivos index.html, app.js, style.css, plan.json, icon.svg, manifest.webmanifest, sw.js, LEEME.txt y toda la carpeta nina (con 8 .webp).
+4. Reemplaza los archivos existentes y haz Commit Changes.
+5. Recarga tu página de ASCENSO con internet, y espera que se instale la actualización. Si el acceso directo instalado todavía muestra la versión antigua, cierra y vuelve a abrir la app.
+6. La clave de datos local sigue siendo `andy1_v1`. Tus registros deben permanecer en el mismo dispositivo y sitio. Importa el respaldo solo si es necesario: IMPORTAR REEMPLAZA tus registros actuales.
+7. Abre «Nina» y luego «Probar expresiones». Prueba también el modo avión tras abrirla una vez conectado para que los archivos se guarden en caché.
 
-PRUEBAS Y LÍMITES
-• Offline tras una visita con conexión y almacenamiento correcto del service worker. No requiere GPS.
-• El cronómetro calcula tiempo transcurrido; en móviles el sistema puede suspender la pestaña. Comprueba tus registros.
-• Las capacidades se desbloquean por registros declarados y pruebas registradas. Los atributos son contadores del juego, no mediciones clínicas ni espirituales.
-• Al instalar con datos vacíos: 0 habilidades, 0 puntos de atributos. El nivel global de personaje empieza en 1 por convención de RPG.
-• Los datos se almacenan localmente, no se sincronizan entre dispositivos.
+NOTAS:
+• El detector navigator.onLine informa sobre el estado de la conexión del navegador y puede no garantizar conectividad real a Internet.
+• Las imágenes tienen aspecto vertical 3:4 y se muestran adaptadas al ancho de pantalla.
+• La animación respeta la opción «Reducir animaciones».
+• Próxima etapa: backend seguro (por ejemplo Cloudflare Worker) + API Gemini + prompt final de Nina, chats y estados dinámicos.

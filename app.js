@@ -206,3 +206,36 @@ $('importFile').addEventListener('change',async e=>{const file=e.target.files[0]
 $('workoutDate').value=today();$('evidenceDate').value=today();updateEvidenceOptions();renderTimer();renderCircuits();updateMetrics();
 fetch('plan.json').then(r=>{if(!r.ok)throw Error('No se encontró el plan de misiones');return r.json()}).then(p=>{if(!Array.isArray(p)||p.length!==13||p.some(w=>!Array.isArray(w.days)||w.days.length!==7))throw Error('El plan está incompleto');plan=p;renderAll()}).catch(err=>{$('todayTasks').innerHTML=`<div class="empty">No se pudo cargar el plan. Abre la aplicación desde GitHub Pages o un servidor local.</div>`;console.error(err)});
 if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(console.warn);
+
+
+// NINA · Stage 1: images and expression preview; real Gemini chat is not connected yet.
+const NINA_EMOTIONS={
+ normal:{label:'Normal',alt:'Nina con una sonrisa tranquila',speech:'¡Hey! Soy Nina. Bienvenido a mi rinconcito de ASCENSO. 💜'},
+ feliz:{label:'Feliz',alt:'Nina sonriendo alegremente',speech:'¡Esooo! ¡Me encantan las buenas noticias! ✨'},
+ emocionada:{label:'Emocionada',alt:'Nina emocionada levantando los puños',speech:'¿¡QUÉÉÉ!? ¡Eso sí merece una celebración! 🎉'},
+ pensativa:{label:'Pensativa',alt:'Nina reflexionando con una mano en la barbilla',speech:'A ver, a ver… Déjame pensar en eso. 👀'},
+ empatica:{label:'Empática',alt:'Nina con una expresión serena y comprensiva',speech:'Te escucho. No hace falta apresurarse. 💜'},
+ picara:{label:'Pícara',alt:'Nina con una sonrisa sarcástica y juguetona',speech:'Jejeje… Tengo un plan. ¿Qué podría salir mal? 7u7'},
+ sorprendida:{label:'Sorprendida',alt:'Nina sorprendida con los ojos muy abiertos',speech:'¿¡QUÉ!? JAJAJA. ¡No me esperaba esa!'},
+ dormida:{label:'Dormida',alt:'Nina dormida plácidamente con los ojos cerrados',speech:'Zzz… 💜'}
+};
+let ninaPreview=null;
+function updateNina(){
+ const offline=!navigator.onLine,mode=ninaPreview||(offline?'dormida':'normal'),info=NINA_EMOTIONS[mode];
+ const stage=$('ninaStage'),img=$('ninaPortrait');
+ stage.classList.toggle('offline',offline&&ninaPreview===null);
+ if(img.dataset.mode!==mode){img.src='nina/'+mode+'.webp';img.alt=info.alt;img.dataset.mode=mode}
+ $('ninaEmotion').textContent=info.label;
+ $('ninaDot').setAttribute('aria-hidden','true');
+ $('ninaPresence').textContent=offline?'Sin internet · descansando':'En línea · Gemini pendiente';
+ $('ninaSpeech').textContent=ninaPreview?info.speech:(offline?'Zzz… Estoy dormidita. ¡Nos vemos cuando regrese internet! 💤':info.speech);
+ $('ninaChatNote').textContent=offline?'No hay internet, pero ASCENSO y mis retratos siguen funcionando. ¡Vuelvo cuando tengas conexión! 💜':'Mi chat todavía no está conectado con Gemini. Mientras tanto puedes probar mis expresiones. 💜';
+ document.querySelectorAll('[data-nina-emotion]').forEach(b=>b.setAttribute('aria-pressed',String(ninaPreview===b.dataset.ninaEmotion)));
+ $('ninaAuto').disabled=ninaPreview===null;
+}
+$('ninaEmotionButtons').innerHTML=Object.entries(NINA_EMOTIONS).map(([id,v])=>'<button type="button" data-nina-emotion="'+id+'" aria-pressed="false">'+v.label+'</button>').join('');
+$('ninaEmotionButtons').addEventListener('click',e=>{const b=e.target.closest('[data-nina-emotion]');if(!b)return;ninaPreview=b.dataset.ninaEmotion;updateNina()});
+$('ninaAuto').addEventListener('click',()=>{ninaPreview=null;updateNina()});
+window.addEventListener('online',updateNina);
+window.addEventListener('offline',updateNina);
+updateNina();
