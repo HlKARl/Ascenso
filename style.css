@@ -179,3 +179,66 @@ body.nina-focus #nina.view.active{min-height:0;min-width:0;flex:1;display:grid;g
 @media (min-width:590px){body.nina-focus .shell{max-width:620px;padding-left:25px;padding-right:25px}#nina .nina-portrait-frame img{object-fit:contain;object-position:50% 45%}#nina .nina-stage{max-width:none}}
 @media (max-height:690px){body.nina-focus .shell{padding-top:6px;padding-bottom:calc(66px + env(safe-area-inset-bottom))}body.nina-focus .shell>header{margin-bottom:6px}body.nina-focus #nina.view.active{gap:6px;grid-template-rows:minmax(0,44fr) minmax(0,56fr)}#nina .nina-intro{padding-bottom:8px}#nina .nina-stage-top{padding-top:8px}}
 @media (prefers-reduced-motion:reduce){#nina .nina-portrait-frame img{transition:none}}
+
+/* ASCENSO 3.5 — Nina immersive chat over a complete 9:16 background. */
+.tree-graph svg{margin-inline:auto}
+body.nina-focus .shell{padding-bottom:calc(76px + env(safe-area-inset-bottom));}
+body.nina-focus #nina.view.active{
+  position:relative;display:block;min-height:0;flex:1;overflow:hidden;
+  border:1px solid #6e57878a;border-radius:22px;background:#15111f;
+  box-shadow:0 15px 45px #0006;
+}
+#nina .nina-stage{position:absolute;inset:0;width:100%;height:100%;
+  border:0;border-radius:0;box-shadow:none;background:#1a1229;}
+#nina .nina-portrait-frame{position:absolute;inset:0;width:100%;height:100%;
+  overflow:hidden;aspect-ratio:auto}
+#nina .nina-portrait-frame img{width:100%;height:100%;object-fit:cover;
+  object-position:center top;filter:saturate(1.05);}
+#nina .nina-stage::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to bottom,#110d2400 0%,#110d2400 30%,
+   #15112115 41%,#140e2466 59%,#100c1b77 100%);pointer-events:none;}
+#nina .nina-stage-top{position:absolute;z-index:4;top:0;left:0;right:0;
+  padding:13px 13px 25px;background:linear-gradient(#151025b8,transparent)}
+#nina .nina-intro{position:absolute;top:auto;left:0;right:0;bottom:52%;
+  z-index:4;padding:16px 15px 10px;text-align:left;
+  background:linear-gradient(transparent,#150e23a6);
+  pointer-events:none;}
+#nina .nina-intro-line{align-items:baseline}
+#nina .nina-intro p{font-size:11px;color:#fff3ff;}
+#nina .nina-chat-panel{
+  position:absolute;z-index:5;left:0;right:0;bottom:0;width:100%;height:52%;
+  min-height:0;max-width:none;margin:0;border:0;border-top:1px solid #ffffff4a;
+  border-radius:22px 22px 0 0;
+  background:linear-gradient(180deg,#17112672 0%,#171126a8 28%,#110c1cdc 74%,#100b1ced 100%);
+  box-shadow:0 -14px 38px #08041142;backdrop-filter:blur(2.5px);
+  -webkit-backdrop-filter:blur(2.5px);padding:10px 12px 11px;
+  display:flex;flex-direction:column;overflow:hidden;}
+#nina .nina-chat-title{color:#fff;flex:0 0 auto;font-size:12px;padding-bottom:6px;
+  border-bottom:1px solid #ffffff24;text-shadow:0 1px 4px #0008}
+#nina .nina-chat-title small{font-size:9px;color:#ede1ff}
+#nina .nina-chat-note{background:#2d2544b9;color:#f5eaff;
+  border:1px solid #b79dce35;padding:7px 9px;margin:6px 0 0;font-size:11px}
+#nina .nina-messages{flex:1;min-height:0;overflow-y:auto;
+  padding:8px 1px 6px;overscroll-behavior:contain;}
+#nina .nina-bubble{box-shadow:0 3px 13px #0b071954;
+  font-size:12px;line-height:1.47;border:1px solid #ffffff1b;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+#nina .nina-bubble.mine{background:#624a83dd;border-color:#b599e34f}
+#nina .nina-bubble.hers{background:#211a31dc;border-color:#b69ccc47}
+#nina .nina-composer{padding-top:8px;margin:0;border-top:1px solid #ffffff30}
+#nina .nina-composer input{background:#221a36ee;border-color:#aa92cf77;
+  color:#fff;min-height:44px}
+#nina .nina-composer button{min-height:44px}
+#nina .nina-chat-empty{color:#fff2ff;text-shadow:0 1px 5px #000b}
+#nina .nina-error{background:#491e3fd9}
+@media (max-height:690px){
+ body.nina-focus #nina.view.active{display:block;}
+ #nina .nina-intro{bottom:56%;padding:5px 12px 6px}
+ #nina .nina-chat-panel{height:56%;padding:7px 9px 8px}
+ #nina .nina-chat-title{padding-bottom:4px}
+}
+@media (min-width:590px){
+ #nina .nina-portrait-frame img{object-fit:cover;object-position:center top}
+ #nina .nina-stage{max-width:none}
+}
+@media (prefers-reduced-motion:reduce){#nina .nina-portrait-frame img{animation:none!important}}

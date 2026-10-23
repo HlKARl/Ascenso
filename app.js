@@ -136,7 +136,7 @@ function renderTree(){
  const skill=byId[selectedSkill],parent=skill.from?byId[skill.from]:null,unlocked=status[skill.id],ready=!parent||status[parent.id];
  $('skillDetail').innerHTML=`<div class="between"><small>HABILIDAD</small><span class="skill-status ${unlocked?'unlocked':''}">${unlocked?'✓ DESBLOQUEADA':ready?'POR DESBLOQUEAR':'BLOQUEADA'}</span></div><h3>${safe(skill.name)}</h3><div class="skill-effect"><b>✦ ${unlocked?'Ya puedes':'Potencial'}</b><br>${safe(skill.effect)}</div><div class="skill-req"><b>Para desbloquear:</b> ${safe(skill.need)}</div>${parent&&!status[parent.id]?`<div class="skill-req">Antes: ${safe(parent.name)}</div>`:''}`;
 }
-function centerTree(){const graph=$('treeGraph');if(!graph||!graph.clientWidth)return;graph.scrollLeft=Math.max(0,Number(graph.dataset.rootX||0)-graph.clientWidth/2);graph.scrollTop=0}
+function centerTree(){const graph=$('treeGraph');if(!graph||!graph.clientWidth)return;graph.scrollLeft=Math.max(0,(graph.scrollWidth-graph.clientWidth)/2);graph.scrollTop=0}
 // Pan both axes with a finger or mouse. Deliberate drags do not accidentally activate nodes.
 (function setupTreePan(){const graph=$('treeGraph');let drag=null,suppressUntil=0;
  graph.addEventListener('pointerdown',e=>{if(!e.isPrimary||e.button!==0)return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,lastX:e.clientX,lastY:e.clientY,moved:false};try{graph.setPointerCapture(e.pointerId)}catch{} });
@@ -291,7 +291,7 @@ $('ninaChatForm').addEventListener('submit',async e=>{
  }catch(err){
   ninaReply=null;ninaReplyEmotion='normal';
   const info=document.createElement('p');info.className='nina-error';
-  info.textContent=err.name==='AbortError'?'Nina tardó más de 26 segundos. Prueba de nuevo y revisa los registros de Cloudflare si se repite.':'No pude contactar con Nina: '+(err.message||'error de red')+'. Revisa la URL, el Worker y ALLOWED_ORIGIN.';
+  info.textContent=err.name==='AbortError'?'Nina tardó más de 26 segundos. Prueba de nuevo y revisa los registros de Cloudflare si se repite.':'Nina no pudo responder: '+(err.message||'error de conexión')+'. Si se repite, revisa Logs del Worker.';
   $('ninaMessages').append(info);$('ninaMessages').scrollTop=$('ninaMessages').scrollHeight;
  }finally{clearTimeout(timeout);ninaBusy=false;updateNina();if(navigator.onLine)input.focus()}
 });
