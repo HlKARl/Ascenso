@@ -118,3 +118,64 @@ nav button{font-size:9px;letter-spacing:-.15px}nav button span{font-size:19px}
 #ninaConfigStatus{font-size:11px;color:#aee8cc}
 .nina-clear{display:block;border:0;background:transparent;color:var(--muted);font-size:10px;text-decoration:underline;margin:12px auto 0;padding:6px}
 .nina-error{font-size:11px;line-height:1.5;color:#ffc2c8;background:#432c38;padding:10px;border-radius:10px;margin:0}
+
+
+/* ASCENSO 3.4 · Inicio + Ficha, and an immersive Nina screen */
+/* The home profile reuses every original statistic, achievement and attribute ID. */
+.profile-jump{margin:12px 0 0;width:100%;display:flex;justify-content:space-between;align-items:center;border:1px solid #655080;border-radius:13px;background:linear-gradient(110deg,#2d2440,#201b31);color:#decfff;padding:12px 15px;font-weight:650;font-size:12px}
+.profile-jump span,.profile-spark{color:var(--violet)}
+.home-profile{margin-top:28px;padding-top:23px;border-top:1px solid var(--border);scroll-margin-top:18px}
+.home-profile h2{font-size:27px;margin:0 0 14px}
+.home-profile .hero{margin-top:12px}
+.home-profile>h3{margin-top:25px}
+
+/* A fixed-height two-panel room lets only the conversation scroll. */
+body.nina-focus{overflow:hidden}
+body.nina-focus .shell{height:100dvh;min-height:0;display:flex;flex-direction:column;overflow:hidden;padding:12px 12px calc(76px + env(safe-area-inset-bottom))}
+body.nina-focus .shell>header{flex:0 0 auto;margin-bottom:9px;min-height:41px}
+body.nina-focus .shell>main{min-height:0;flex:1;display:flex;flex-direction:column}
+body.nina-focus .view{display:none}
+body.nina-focus #nina.view.active{min-height:0;min-width:0;flex:1;display:grid;grid-template-rows:minmax(0,49fr) minmax(0,51fr);gap:10px}
+#nina .nina-stage{height:100%;min-height:0;max-width:none;width:100%;margin:0;position:relative;isolation:isolate;border-radius:21px;background:radial-gradient(ellipse at 50% 45%,#493456 0%,#261d35 43%,#14121e 100%);border-color:#5a436d;box-shadow:inset 0 0 70px #6e4fa522,0 10px 24px #0003}
+#nina .nina-portrait-frame{position:absolute;inset:0;width:100%;height:100%;margin:0;border:0;border-radius:0;box-shadow:none;overflow:hidden;aspect-ratio:auto}
+#nina .nina-portrait-frame img{height:100%;width:100%;object-fit:cover;object-position:50% 43%;filter:saturate(1.05)}
+#nina .nina-stage-top{position:absolute;top:0;left:0;right:0;z-index:2;padding:15px 15px 26px;background:linear-gradient(to bottom,#13111edc,transparent);font-size:10px}
+#nina .nina-expression-name{background:#201b33b8;border-color:#ffffff30;color:#f2eaff;backdrop-filter:blur(7px)}
+#nina .nina-intro{position:absolute;bottom:0;left:0;right:0;z-index:2;min-height:0;text-align:left;padding:28px 15px 12px;background:linear-gradient(to bottom,transparent,#15121fea 43%,#14111df5)}
+#nina .nina-intro-line{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+#nina .nina-intro strong{font-size:19px}
+#nina .nina-intro-line small{font-size:10px;color:#d8cbe9}
+#nina .nina-intro p{font-size:12px;margin:4px 0 0;max-width:none;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:#dfd6ec}
+#nina .nina-chat-panel{height:100%;width:100%;max-width:none;min-height:0;margin:0;padding:13px 12px 10px;display:flex;flex-direction:column;overflow:hidden;border-radius:20px;background:linear-gradient(160deg,#211b30,#171721 57%);border:1px solid #453950;box-shadow:0 10px 24px #0002}
+#nina .nina-chat-title{flex:0 0 auto;font-size:13px;padding:2px 2px 9px;border-bottom:1px solid #ffffff12}
+#nina .nina-chat-title small{font-size:10px;color:#baadd3;white-space:nowrap}
+#nina .nina-chat-note{flex:0 0 auto;margin:9px 2px 0;padding:9px 11px;border-radius:10px;background:#2e2840;color:#d9cbeb;font-size:11px}
+#nina .nina-chat-note[hidden]{display:none}
+#nina .nina-messages{flex:1 1 auto;min-height:0;max-height:none;margin:0;overflow-y:auto;overscroll-behavior:contain;padding:12px 2px 10px;scrollbar-color:#65527e transparent;scrollbar-width:thin}
+#nina .nina-bubble{font-size:13px;max-width:89%;line-height:1.52;padding:9px 12px}
+#nina .nina-bubble.mine{background:#48345f}
+#nina .nina-bubble.hers{background:#2c253c;border-color:#514268}
+#nina .nina-composer{flex:0 0 auto;display:flex;align-items:stretch;gap:8px;margin:0;padding-top:10px;border-top:1px solid #ffffff14}
+#nina .nina-composer input{min-height:45px;font-size:13px;border-radius:12px;background:#282538}
+#nina .nina-composer button{width:46px;min-height:45px;border-radius:12px;font-size:22px}
+#nina .nina-chat-empty{font-size:13px;line-height:1.6;color:#baadc9;margin:auto 0}
+#nina .nina-stage.offline .nina-portrait-frame img{animation:ninaBreathe 3.2s ease-in-out infinite}
+
+/* Nina's controls belong in Configuration, not in the chat panel. */
+.nina-settings-section .nina-setting-desc{margin:0 0 12px}
+.nina-settings-section details{background:#201d2c;border:1px solid #393246;border-radius:12px;margin-top:10px;padding:0 12px}
+.nina-settings-section details>summary{cursor:pointer;list-style:revert;color:#e0ceff;font-weight:600;font-size:12px;padding:12px 0}
+.nina-settings-section .nina-config{border-top:1px solid #393246}
+.nina-settings-section .nina-config-inner{margin:0 0 12px;gap:10px}
+.nina-settings-section .nina-try{margin-top:10px}
+.nina-settings-section .nina-try-hint{margin:10px 0}
+.nina-settings-preview{width:150px;max-width:75%;height:130px;margin:2px auto 12px;border-radius:13px;overflow:hidden;border:1px solid #65517d;background:#262135}
+.nina-settings-preview img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.nina-settings-section .nina-emotion-buttons{margin:12px 0;gap:6px}
+.nina-settings-section .nina-emotion-buttons button{padding:10px 2px;font-size:10px}
+.nina-settings-section .nina-auto{margin-bottom:13px}
+.nina-data-settings .hint{margin:4px 0 9px!important}
+.nina-data-settings .nina-clear{margin:9px auto 13px;font-size:11px}
+@media (min-width:590px){body.nina-focus .shell{max-width:620px;padding-left:25px;padding-right:25px}#nina .nina-portrait-frame img{object-fit:contain;object-position:50% 45%}#nina .nina-stage{max-width:none}}
+@media (max-height:690px){body.nina-focus .shell{padding-top:6px;padding-bottom:calc(66px + env(safe-area-inset-bottom))}body.nina-focus .shell>header{margin-bottom:6px}body.nina-focus #nina.view.active{gap:6px;grid-template-rows:minmax(0,44fr) minmax(0,56fr)}#nina .nina-intro{padding-bottom:8px}#nina .nina-stage-top{padding-top:8px}}
+@media (prefers-reduced-motion:reduce){#nina .nina-portrait-frame img{transition:none}}

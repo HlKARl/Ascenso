@@ -179,11 +179,13 @@ function navigate(tab,area){
  if(area&&TREE_INFO[area]){selectedTree=area;selectedSkill=null;renderTree()}
  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('selected',b.dataset.tab===tab));
  document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===tab));
+ document.body.classList.toggle('nina-focus',tab==='nina');
  if(tab==='talents')requestAnimationFrame(()=>{if(area||!$('treeGraph').dataset.everCentered){centerTree();$('treeGraph').dataset.everCentered='yes'}});
  window.scrollTo(0,0)
 }
 document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.tab)));
 document.addEventListener('click',e=>{const link=e.target.closest('[data-go]');if(link)navigate(link.dataset.go,link.dataset.area)});
+document.addEventListener('click',e=>{const jump=e.target.closest('[data-scroll-target]');if(jump){const target=$(jump.dataset.scrollTarget);if(target)target.scrollIntoView({behavior:settings.reduceMotion?'instant':'smooth',block:'start'})}});
 
 $('financeForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target),amount=Number(f.get('amount')),note=String(f.get('note')).trim();if(!Number.isFinite(amount)||amount<=0||!note)return;const before=unlockedMap();data.transactions.push({id:uid(),type:f.get('type'),amount,note,date:new Date().toISOString(),source:f.get('type')==='income'&&f.get('source')==='earned'?'earned':'other'});persist();e.target.reset();renderAll();announceNewSkills(before)});
 $('circuitForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target),name=String(f.get('name')).trim(),meters=Number(f.get('meters'));if(!name||!Number.isFinite(meters)||meters<=0||meters>100000)return;const c={id:uid(),name,meters};data.circuits.push(c);persist();e.target.reset();renderCircuits();$('circuitSelect').value=c.id;chooseCircuit();toast('Circuito guardado. Puedes reutilizarlo sin internet.')});
@@ -208,19 +210,20 @@ fetch('plan.json').then(r=>{if(!r.ok)throw Error('No se encontró el plan de mis
 if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(console.warn);
 
 
-// ASCENSO 3.3.1 · Nina: chat with Cloudflare Worker, local history and offline portraits.
+// ASCENSO 3.4 · Nina: chat with Cloudflare Worker, local history and offline portraits.
 const NINA_EMOTIONS={
  normal:{label:'Normal',alt:'Nina con una sonrisa tranquila',speech:'¡Hey! Soy Nina. Bienvenido a mi rinconcito de ASCENSO. 💜'},
  feliz:{label:'Feliz',alt:'Nina sonriendo alegremente',speech:'¡Esooo! ¡Me encantan las buenas noticias! ✨'},
  emocionada:{label:'Emocionada',alt:'Nina emocionada levantando los puños',speech:'¿¡QUÉÉÉ!? ¡Eso sí merece una celebración! 🎉'},
  pensativa:{label:'Pensativa',alt:'Nina reflexionando con una mano en la barbilla',speech:'A ver, a ver… Déjame pensar en eso. 👀'},
  empatica:{label:'Empática',alt:'Nina con una expresión serena y comprensiva',speech:'Te escucho. No hace falta apresurarse. 💜'},
- picara:{label:'Pícara',alt:'Nina con una sonrisa sarcástica y juguetona',speech:'Jejeje… Tengo un plan. ¿Qué podría salir mal? 7u7'},
+ picara:{label:'Pícara',alt:'Nina guiñando un ojo y haciendo el gesto de victoria',speech:'Jejeje… Se me ocurrió una travesura. ✌️'},
  sorprendida:{label:'Sorprendida',alt:'Nina sorprendida con los ojos muy abiertos',speech:'¿¡QUÉ!? JAJAJA. ¡No me esperaba esa!'},
  dormida:{label:'Dormida',alt:'Nina dormida plácidamente con los ojos cerrados',speech:'Zzz… 💜'}
 };
 const NINA_URL_KEY='ascenso_nina_worker_url_v1',NINA_CHAT_KEY='ascenso_nina_chat_v1';
 let ninaPreview=null,ninaReply=null,ninaReplyEmotion='normal',ninaBusy=false;
+const ninaRecentEmotions=[];
 let ninaWorkerUrl=localStorage.getItem(NINA_URL_KEY)||'';
 let ninaChat=[];
 try{const saved=JSON.parse(localStorage.getItem(NINA_CHAT_KEY));if(Array.isArray(saved))ninaChat=saved.filter(x=>x&&['user','model'].includes(x.role)&&typeof x.text==='string').slice(-40).map(x=>({role:x.role,text:x.text.slice(0,4000)}))}catch{}
@@ -234,15 +237,16 @@ function renderNinaChat(){
  log.scrollTop=log.scrollHeight;
 }
 function saveNinaChat(){try{localStorage.setItem(NINA_CHAT_KEY,JSON.stringify(ninaChat.slice(-40)))}catch{}}
-function setNinaEmotion(mode){const info=NINA_EMOTIONS[mode]||NINA_EMOTIONS.normal;const img=$('ninaPortrait');if(img.dataset.mode!==mode){img.src='nina/'+mode+'.webp';img.alt=info.alt;img.dataset.mode=mode}$('ninaEmotion').textContent=info.label}
+function setNinaEmotion(mode){const info=NINA_EMOTIONS[mode]||NINA_EMOTIONS.normal;const img=$('ninaPortrait');if(img.dataset.mode!==mode){img.src='nina/'+mode+'.webp';img.alt=info.alt;img.dataset.mode=mode}$('ninaEmotion').textContent=info.label;const thumb=$('ninaSettingsPreview');if(thumb&&thumb.dataset.mode!==mode){thumb.src='nina/'+mode+'.webp';thumb.alt=info.alt;thumb.dataset.mode=mode}}
 function updateNina(){
  const offline=!navigator.onLine,configured=!!validNinaUrl(ninaWorkerUrl);
  const mode=ninaPreview||(offline?'dormida':ninaReply?ninaReplyEmotion:'normal');
  $('ninaStage').classList.toggle('offline',offline&&ninaPreview===null);
  setNinaEmotion(mode);
  $('ninaPresence').textContent=offline?'Sin internet · descansando':!configured?'Conexión pendiente':ninaBusy?'Nina está pensando…':'En línea · lista para hablar';
- $('ninaSpeech').textContent=ninaPreview?NINA_EMOTIONS[mode].speech:offline?'Zzz… Estoy dormidita. ¡Nos vemos cuando regrese internet! 💤':ninaReply||NINA_EMOTIONS.normal.speech;
- $('ninaChatNote').textContent=offline?'Sin internet. Tus conversaciones anteriores siguen disponibles. 💜':!configured?'Abre «Configurar conexión con Nina» y pega la dirección de tu Worker.':ninaBusy?'Nina está escribiendo…':'Nina está lista para escucharte. 💜';
+ $('ninaSpeech').textContent=ninaPreview?NINA_EMOTIONS[mode].speech:offline?'Zzz… ¡Despiértame cuando vuelva internet! 💤':ninaBusy?'A ver, a ver… Estoy pensando. 👀':ninaReply?NINA_EMOTIONS[mode].speech:'¡Aquí estoy! ¿Qué vamos a contar hoy? 💜';
+ $('ninaChatNote').textContent=offline?'Sin internet. Puedes leer nuestras conversaciones anteriores. 💜':!configured?'Abre ⚙ Configuración → Nina · conexión y pega la dirección de tu Worker.':ninaBusy?'Nina está escribiendo…':'';
+ $('ninaChatNote').hidden=!(offline||!configured||ninaBusy);
  $('ninaChatInput').disabled=offline||!configured||ninaBusy;
  $('ninaSend').disabled=offline||!configured||ninaBusy;
  $('ninaChatInput').placeholder=offline?'Nina está dormidita…':!configured?'Configura tu Worker primero…':ninaBusy?'Esperando respuesta…':'Escríbele a Nina…';
@@ -258,7 +262,7 @@ $('ninaSaveWorker').addEventListener('click',()=>{
  if(!url){$('ninaConfigStatus').textContent='Usa una dirección HTTPS válida que termine en .workers.dev (sin rutas ni parámetros).';return}
  ninaWorkerUrl=url;localStorage.setItem(NINA_URL_KEY,url);$('ninaWorkerUrl').value=url;
  $('ninaConfigStatus').textContent='✓ Conexión guardada en este dispositivo.';
- $('ninaConfig').open=false;updateNina();$('ninaChatInput').focus();
+ $('ninaConfig').open=false;updateNina();$('settingsDialog').close();navigate('nina');$('ninaChatInput').focus();
 });
 $('ninaClearChat').addEventListener('click',()=>{
  if(!ninaChat.length)return;
@@ -273,19 +277,21 @@ $('ninaChatForm').addEventListener('submit',async e=>{
  const history=ninaChat.slice(-12).map(x=>({role:x.role,text:x.text}));
  ninaChat.push({role:'user',text:message});ninaChat=ninaChat.slice(-40);saveNinaChat();renderNinaChat();input.value='';
  ninaBusy=true;ninaPreview=null;ninaReply='Un momento, estoy pensando… ✨';ninaReplyEmotion='pensativa';updateNina();
- const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),90000);
+ const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),26000);
  try{
   const response=await fetch(url,{method:'POST',mode:'cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({message,history}),signal:controller.signal,cache:'no-store'});
   let result={};try{result=await response.json()}catch{}
   if(!response.ok)throw new Error(result.error||('Error del servidor ('+response.status+')'));
   if(typeof result.reply!=='string'||!result.reply.trim())throw new Error('Nina recibió una respuesta vacía.');
   const reply=result.reply.trim().slice(0,10000);
-  ninaReply=reply;ninaReplyEmotion=Object.hasOwn(NINA_EMOTIONS,result.emotion)&&result.emotion!=='dormida'?result.emotion:'normal';
+  ninaReply=reply;let nextEmotion=Object.hasOwn(NINA_EMOTIONS,result.emotion)&&result.emotion!=='dormida'?result.emotion:'normal';
+  if(nextEmotion==='picara'&&ninaRecentEmotions.slice(-4).includes('picara'))nextEmotion='feliz';
+  ninaReplyEmotion=nextEmotion;ninaRecentEmotions.push(nextEmotion);if(ninaRecentEmotions.length>8)ninaRecentEmotions.shift();
   ninaChat.push({role:'model',text:reply});ninaChat=ninaChat.slice(-40);saveNinaChat();renderNinaChat();
  }catch(err){
   ninaReply=null;ninaReplyEmotion='normal';
   const info=document.createElement('p');info.className='nina-error';
-  info.textContent=err.name==='AbortError'?'Gemini tardó más de 90 segundos. Intenta nuevamente; si se repite, revisa los registros del Worker.':'No pude contactar con Nina: '+(err.message||'error de red')+'. Revisa la URL, el Worker y ALLOWED_ORIGIN.';
+  info.textContent=err.name==='AbortError'?'Nina tardó más de 26 segundos. Prueba de nuevo y revisa los registros de Cloudflare si se repite.':'No pude contactar con Nina: '+(err.message||'error de red')+'. Revisa la URL, el Worker y ALLOWED_ORIGIN.';
   $('ninaMessages').append(info);$('ninaMessages').scrollTop=$('ninaMessages').scrollHeight;
  }finally{clearTimeout(timeout);ninaBusy=false;updateNina();if(navigator.onLine)input.focus()}
 });

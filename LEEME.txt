@@ -1,31 +1,21 @@
-ASCENSO 3.3.1 · Corrección del tiempo de espera de Nina
+ASCENSO 3.4 — Nina integral (23 de octubre de 2026)
 
-Esta actualización aumenta el tiempo máximo de respuesta de 25 a 90 segundos. No modifica tus datos, tu URL guardada ni la configuración del Worker.
-
-PASOS
-1. Exporta un respaldo desde ASCENSO.
-2. Descomprime el ZIP y sube su CONTENIDO a la raíz del repositorio de GitHub, reemplazando archivos y conservando nina/.
-3. Haz Commit changes. Espera a que GitHub Pages termine de publicar.
-4. Cierra y reabre ASCENSO en tu celular; si sigue igual, recarga la página.
-5. Prueba a conversar con Nina.
-
-Si continúa tardando demasiado, revisa los Logs del Worker para distinguir lentitud de Gemini, cuotas u otros errores. No compartas claves API.
-
-ASCENSO 3.3 · Nina ya puede conversar (Gemini mediante Cloudflare Worker)
+NOVEDADES
+- Ocho expresiones nuevas de Nina. La expresión pícara hace un guiño y el signo de victoria. Además, la app evita mostrarla demasiado seguido.
+- Inicio + Ficha en una sola pestaña. Ninguna estadística, habilidad o insignia se ha eliminado.
+- Nina a pantalla dividida: retrato grande arriba y chat desplazable abajo.
+- Conexión a Cloudflare Worker, previsualización de rostros y borrado del chat se administran desde el engranaje de Configuración.
+- Se mantiene el modo sin conexión; Nina aparece dormida.
+- El chat utiliza la misma conexión a Gemini que ya configuraste. No debes modificar el Worker.
 
 INSTALACIÓN
-1. Haz una exportación de respaldo de ASCENSO antes de actualizar.
-2. Descomprime el ZIP. En GitHub > tu repositorio > Add file > Upload files, sube el CONTENIDO descomprimido, incluyendo la carpeta nina/. Confirma los cambios.
-3. Espera a que GitHub Pages publique la actualización. Si aparece la versión anterior, cierra/reabre la app o recarga.
-4. En Cloudflare Worker cambia ALLOWED_ORIGIN a https://hlkarl.github.io y pulsa Deploy.
-5. En ASCENSO > Nina > Configurar conexión con Nina, pega tu URL pública HTTPS terminada en .workers.dev. Pulsa Guardar conexión. NO pegues tu clave API.
-6. Envía un mensaje para probar. Nina cambiará de expresión según el campo emotion devuelto por tu Worker.
+1. En tu versión actual de ASCENSO, entra a Configuración y exporta un respaldo JSON.
+2. Descomprime este ZIP. Sube su CONTENIDO (index.html, app.js, style.css, sw.js, plan.json, manifest.webmanifest, icon.svg y carpeta nina/) a la raíz de tu repositorio de GitHub Pages.
+3. Espera a que GitHub Pages publique los cambios y vuelve a abrir la app. Si ves la versión antigua, ciérrala por completo y vuelve a abrirla; su Service Worker actualiza la caché.
+4. No borres los datos del navegador ni desinstales la PWA antes de exportar tu respaldo: allí están tus progresos, la URL del Worker y el historial de Nina.
 
-NOTAS DE SEGURIDAD Y PRIVACIDAD
-- El sitio NO almacena la clave API de Gemini; esta permanece como Secret en Cloudflare.
-- El historial de chat se almacena localmente en el navegador del dispositivo y se puede borrar desde la pestaña Nina. Los mensajes y hasta 12 turnos previos se envían a tu Worker y Gemini para generar respuestas.
-- El resto de los datos de ASCENSO NO se comparte automáticamente con Gemini.
-- La URL pública del Worker no es una credencial. ALLOWED_ORIGIN/CORS NO son autenticación ni detienen llamadas directas. Antes de difundir públicamente tu app, configura autenticación, cuotas y límites de uso en Cloudflare.
-- El modo sin internet conserva ASCENSO y muestra a Nina dormida.
-- No se han modificado las claves de almacenamiento de misiones y estadísticas de ASCENSO 3.1/3.2.
-- El filtro actual acepta Worker con dominio *.workers.dev.
+PRIVACIDAD
+La clave API sigue en tu Worker de Cloudflare. La URL de conexión y las conversaciones siguen guardándose localmente como en la versión anterior. El filtro CORS no impide solicitudes externas directas; para compartir la app públicamente, protege el Worker con autenticación y límites de uso.
+
+NUEVOS RETRATOS
+En nina/ encontrarás archivos .webp para ASCENSO. En una carpeta separada del ZIP encontrarás también las versiones PNG, por si deseas reutilizarlas.
