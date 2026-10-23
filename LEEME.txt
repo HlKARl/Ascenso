@@ -1,3 +1,16 @@
+ASCENSO 3.3.1 · Corrección del tiempo de espera de Nina
+
+Esta actualización aumenta el tiempo máximo de respuesta de 25 a 90 segundos. No modifica tus datos, tu URL guardada ni la configuración del Worker.
+
+PASOS
+1. Exporta un respaldo desde ASCENSO.
+2. Descomprime el ZIP y sube su CONTENIDO a la raíz del repositorio de GitHub, reemplazando archivos y conservando nina/.
+3. Haz Commit changes. Espera a que GitHub Pages termine de publicar.
+4. Cierra y reabre ASCENSO en tu celular; si sigue igual, recarga la página.
+5. Prueba a conversar con Nina.
+
+Si continúa tardando demasiado, revisa los Logs del Worker para distinguir lentitud de Gemini, cuotas u otros errores. No compartas claves API.
+
 ASCENSO 3.3 · Nina ya puede conversar (Gemini mediante Cloudflare Worker)
 
 INSTALACIÓN

@@ -208,7 +208,7 @@ fetch('plan.json').then(r=>{if(!r.ok)throw Error('No se encontró el plan de mis
 if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(console.warn);
 
 
-// ASCENSO 3.3 · Nina: chat with Cloudflare Worker, local history and offline portraits.
+// ASCENSO 3.3.1 · Nina: chat with Cloudflare Worker, local history and offline portraits.
 const NINA_EMOTIONS={
  normal:{label:'Normal',alt:'Nina con una sonrisa tranquila',speech:'¡Hey! Soy Nina. Bienvenido a mi rinconcito de ASCENSO. 💜'},
  feliz:{label:'Feliz',alt:'Nina sonriendo alegremente',speech:'¡Esooo! ¡Me encantan las buenas noticias! ✨'},
@@ -273,7 +273,7 @@ $('ninaChatForm').addEventListener('submit',async e=>{
  const history=ninaChat.slice(-12).map(x=>({role:x.role,text:x.text}));
  ninaChat.push({role:'user',text:message});ninaChat=ninaChat.slice(-40);saveNinaChat();renderNinaChat();input.value='';
  ninaBusy=true;ninaPreview=null;ninaReply='Un momento, estoy pensando… ✨';ninaReplyEmotion='pensativa';updateNina();
- const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),25000);
+ const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),90000);
  try{
   const response=await fetch(url,{method:'POST',mode:'cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({message,history}),signal:controller.signal,cache:'no-store'});
   let result={};try{result=await response.json()}catch{}
@@ -285,7 +285,7 @@ $('ninaChatForm').addEventListener('submit',async e=>{
  }catch(err){
   ninaReply=null;ninaReplyEmotion='normal';
   const info=document.createElement('p');info.className='nina-error';
-  info.textContent=err.name==='AbortError'?'La respuesta tardó demasiado. Intenta de nuevo.':'No pude contactar con Nina: '+(err.message||'error de red')+'. Revisa la URL, el Worker y ALLOWED_ORIGIN.';
+  info.textContent=err.name==='AbortError'?'Gemini tardó más de 90 segundos. Intenta nuevamente; si se repite, revisa los registros del Worker.':'No pude contactar con Nina: '+(err.message||'error de red')+'. Revisa la URL, el Worker y ALLOWED_ORIGIN.';
   $('ninaMessages').append(info);$('ninaMessages').scrollTop=$('ninaMessages').scrollHeight;
  }finally{clearTimeout(timeout);ninaBusy=false;updateNina();if(navigator.onLine)input.focus()}
 });
