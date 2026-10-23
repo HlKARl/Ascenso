@@ -1,4 +1,4 @@
-const CACHE='andy-ascenso-v2-20261023';
+const CACHE='andy-ascenso-v3-20261023b';
 const ASSETS=['./','./index.html','./style.css','./app.js','./plan.json','./manifest.webmanifest','./icon.svg'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('andy-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));

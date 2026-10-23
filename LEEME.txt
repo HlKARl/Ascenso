@@ -1,38 +1,26 @@
-ASCENSO 2.0 — ÁRBOLES DE HABILIDADES Y PRUEBAS REALES
-Proyecto ANDY 1.0 | 91 días: del 26/10/2026 al 24/01/2027
+ASCENSO — ACTUALIZACIÓN MINIMALISTA
 
 NOVEDADES
-- Cuatro árboles RPG con nodos conectados, requisitos y descripciones de capacidades reales.
-- 29 habilidades: Personal (11), Social (6), Académico (6), Espiritual (6).
-- Atributos del personaje calculados por las habilidades desbloqueadas.
-- Cronómetro offline con iniciar, pausar, reanudar, detener y reiniciar. El tiempo pasa a la calculadora al detenerse.
-- Circuitos guardados y número de vueltas; operaciones como 450 × 5, (450 + 200) × 3 o 2.5 × 2.
-- Distancia, velocidad media, ritmo, tiempo y comparación porcentual con una prueba anterior comparable.
-- Historial de entrenamientos con opción de eliminar registros erróneos.
-- Registro de evidencias sociales, académicas y espirituales con descripción y fecha.
-- Una sola misión nueva se revela por día; las incompletas de días anteriores siguen disponibles.
-- Finanzas de la versión original, insignias y exportación/importación de respaldos.
+• Nombre único: ASCENSO (sin subtítulos «Proyecto Andy 1.0»).
+• Cinco secciones: Hoy, Árbol, Entrenar, Diario y Ficha. La parte financiera está en Diario > Mi dinero.
+• Árboles jerárquicos: nacen de un único nodo y se bifurcan con conexiones a habilidades reales. Si el árbol es ancho, desliza horizontalmente.
+• 31 habilidades. Cuatro áreas: Personal, Social, Académico y Espiritual.
+• Todos los atributos empiezan en 0 en una instalación sin registros. Ninguna habilidad está desbloqueada sin cumplir su requisito.
+• En Ficha puedes pulsar cada área para abrir directamente su árbol.
+• En Diario se elige una de cuatro áreas y después la acción concreta, que determina los desbloqueos verificables.
+• Cronómetro, distancias con operaciones, circuitos, historial, finanzas, respaldos y misiones diarias conservados.
+• Las misiones del futuro quedan ocultas. Las anteriores incompletas pasan al día siguiente.
 
-CÓMO ACTUALIZAR TU GITHUB PAGES
-1. Antes de actualizar, abre tu web actual y ve a Progreso > Exportar respaldo. Guarda el archivo JSON.
-2. Extrae ESTE ZIP y sube TODOS los archivos que aparecen en la carpeta extraída (sin crear una subcarpeta adicional) a la raíz de tu repositorio GitHub Pages.
-3. En GitHub, confirma los cambios (Commit changes) en la rama main.
-4. Tu web existente mantendrá la misma URL. Si continúa apareciendo la versión antigua, vuelve a cargarla; la PWA puede necesitar cerrarse y abrirse nuevamente después de actualizar su caché.
-5. Tus datos anteriores se conservan si mantienes el mismo navegador/perfil/dispositivo y dominio, pues la clave local (andy1_v1) no cambió. Por seguridad, haz respaldo antes de actualizar.
-6. Si se han perdido registros, en Ficha > Importar respaldo puedes recuperar archivos JSON tanto de la v1 como de la v2. La importación REEMPLAZA los datos actuales.
+INSTALACIÓN EN GITHUB PAGES
+1. Exporta primero el respaldo JSON de ASCENSO actual.
+2. Extrae este ZIP y sube los ocho archivos a la RAÍZ del mismo repositorio de GitHub Pages (no a una subcarpeta).
+3. Haz Commit Changes en main. Recarga o reabre la PWA cuando GitHub termine de publicar.
+4. La URL anterior se mantiene. Se conserva la clave local `andy1_v1`, así que no se borran registros anteriores en ese mismo navegador.
+5. Si no aparecen tus registros, importa el respaldo desde Ficha > Respaldo. Importar REEMPLAZA el estado actual.
 
-CÓMO PROBARLO EN COMPUTADORA SIN GITHUB
-- En una terminal, dentro de la carpeta de archivos, ejecuta: python -m http.server 8000
-- Abre en el navegador: http://localhost:8000
-- No abras index.html como archivo local (file://), porque el plan requiere ser leído desde un servidor.
-
-CONEXIÓN Y LIMITACIONES
-- La PWA funciona offline después de abrirla con conexión por primera vez y después de que el navegador almacene los archivos; los datos quedan localmente en el dispositivo.
-- Cronómetro sin GPS: debes introducir la distancia medida por ti y elegir modalidad. El cronómetro se basa en tiempo real transcurrido, incluso si la pantalla deja de actualizarse, siempre que el navegador conserve su estado. En móviles, las restricciones del sistema pueden interrumpir la sesión. Verifica tu marca.
-- Comparación de velocidad: misma distancia (margen de ±5 m), misma modalidad y continuidad, en días distintos. +10 % de velocidad no equivale a -10 % del tiempo: la app calcula ambas por separado.
-- Los puntos de atributos son simbólicos. Las capacidades se describen solo según registros verificados/afirmados por el usuario. El progreso espiritual no pretende medir la relación con Dios.
-- No existe inicio de sesión ni sincronización entre navegadores o dispositivos. Exporta respaldos periódicos.
-- No comprometas el presupuesto de transporte para el emprendimiento.
-
-ARCHIVOS
-index.html, app.js, style.css, plan.json, icon.svg, manifest.webmanifest, sw.js, LEEME.txt.
+PRUEBAS Y LÍMITES
+• Offline tras una visita con conexión y almacenamiento correcto del service worker. No requiere GPS.
+• El cronómetro calcula tiempo transcurrido; en móviles el sistema puede suspender la pestaña. Comprueba tus registros.
+• Las capacidades se desbloquean por registros declarados y pruebas registradas. Los atributos son contadores del juego, no mediciones clínicas ni espirituales.
+• Al instalar con datos vacíos: 0 habilidades, 0 puntos de atributos. El nivel global de personaje empieza en 1 por convención de RPG.
+• Los datos se almacenan localmente, no se sincronizan entre dispositivos.
