@@ -180,3 +180,6 @@ body.nina-focus #nina.view.active {display:grid;grid-template-rows:minmax(0,40fr
   #nina .nina-chat-panel {padding-top:14px;padding-bottom:7px;}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+
+/* Centro real del arbol: centrar SVGs estrechos sin impedir pan lateral. */
+.tree-graph svg{margin-inline:auto;}

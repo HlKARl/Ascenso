@@ -1,6 +1,6 @@
 'use strict';
 // ASCENSO v3 · Persistencia local compatible con andy1_v1.
-const START=new Date(2026,9,26), DAYS=91, KEY='andy1_v1';
+const START=new Date(2026,9,24), DAYS=93, KEY='andy1_v1';
 const $=id=>document.getElementById(id);
 const safe=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money=n=>'$'+Number(n||0).toFixed(2);
@@ -20,10 +20,16 @@ function saveSettings(){localStorage.setItem(SETTINGS_KEY,JSON.stringify(setting
 let data=readData(),plan=[],selectedTree='personal',selectedSkill=null;
 function persist(){localStorage.setItem(KEY,JSON.stringify(data))}
 function missionId(w,d){return `w${w}d${d}`}
-function allTasks(){return plan.flatMap(w=>w.days.map((d,i)=>({id:missionId(w.week,i),week:w.week,offset:(w.week-1)*7+i,...d})))}
+// Dos misiones de lanzamiento (24 y 25 oct) sin desplazar los 91 dias del plan original.
+// Se conservan los IDs w1d0…w13d6 para no perder progreso al actualizar.
+const OPENING_TASKS=[
+ {id:'intro-sat',week:0,offset:0,day:'Sábado',date:'24/10',task:'¡Comienza tu aventura! Define tres objetivos personales para ASCENSO y registra en tu diario por qué quieres alcanzarlos.'},
+ {id:'intro-sun',week:0,offset:1,day:'Domingo',date:'25/10',task:'Prepara tu primera semana: elige una pequeña rutina, organiza tus prioridades y revisa los objetivos que escribiste ayer.'}
+];
+function allTasks(){return [...OPENING_TASKS,...plan.flatMap(w=>w.days.map((d,i)=>({id:missionId(w.week,i),week:w.week,offset:2+(w.week-1)*7+i,...d}))) ]}
 function dateAt(offset){let d=new Date(START);d.setDate(d.getDate()+offset);return d}
 function dayOffset(){let n=new Date();return Math.round((Date.UTC(n.getFullYear(),n.getMonth(),n.getDate())-Date.UTC(START.getFullYear(),START.getMonth(),START.getDate()))/86400000)}
-function currentWeek(){return Math.max(1,Math.min(13,Math.floor(dayOffset()/7)+1))}
+function currentWeek(){return Math.max(1,Math.min(13,Math.floor((dayOffset()-2)/7)+1))}
 function missionHTML(t,sub){return `<label class="task ${data.done[t.id]?'done':''}"><input type="checkbox" data-mission="${safe(t.id)}" ${data.done[t.id]?'checked':''}><span class="tasktext"><small>${safe(sub)}</small>${safe(t.task)}</span></label>`}
 // A small arithmetic parser, not eval / Function: 450*5, (450+200)*3, commas and × ÷ supported.
 function calculate(expression){const s=String(expression).replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-').replace(/,/g,'.').replace(/\s/g,'');if(!s||s.length>90||!/^[\d.+*/()\-]+$/.test(s))return NaN;let p=0;function atom(){if(s[p]==='+'){p++;return atom()}if(s[p]==='-'){p++;return -atom()}if(s[p]==='('){p++;const v=sum();if(s[p]!==')')throw Error('paren');p++;return v}const m=s.slice(p).match(/^(?:\d+(?:\.\d*)?|\.\d+)/);if(!m)throw Error('num');p+=m[0].length;return Number(m[0])}function prod(){let v=atom();while(s[p]==='*'||s[p]==='/'){const op=s[p++],n=atom();v=op==='*'?v*n:v/n}return v}function sum(){let v=prod();while(s[p]==='+'||s[p]==='-'){const op=s[p++],n=prod();v=op==='+'?v+n:v-n}return v}try{const v=sum();return p===s.length&&Number.isFinite(v)?v:NaN}catch{return NaN}}
@@ -72,7 +78,7 @@ function workoutsValid(){return data.workouts.filter(w=>Number.isFinite(w.km)&&w
 function sameWorkout(a,b){return Math.abs(a.km-b.km)<=0.005&&a.mode===b.mode&&a.continuous===b.continuous}
 function bestImprovement(workouts){let best=null;for(let i=0;i<workouts.length;i++){const a=workouts[i];for(let j=i+1;j<workouts.length;j++){const b=workouts[j];if(!sameWorkout(a,b)||a.date===b.date)continue;const pct=(a.ms-b.ms)/a.ms*100;if(!best||pct>best.percent)best={percent:pct,speedIncrease:(a.ms/b.ms-1)*100,old:a,new:b}}}return best}
 function hasThreeWeeks(workouts){const counts=new Map();for(const w of workouts){let d=localDay(w.date);if(!d)continue;let delta=(d.getDay()+6)%7;d.setDate(d.getDate()-delta);const key=`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;if(!counts.has(key))counts.set(key,new Set());counts.get(key).add(w.date)}const days=[...counts].filter(([,set])=>set.size>=2).map(([k])=>{const [y,m,d]=k.split('-').map(Number);return Math.round(Date.UTC(y,m,d)/86400000)}).sort((a,b)=>a-b);return days.some((v,i)=>days.includes(v+7)&&days.includes(v+14))}
-function context(){const w=workoutsValid(),missions=Object.keys(data.done).filter(id=>!!data.done[id]&&/^w\d+d[0-6]$/.test(id)).length,improvement=bestImprovement(w);return{workouts:w,missions,transactions:data.transactions.length,earnedIncome:data.transactions.some(t=>t.type==='income'&&t.source==='earned'),threeWeeks:hasThreeWeeks(w),tenPercent:!!improvement&&improvement.percent>=10,count:kind=>data.evidence.filter(e=>e.kind===kind&&(kind!=='study'||e.minutes>=25)).length,improvement}}
+function context(){const w=workoutsValid(),missions=Object.keys(data.done).filter(id=>!!data.done[id]&&/^(?:w\d+d[0-6]|intro-(?:sat|sun))$/.test(id)).length,improvement=bestImprovement(w);return{workouts:w,missions,transactions:data.transactions.length,earnedIncome:data.transactions.some(t=>t.type==='income'&&t.source==='earned'),threeWeeks:hasThreeWeeks(w),tenPercent:!!improvement&&improvement.percent>=10,count:kind=>data.evidence.filter(e=>e.kind===kind&&(kind!=='study'||e.minutes>=25)).length,improvement}}
 function unlockedMap(){
  const c=context(),status={},byId=Object.fromEntries(SKILLS.map(s=>[s.id,s])),visiting=new Set();
  function evaluate(id){if(id in status)return status[id];const s=byId[id];if(!s||visiting.has(id))return false;visiting.add(id);const done=(!s.from||evaluate(s.from))&&!!s.check(c);visiting.delete(id);return status[id]=done}
@@ -89,8 +95,8 @@ function renderHome(){
  $('xpbar').style.width=(xp%100)+'%';$('xptext').textContent=`${xp%100} / 100 XP`;$('totalxp').textContent=`${xp} XP`;
  $('completed').textContent=completed;$('progress').textContent=Math.round(100*completed/tasks.length)+'%';$('unlockedCount').textContent=skillN;
  const off=dayOffset(),current=tasks.find(t=>t.offset===off),pending=tasks.filter(t=>t.offset<off&&!data.done[t.id]);
- $('todayLabel').textContent=off<0?'Comienza el 26/10':off>=DAYS?'Temporada terminada':`Día ${off+1} de ${DAYS}`;
- $('todayTasks').innerHTML=off<0?'<div class="empty">Primera misión: 26 de octubre de 2026. Hasta entonces, permanece en secreto. 🔒</div>':off>=DAYS?'<div class="empty">Temporada concluida. Aún puedes completar tus pendientes.</div>':missionHTML(current,'MISIÓN DEL DÍA');
+ $('todayLabel').textContent=off<0?'Comienza el 24/10':off>=DAYS?'Temporada terminada':`Día ${off+1} de ${DAYS}`;
+ $('todayTasks').innerHTML=off<0?'<div class="empty">Primera misión: sábado 24 de octubre de 2026. ¡Mañana comienza la aventura! ✦</div>':off>=DAYS?'<div class="empty">Temporada concluida. Aún puedes completar tus pendientes.</div>':missionHTML(current,'MISIÓN DEL DÍA');
  $('carryCount').textContent=String(pending.length);
  $('carryTasks').innerHTML=pending.length?pending.map(t=>missionHTML(t,`DEL ${safe(t.date)}`)).join(''):'<div class="empty">Nada pendiente. ✦</div>';
  $('carryPanel').classList.toggle('has-pending',pending.length>0);
@@ -132,15 +138,29 @@ function renderTree(){
  svg+='</svg>';
  const graph=$('treeGraph'),oldArea=graph.dataset.currentTree;graph.innerHTML=svg;graph.dataset.rootX=String(x(roots[0])*scale);
  // Keep selected node visible after clicking, while preserving tree exploration scroll.
- if(oldArea!==selectedTree){graph.dataset.currentTree=selectedTree;graph.scrollTop=0;requestAnimationFrame(()=>centerTree())}
+ if(oldArea!==selectedTree){graph.dataset.currentTree=selectedTree;graph.dataset.userDragged='no';graph.scrollTop=0;if(graph.getClientRects().length)requestAnimationFrame(centerTree)}
  const skill=byId[selectedSkill],parent=skill.from?byId[skill.from]:null,unlocked=status[skill.id],ready=!parent||status[parent.id];
  $('skillDetail').innerHTML=`<div class="between"><small>HABILIDAD</small><span class="skill-status ${unlocked?'unlocked':''}">${unlocked?'✓ DESBLOQUEADA':ready?'POR DESBLOQUEAR':'BLOQUEADA'}</span></div><h3>${safe(skill.name)}</h3><div class="skill-effect"><b>✦ ${unlocked?'Ya puedes':'Potencial'}</b><br>${safe(skill.effect)}</div><div class="skill-req"><b>Para desbloquear:</b> ${safe(skill.need)}</div>${parent&&!status[parent.id]?`<div class="skill-req">Antes: ${safe(parent.name)}</div>`:''}`;
 }
-function centerTree(){const graph=$('treeGraph');if(!graph||!graph.clientWidth)return;graph.scrollLeft=Math.max(0,Number(graph.dataset.rootX||0)-graph.clientWidth/2);graph.scrollTop=0}
+function centerTree(){
+ const graph=$('treeGraph'),svg=graph?.querySelector('svg');
+ if(!graph||!svg||!graph.clientWidth)return;
+ // If the SVG is narrower than the viewport, CSS centers it. Otherwise bring
+ // the main root node to the horizontal midpoint, clamped to real scroll limits.
+ const rootPx=svg.getBoundingClientRect().left-graph.getBoundingClientRect().left+graph.scrollLeft-graph.clientLeft+Number(graph.dataset.rootX||svg.clientWidth/2);
+ const limit=Math.max(0,graph.scrollWidth-graph.clientWidth);
+ graph.scrollLeft=Math.max(0,Math.min(limit,rootPx-graph.clientWidth/2));
+ graph.scrollTop=0;
+ graph.dataset.userDragged='no';
+}
+function centerTreeWhenVisible(){
+ // A hidden tab reports width 0: wait until its layout is committed before centering.
+ requestAnimationFrame(()=>requestAnimationFrame(centerTree));
+}
 // Pan both axes with a finger or mouse. Deliberate drags do not accidentally activate nodes.
 (function setupTreePan(){const graph=$('treeGraph');let drag=null,suppressUntil=0;
  graph.addEventListener('pointerdown',e=>{if(!e.isPrimary||e.button!==0)return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,lastX:e.clientX,lastY:e.clientY,moved:false};try{graph.setPointerCapture(e.pointerId)}catch{} });
- graph.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;const dx=e.clientX-drag.lastX,dy=e.clientY-drag.lastY;if(!drag.moved&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>7){drag.moved=true;graph.classList.add('dragging')}if(drag.moved){graph.scrollLeft-=dx;graph.scrollTop-=dy;e.preventDefault()}drag.lastX=e.clientX;drag.lastY=e.clientY});
+ graph.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;const dx=e.clientX-drag.lastX,dy=e.clientY-drag.lastY;if(!drag.moved&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>7){drag.moved=true;graph.classList.add('dragging')}if(drag.moved){graph.scrollLeft-=dx;graph.scrollTop-=dy;graph.dataset.userDragged='yes';e.preventDefault()}drag.lastX=e.clientX;drag.lastY=e.clientY});
  const stop=e=>{if(!drag||e.pointerId!==drag.id)return;if(drag.moved)suppressUntil=performance.now()+450;drag=null;graph.classList.remove('dragging');if(graph.hasPointerCapture(e.pointerId))graph.releasePointerCapture(e.pointerId)};
  graph.addEventListener('pointerup',stop);graph.addEventListener('pointercancel',stop);graph.addEventListener('lostpointercapture',()=>{graph.classList.remove('dragging');drag=null});
  document.addEventListener('click',e=>{if(graph.contains(e.target)&&performance.now()<suppressUntil){e.preventDefault();e.stopImmediatePropagation()}},true);
@@ -180,7 +200,7 @@ function navigate(tab,area){
  document.querySelectorAll('nav button').forEach(b=>{const active=b.dataset.tab===tab;b.classList.toggle('selected',active);b.setAttribute('aria-current',active?'page':'false')});
  document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===tab));
  document.body.classList.toggle('nina-focus',tab==='nina');
- if(tab==='talents')requestAnimationFrame(()=>{if(area||!$('treeGraph').dataset.everCentered){centerTree();$('treeGraph').dataset.everCentered='yes'}});
+ if(tab==='talents')centerTreeWhenVisible();
  window.scrollTo(0,0)
 }
 document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.tab)));
@@ -201,7 +221,7 @@ $('settingsClose').addEventListener('click',()=>$('settingsDialog').close());
 $('settingsDialog').addEventListener('click',e=>{if(e.target===$('settingsDialog'))$('settingsDialog').close()});
 document.querySelectorAll('[data-accent]').forEach(b=>b.addEventListener('click',()=>{settings.accent=b.dataset.accent;saveSettings()}));
 document.querySelectorAll('[data-theme]').forEach(b=>b.addEventListener('click',()=>{settings.theme=b.dataset.theme;saveSettings()}));
-$('treeScale').addEventListener('input',e=>{settings.treeScale=Number(e.target.value);saveSettings();const wasOpen=$('talents').classList.contains('active');renderTree();if(wasOpen)requestAnimationFrame(centerTree)});
+$('treeScale').addEventListener('input',e=>{settings.treeScale=Number(e.target.value);saveSettings();const wasOpen=$('talents').classList.contains('active');renderTree();if(wasOpen)centerTreeWhenVisible()});
 $('reduceMotion').addEventListener('change',e=>{settings.reduceMotion=e.target.checked;saveSettings()});
 applySettings();
 $('importFile').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>4*1024*1024)throw Error('El archivo excede 4 MB');const obj=JSON.parse(await file.text());validateImport(obj);if(confirm('¿Reemplazar los datos de este dispositivo con el respaldo? Exporta antes tu progreso actual si deseas conservarlo.')){data={done:obj.done,transactions:obj.transactions,workouts:obj.workouts||[],circuits:obj.circuits||[],evidence:obj.evidence||[],timer:validTimer(obj.timer)?obj.timer:{running:false,startedAt:null,elapsed:0}};persist();if(obj.settings){settings=normalizeSettings(obj.settings);saveSettings()}

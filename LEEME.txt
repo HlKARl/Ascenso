@@ -20,3 +20,11 @@ INSTALACIÓN EN GITHUB
 
 LÍMITES DE PRUEBAS
 Las pantallas y la interacción local se prueban en Chromium emulando varios tamaños móviles. La conexión a Gemini real solo se puede verificar usando un Worker funcional, con clave y despliegue configurados en tu cuenta.
+
+ACTUALIZACIÓN 24 OCT 2026 · CENTRADO Y ARRANQUE
+- Fecha de inicio: sábado 24/10/2026 (hora local del dispositivo).
+- Sábado 24 y domingo 25: dos misiones nuevas de apertura; el plan anterior de 91 misiones permanece con sus fechas y nombres, comenzando lunes 26/10/2026.
+- 93 misiones en total (2 de lanzamiento + 91 de las 13 semanas). Las claves originales de misiones (w1d0 ... w13d6) no se alteran.
+- Árboles: SVG centrado si es angosto, centrado a la raíz si es ancho; al abrir Objetivos o elegir un área se centra con el diseño ya visible. El arrastre manual sigue disponible.
+- Cache actualizada y scripts identificados como 34r2 para facilitar la transición desde la app instalada.
+- Mantiene las mismas claves de localStorage y el resto de las funciones intactas.
