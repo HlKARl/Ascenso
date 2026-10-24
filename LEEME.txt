@@ -1,4 +1,0 @@
-ASCENSO 3.8
-Sube TODO el contenido de esta carpeta a la raíz del repositorio.
-Incluye: app.js, index.html, style.css, nina/, sw.js, manifest, plan.json, icon.svg.
-No incluye archivos antiguos de Cloudflare.

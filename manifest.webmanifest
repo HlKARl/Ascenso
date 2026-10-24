@@ -1,1 +1,1 @@
-{"name":"ASCENSO","short_name":"ASCENSO","description":"Tu RPG de crecimiento personal, sin conexión","start_url":"./","scope":"./","display":"standalone","background_color":"#0e0e16","theme_color":"#101019","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]}
+{"name":"ASCENSO","short_name":"ASCENSO","start_url":"./","display":"standalone","background_color":"#120f1c","theme_color":"#120f1c","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
