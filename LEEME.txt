@@ -1,0 +1,22 @@
+ASCENSO 3.4 · RECUPERACIÓN PARA GITHUB PAGES
+
+BASE
+Versión original ASCENSO 3.4 Nina Integral (archivo aportado). Se han conservado la lógica, las misiones, las habilidades, los entrenamientos, las finanzas y los registros.
+
+CAMBIOS
+- 5 pestañas: Inicio (Hoy+Ficha), Objetivos, Nina, Entrenamiento, Diario. Solo iconos en navegación, con accesibilidad.
+- Nina: 40% del espacio útil para el personaje, 60% para chat. Imagen transparente encima del borde del chat y solo título visible arriba.
+- 8 expresiones de nina.zip; la empática venía vacía y fue reconstruida desde la ilustración original ya aportada.
+- Configuración (engranaje): tema y acento, árbol, animaciones, Worker, pruebas de expresiones, privacidad, exportación/importación.
+- Conserva los datos locales v3.4: andy1_v1, ascenso_settings_v1, ascenso_nina_worker_url_v1, ascenso_nina_chat_v1.
+- Nina usa el mismo Worker Cloudflare de la 3.4 y formato {message,history}; reintentos moderados de errores temporales y botón de reenvío cuando falla.
+
+INSTALACIÓN EN GITHUB
+1. IMPORTANTE: en la aplicación actual ve a Configuración > Mis datos > Exportar y guarda el JSON antes de cambiar archivos. La exportación de esta versión incluye también el chat de Nina y la URL del Worker. Las versiones anteriores podrían no incluirlos; para conservar el historial antiguo, no borres datos del sitio ni desinstales la PWA.
+2. Extrae el ZIP y sube su contenido a la raíz del repositorio, no la carpeta contenedora.
+3. GitHub Pages servirá index.html, app.js, style.css, plan.json, sw.js, manifest.webmanifest, icon.svg y carpeta nina/. No necesitas modificar Cloudflare si tu Worker anterior funciona.
+4. Recarga la página tras su publicación; el SW versión nueva actualiza los recursos. No borres los datos del sitio.
+5. Abre Nina > Configuración > Nina conexión para guardar la URL de tu Worker si nunca se configuró en este navegador.
+
+LÍMITES DE PRUEBAS
+Las pantallas y la interacción local se prueban en Chromium emulando varios tamaños móviles. La conexión a Gemini real solo se puede verificar usando un Worker funcional, con clave y despliegue configurados en tu cuenta.

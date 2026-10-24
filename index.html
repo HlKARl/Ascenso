@@ -1,216 +1,109 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>ASCENSO</title>
-  <meta name="theme-color" content="#120f1c">
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101019"><meta name="description" content="ASCENSO · Tu aventura de crecimiento personal, incluso sin internet.">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml">
+<title>ASCENSO</title><link rel="stylesheet" href="style.css?v=34r1">
 </head>
 <body>
-  <div class="app-shell">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark">A</div>
-        <div>
-          <h1>ASCENSO</h1>
-          <p>Tu crecimiento como aventura</p>
-        </div>
-      </div>
-      <button id="openSettings" class="icon-btn" aria-label="Configuración" title="Configuración">⚙</button>
-    </header>
-
-    <main class="views">
-      <section id="home" class="view active">
-        <div class="hero-grid">
-          <article class="glass hero-card">
-            <small class="eyebrow">TEMPORADA</small>
-            <h2>Nivel <span id="levelNumber">1</span></h2>
-            <p id="rankLabel">Explorador</p>
-            <div class="xp-track"><span id="xpFill"></span></div>
-            <div class="hero-row"><span id="xpText">0 / 100 XP</span><strong id="xpTotal">0 XP</strong></div>
-          </article>
-          <article class="glass hero-card compact">
-            <small class="eyebrow">PROGRESO</small>
-            <div class="hero-stat"><strong id="missionPct">0%</strong><span>misiones</span></div>
-            <div class="hero-stat"><strong id="skillCount">0</strong><span>habilidades</span></div>
-          </article>
-        </div>
-
-        <article class="glass section-card">
-          <div class="section-head">
-            <div>
-              <small class="eyebrow">MISIÓN DE HOY</small>
-              <h3 id="todayTitle">Cargando…</h3>
-            </div>
-            <span class="pill" id="todayDay">—</span>
-          </div>
-          <div id="todayMission"></div>
-        </article>
-
-        <article class="glass section-card">
-          <div class="section-head">
-            <div>
-              <small class="eyebrow">PENDIENTES</small>
-              <h3>Arrastradas al siguiente día</h3>
-            </div>
-            <span class="pill" id="pendingCount">0</span>
-          </div>
-          <div id="pendingMissions" class="list-stack"></div>
-        </article>
-
-        <div class="stats-grid">
-          <article class="glass stat-card"><small>Racha activa</small><strong id="activeDays">0</strong></article>
-          <article class="glass stat-card"><small>Entrenamientos</small><strong id="workoutCount">0</strong></article>
-          <article class="glass stat-card"><small>Evidencias</small><strong id="evidenceCount">0</strong></article>
-          <article class="glass stat-card"><small>Balance</small><strong id="balanceValue">$0.00</strong></article>
-        </div>
-
-        <article class="glass section-card">
-          <div class="section-head">
-            <div>
-              <small class="eyebrow">FICHA</small>
-              <h3>Atributos actuales</h3>
-            </div>
-          </div>
-          <div class="attribute-grid" id="attributeGrid"></div>
-        </article>
-      </section>
-
-      <section id="talents" class="view">
-        <div class="tree-switches" id="treeButtons"></div>
-        <article class="glass section-card tree-panel">
-          <div class="section-head tree-heading">
-            <div>
-              <small class="eyebrow" id="treeSubtitle">PERSONAL</small>
-              <h3 id="treeTitle">Elige tu siguiente paso</h3>
-            </div>
-            <span class="pill"><span id="treeUnlocked">0</span>/<span id="treeTotal">0</span></span>
-          </div>
-          <div class="tree-shell">
-            <div id="treeGraph" class="tree-graph" aria-label="Árbol de habilidades"></div>
-          </div>
-          <div class="tree-actions"><span>Arrastra para explorar · Toca un nodo</span><button id="centerTree" class="ghost-btn">Centrar</button></div>
-        </article>
-        <article class="glass section-card" id="skillDetailCard">
-          <small class="eyebrow">HABILIDAD</small>
-          <h3 id="skillName">Selecciona un nodo</h3>
-          <div class="skill-status" id="skillStatus">POR DESBLOQUEAR</div>
-          <p id="skillNeed">Toca una habilidad para ver qué debes hacer.</p>
-          <p id="skillEffect"></p>
-        </article>
-      </section>
-
-      <section id="nina" class="view nina-view">
-        <div class="nina-stage">
-          <div class="nina-overlay-top">
-            <div class="online-indicator"><span id="ninaOnlineDot"></span><span id="ninaOnlineText">Lista para hablar</span></div>
-            <span class="pill" id="ninaMoodLabel">Normal</span>
-          </div>
-          <div class="nina-copy">
-            <div class="nina-copy-line"><strong>Nina ✦</strong><small>Tu compañera de ASCENSO</small></div>
-            <p id="ninaIntro">¡Aquí estoy! ¿Qué vamos a contar hoy? 💜</p>
-          </div>
-          <div class="nina-portrait-wrap">
-            <img id="ninaPortrait" src="nina/normal.webp" alt="Nina" width="941" height="1672">
-          </div>
-        </div>
-        <div class="nina-chat glass">
-          <div class="nina-chat-head">
-            <h3>✧ Conversación</h3>
-            <small>Un rincón para hablar 💜</small>
-          </div>
-          <div id="ninaMessages" class="nina-messages"></div>
-          <div id="ninaNotice" class="nina-notice" hidden></div>
-          <form id="ninaForm" class="nina-form">
-            <input id="ninaInput" type="text" autocomplete="off" placeholder="Escríbele a Nina…">
-            <button type="submit" aria-label="Enviar" title="Enviar">➤</button>
-          </form>
-        </div>
-      </section>
-
-      <section id="train" class="view">
-        <article class="glass section-card">
-          <div class="section-head"><div><small class="eyebrow">CRONÓMETRO</small><h3>Prueba física</h3></div></div>
-          <div class="timer-readout" id="timerDisplay">00:00.0</div>
-          <div class="timer-buttons">
-            <button class="primary-btn" id="timerStart">Iniciar</button>
-            <button class="ghost-btn" id="timerPause">Pausar</button>
-            <button class="ghost-btn" id="timerReset">Reiniciar</button>
-          </div>
-          <div class="form-grid">
-            <label><span>Fecha</span><input id="workoutDate" type="date"></label>
-            <label><span>Modo</span><select id="workoutMode"><option value="run">Correr</option><option value="jog">Trotar</option><option value="walk">Caminar</option></select></label>
-            <label><span>Distancia</span><input id="distanceExpr" type="text" placeholder="450*5"></label>
-            <label><span>Unidad</span><select id="distanceUnit"><option value="m">Metros</option><option value="km">Kilómetros</option></select></label>
-            <label><span>Tiempo</span><input id="workoutTime" type="text" placeholder="12:34.5"></label>
-            <label><span>Continuo</span><select id="workoutContinuous"><option value="yes">Sí</option><option value="no">Con pausas</option></select></label>
-          </div>
-          <div class="chips-row">
-            <input id="circuitName" type="text" placeholder="Nombre del circuito">
-            <input id="circuitMeters" type="number" min="1" step="1" placeholder="Metros">
-            <button id="saveCircuit" class="ghost-btn">Guardar circuito</button>
-          </div>
-          <div id="circuitList" class="chip-list"></div>
-          <div id="workoutMetrics" class="metrics-grid"></div>
-          <div class="action-row"><button id="saveWorkout" class="primary-btn">Guardar entrenamiento</button></div>
-        </article>
-        <article class="glass section-card">
-          <div class="section-head"><div><small class="eyebrow">HISTORIAL</small><h3>Entrenamientos guardados</h3></div></div>
-          <div id="workoutHistory" class="list-stack"></div>
-        </article>
-      </section>
-
-      <section id="journal" class="view">
-        <article class="glass section-card">
-          <div class="section-head"><div><small class="eyebrow">DIARIO</small><h3>Registrar evidencia</h3></div></div>
-          <div class="form-grid">
-            <label><span>Fecha</span><input id="evidenceDate" type="date"></label>
-            <label><span>Área</span><select id="evidenceKind"><option value="conversation">Social</option><option value="study">Académico</option><option value="faith">Espiritual</option><option value="habit">Personal</option></select></label>
-            <label><span>Minutos (opcional)</span><input id="evidenceMinutes" type="number" min="0" step="1" placeholder="25"></label>
-            <label class="full"><span>Descripción</span><textarea id="evidenceText" rows="4" placeholder="¿Qué hiciste hoy?"></textarea></label>
-          </div>
-          <div class="action-row"><button id="saveEvidence" class="primary-btn">Guardar evidencia</button></div>
-        </article>
-        <article class="glass section-card">
-          <div class="section-head"><div><small class="eyebrow">REGISTROS</small><h3>Historial del diario</h3></div></div>
-          <div id="evidenceList" class="list-stack"></div>
-        </article>
-      </section>
-    </main>
-
-    <nav class="bottom-nav" aria-label="Navegación principal">
-      <button class="nav-btn active" data-tab="home" aria-label="Inicio" title="Inicio"><span>⌂</span></button>
-      <button class="nav-btn" data-tab="talents" aria-label="Árbol" title="Árbol"><span>✧</span></button>
-      <button class="nav-btn" data-tab="nina" aria-label="Nina" title="Nina"><span>♡</span></button>
-      <button class="nav-btn" data-tab="train" aria-label="Entrenar" title="Entrenar"><span>◷</span></button>
-      <button class="nav-btn" data-tab="journal" aria-label="Diario" title="Diario"><span>＋</span></button>
-    </nav>
+<div class="shell">
+<header><div class="brand"><div class="mark">A<span>✦</span></div><strong>ASCENSO</strong></div><button class="round" id="settingsOpen" aria-label="Abrir configuración" aria-haspopup="dialog" aria-controls="settingsDialog" title="Configuración">⚙</button></header>
+<main>
+<section id="home" class="view active">
+  <div class="eyebrow">TU HISTORIA · TEMPORADA 01</div>
+  <h1>Un paso<br><em>a la vez.</em></h1>
+  <div class="hero compact-hero">
+    <div class="hero-head"><div><small>NIVEL <span id="level">1</span></small><h2 id="rank">Explorador</h2></div><div class="orb">✦</div></div>
+    <div class="bar"><div id="xpbar"></div></div><div class="between tiny"><span id="xptext">0 / 100 XP</span><span id="totalxp">0 XP</span></div>
   </div>
-
-  <dialog id="settingsModal" class="settings-modal">
-    <form method="dialog" class="settings-panel">
-      <div class="settings-head"><h3>Configuración</h3><button class="icon-btn" value="cancel" aria-label="Cerrar">✕</button></div>
-      <div class="settings-body">
-        <label><span>URL de Nina (Cloudflare Worker)</span><input id="workerUrl" type="url" placeholder="https://tu-worker.workers.dev/"></label>
-        <div class="action-row"><button id="saveWorker" class="primary-btn" type="button">Guardar conexión</button></div>
-        <hr>
-        <div>
-          <small class="eyebrow">Probar expresiones</small>
-          <div class="mood-grid" id="moodGrid"></div>
-        </div>
-        <hr>
-        <div class="action-row wrap">
-          <button id="exportData" class="ghost-btn" type="button">Exportar respaldo</button>
-          <label class="ghost-btn file-label">Importar respaldo<input id="importData" type="file" accept="application/json" hidden></label>
-          <button id="clearChat" class="ghost-btn" type="button">Borrar chat de Nina</button>
-        </div>
-      </div>
-    </form>
-  </dialog>
-
-  <script src="app.js"></script>
-</body>
-</html>
+  <div class="stats"><article><small>MISIONES</small><strong id="completed">0</strong></article><article><small>PLAN</small><strong id="progress">0%</strong></article><article><small>HABILIDADES</small><strong id="unlockedCount">0</strong></article></div>
+  <button type="button" class="profile-jump" data-scroll-target="homeProfile">✦ Ver mi ficha y atributos <span>↓</span></button>
+  <div class="section-title"><h3>Hoy</h3><span id="todayLabel"></span></div><div id="todayTasks" class="tasklist"></div>
+  <details id="carryPanel" class="fold"><summary>Misiones pendientes <span id="carryCount">0</span></summary><div id="carryTasks" class="tasklist fold-content"></div></details>
+  <div class="quick-actions"><button type="button" class="quick" data-go="talents" data-area="personal">✧ Mi árbol <span>↗</span></button><button type="button" class="quick" data-go="train">◷ Cronómetro <span>↗</span></button></div>
+  <section class="home-profile" id="homeProfile" aria-label="Ficha del personaje">
+<div class="eyebrow">FICHA DEL PERSONAJE</div><h2>Tu evolución <span class="profile-spark">✦</span></h2>
+  <div class="hero compact-hero"><small>AVANCE DE MISIONES</small><h2 id="statsPct">0%</h2><div class="bar"><div id="statsBar"></div></div><p id="statsDetail" class="hint"></p></div>
+  <div class="stats"><article><small>DÍAS ACTIVOS</small><strong id="activeDays">0</strong></article><article><small>PRUEBAS</small><strong id="workoutCount">0</strong></article><article><small>REGISTROS</small><strong id="evidenceCount">0</strong></article></div>
+  <h3>Atributos <span class="hint">· toca para abrir su árbol</span></h3><div id="attributes" class="attribute-list"></div>
+  <h3>Entrenamiento</h3><div id="trainingStats" class="metric-row"></div>
+  <details class="fold"><summary>Insignias <span>⌄</span></summary><div id="achievements" class="achievements fold-content"></div></details>
+  </section>
+</section>
+<section id="talents" class="view">
+  <div class="eyebrow">DESBLOQUEA TU POTENCIAL</div><h1>Tus<br><em>objetivos.</em></h1>
+  <div id="treeTabs" class="tree-tabs" role="group" aria-label="Áreas de habilidades"></div>
+  <div class="between tree-heading"><div><small class="eyebrow" id="treeSubtitle">PERSONAL</small><h2 id="treeTitle">Tu camino</h2></div><span class="smallbadge" id="treeCount">0/0</span></div>
+  <div class="tree-graph" id="treeGraph" tabindex="0" aria-label="Árbol de habilidades: arrastra con el dedo en cualquier dirección"></div>
+  <div class="tree-tools"><p class="hint tree-hint">Arrastra para explorar · Toca un nodo</p><button type="button" class="tree-center" id="centerTree">⊙ Centrar</button></div>
+  <div class="skill-detail" id="skillDetail"></div>
+  <button class="secondary wide link-action" data-go="register" type="button">+ Registrar una acción ↗</button>
+</section>
+<section id="nina" class="view nina-room" aria-label="Nina, compañera de ASCENSO">
+  <div class="nina-stage" id="ninaStage">
+    <h2 class="nina-room-title">Nina <span>✦</span><small>Tu acompañante de aventura</small></h2>
+    <div class="nina-portrait-frame"><img id="ninaPortrait" src="nina/normal.webp" width="941" height="1672" alt="Nina con una sonrisa tranquila" decoding="async"></div>
+    <div class="nina-visually-hidden" aria-live="polite"><span id="ninaPresence">Comprobando conexión…</span><span id="ninaEmotion">Normal</span><span id="ninaSpeech">¡Aquí estoy! 💜</span></div>
+  </div>
+  <div class="nina-chat-panel" aria-label="Chat de Nina">
+    <p class="nina-chat-note" id="ninaChatNote" role="status">Nina está lista para conversar.</p>
+    <div class="nina-messages" id="ninaMessages" role="log" aria-label="Mensajes de Nina" aria-live="polite" aria-relevant="additions text"></div>
+    <form class="nina-composer" id="ninaChatForm"><input id="ninaChatInput" type="text" maxlength="4000" autocomplete="off" disabled placeholder="Escríbele a Nina…" aria-label="Mensaje para Nina"><button type="submit" id="ninaSend" disabled aria-label="Enviar mensaje">➤</button></form>
+  </div>
+</section>
+<section id="train" class="view">
+  <div class="eyebrow">ENTRENAMIENTO</div><h1>Supera tu<br><em>marca.</em></h1>
+  <div class="timer-panel"><div class="timer-caption" id="timerStatus">CRONÓMETRO · LISTO</div><div class="timer-time" id="timerDisplay">00:00.0</div>
+    <div class="timer-controls"><button class="primary" id="timerStart" type="button">▶ Iniciar</button><button class="secondary" id="timerStop" type="button" disabled>■ Detener</button><button class="secondary" id="timerReset" type="button">↺</button></div>
+    <p class="hint">Al detenerlo, el tiempo pasa al registro.</p>
+  </div>
+  <div class="panel"><div class="grid2"><label class="field">Circuito<select id="circuitSelect"><option value="">Personalizado</option></select></label><label class="field">Vueltas<input id="laps" type="number" min="1" step="1" value="1"></label></div>
+    <label class="field">Distancia (admite 450 × 5)<input id="distanceExpr" value="450 × 5" autocomplete="off" inputmode="text"></label>
+    <div class="grid2"><label class="field">Unidad<select id="distanceUnit"><option value="m">Metros</option><option value="km">Kilómetros</option></select></label><label class="field">Actividad<select id="workoutMode"><option value="run">Correr</option><option value="jog">Trotar</option><option value="walk">Caminar</option></select></label></div>
+    <div class="grid2"><label class="field">Tiempo (mm:ss.d)<input id="workoutTime" placeholder="14:30.0" inputmode="decimal"></label><label class="field">Fecha<input id="workoutDate" type="date"></label></div>
+    <label class="checkline"><input id="workoutContinuous" type="checkbox" checked> Recorrido continuo</label>
+    <div id="workoutMetrics" class="metrics"></div><button class="primary wide" id="saveWorkout" type="button">Guardar prueba</button><p id="workoutMessage" class="hint" role="status"></p>
+  </div>
+  <details class="fold"><summary>Mis circuitos <span>+</span></summary><div class="fold-content">
+    <form id="circuitForm" class="form minimal-form"><label>Nombre<input name="name" placeholder="Parque" maxlength="52" required></label><label>Metros por vuelta<input name="meters" type="number" min="1" max="100000" step="0.01" placeholder="450" required></label><button class="secondary" type="submit">Guardar circuito</button></form>
+    <div id="circuitList" class="saved-circuits"></div></div></details>
+  <details class="fold"><summary>Historial de pruebas <span>⌄</span></summary><div id="workoutHistory" class="tasklist fold-content"></div></details>
+</section>
+<section id="register" class="view">
+  <div class="eyebrow">DIARIO</div><h1>Guarda tus<br><em>victorias.</em></h1>
+  <p class="muted">Una acción real basta para avanzar.</p>
+  <form id="evidenceForm" class="form"><label>Área<select id="evidenceArea" name="area"><option value="personal">Personal</option><option value="social">Social</option><option value="academic">Académico</option><option value="spiritual">Espiritual</option></select></label>
+    <label id="evidenceKindWrap">Acción<select name="kind" id="evidenceKind"></select></label>
+    <label>¿Qué hiciste?<input name="note" maxlength="180" minlength="6" placeholder="Una frase breve" required></label>
+    <div class="grid2"><label id="minutesWrap">Minutos<input name="minutes" id="evidenceMinutes" type="number" min="0" max="600" step="1" placeholder="25"></label><label>Fecha<input name="date" type="date" id="evidenceDate" required></label></div>
+    <button class="primary" type="submit">Registrar progreso</button>
+  </form>
+  <details class="fold"><summary>Acciones registradas <span>⌄</span></summary><div id="evidenceHistory" class="tasklist fold-content"></div></details>
+  <details class="fold" id="financeFold"><summary>Mi dinero <span id="balance">$0.00</span></summary><div class="fold-content">
+    <div class="finance-cards"><article><small>INGRESOS</small><strong id="income">$0.00</strong></article><article><small>GASTOS</small><strong id="expenses">$0.00</strong></article></div>
+    <form id="financeForm" class="form minimal-form"><div class="grid2"><label>Tipo<select name="type"><option value="income">Ingreso</option><option value="expense">Gasto</option></select></label><label>Valor ($)<input name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required></label></div>
+      <label>Concepto<input name="note" placeholder="Venta, transporte, materiales..." maxlength="90" required></label>
+      <label>Origen<select name="source"><option value="other">General</option><option value="earned">Trabajo o venta propia</option></select></label><button class="secondary" type="submit">Guardar movimiento</button></form>
+    <div id="transactions" class="tasklist"></div><p class="hint">Reserva el dinero necesario para transporte.</p>
+  </div></details>
+</section>
+</main>
+<dialog id="settingsDialog" class="settings-dialog" aria-labelledby="settingsTitle">
+  <div class="settings-head"><div><span class="eyebrow">PERSONALIZA TU AVENTURA</span><h2 id="settingsTitle">Configuración</h2></div><button type="button" id="settingsClose" class="round" aria-label="Cerrar configuración">×</button></div>
+  <div class="settings-body">
+    <section class="setting-section"><h3>Apariencia</h3><div class="setting-row"><span>Color principal</span><div class="accent-choices" role="group" aria-label="Color principal"><button type="button" data-accent="violet" aria-label="Violeta" title="Violeta"></button><button type="button" data-accent="cyan" aria-label="Azul" title="Azul"></button><button type="button" data-accent="green" aria-label="Verde" title="Verde"></button></div></div>
+    <div class="setting-row"><span>Fondo</span><div class="setting-options" role="group" aria-label="Tipo de fondo"><button type="button" data-theme="dark">Oscuro</button><button type="button" data-theme="black">Negro</button></div></div></section>
+    <section class="setting-section"><h3>Árbol de habilidades</h3><label class="setting-row" for="treeScale"><span>Tamaño de nodos</span><span id="treeScaleValue">100 %</span></label><input type="range" min="80" max="140" step="10" value="100" id="treeScale"><label class="toggle-line"><span>Reducir animaciones</span><input type="checkbox" id="reduceMotion"></label></section>
+    <section class="setting-section nina-settings-section"><h3>💜 Nina · conexión</h3>
+      <p class="hint nina-setting-desc">Configura cómo habla Nina sin salir de tu aventura. Nunca pegues aquí tu clave de Gemini: solo la URL de Cloudflare.</p>
+      <details class="nina-config" id="ninaConfig"><summary>⚙ Configurar conexión</summary><div class="nina-config-inner"><label for="ninaWorkerUrl">Dirección pública de tu Cloudflare Worker</label><input id="ninaWorkerUrl" type="url" inputmode="url" autocomplete="url" placeholder="https://ascenso-nina.tu-cuenta.workers.dev" spellcheck="false"><p class="hint">La dirección se guarda únicamente en este dispositivo. La clave API permanece en Cloudflare.</p><button class="secondary" type="button" id="ninaTestWorker">Probar conexión</button><button class="secondary" type="button" id="ninaSaveWorker">Guardar conexión</button><span id="ninaConfigStatus" role="status"></span></div></details>
+      <details class="nina-try" id="ninaTry"><summary>✧ Probar expresiones</summary><div class="nina-settings-preview"><img id="ninaSettingsPreview" src="nina/normal.webp" width="364" height="400" alt="Vista previa de Nina"></div><p class="hint nina-try-hint">Elige un rostro para probarlo. «Automático» devuelve el control a la conversación y al estado de conexión.</p><div class="nina-emotion-buttons" id="ninaEmotionButtons" role="group" aria-label="Expresiones de Nina"></div><button class="secondary nina-auto" type="button" id="ninaAuto">↺ Automático</button></details>
+      <details class="nina-data-settings"><summary>Conversaciones y privacidad</summary><p class="hint">El historial se guarda en este dispositivo. Los mensajes que envías pasan por Cloudflare y Gemini. Nina no recibe automáticamente tus estadísticas de ASCENSO.</p><button class="nina-clear" type="button" id="ninaClearChat">Borrar conversación de este dispositivo</button></details>
+    </section>
+    <section class="setting-section"><h3>Mis datos</h3><p class="hint">El progreso se guarda en este dispositivo. Exporta un respaldo antes de borrar los datos del navegador o cambiar de teléfono.</p><div class="setting-backup"><button type="button" class="secondary" id="exportBtn">⇩ Exportar</button><label class="secondary filebtn">⇧ Importar<input id="importFile" type="file" accept="application/json,.json" hidden></label></div></section>
+  </div>
+</dialog>
+<nav aria-label="Navegación principal"><button type="button" data-tab="home" aria-label="Inicio" title="Inicio" aria-current="page" class="selected"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg></button><button type="button" data-tab="talents" aria-label="Objetivos" title="Objetivos" aria-current="false" class=""><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3"/></svg></button><button type="button" data-tab="nina" aria-label="Nina" title="Nina" aria-current="false" class=""><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></button><button type="button" data-tab="train" aria-label="Entrenamiento" title="Entrenamiento" aria-current="false" class=""><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3l3-6 4 12 3-6h5"/></svg></button><button type="button" data-tab="register" aria-label="Diario" title="Diario" aria-current="false" class=""><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7c-2.4-2-5.7-2.2-9-1v14c3.3-1.2 6.6-1 9 1 2.4-2 5.7-2.2 9-1V6c-3.3-1.2-6.6-1-9 1z"/><path d="M12 7v14"/></svg></button></nav>
+</div><script src="app.js?v=34r1"></script>
+</body></html>
