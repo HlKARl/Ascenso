@@ -1,30 +1,27 @@
-ASCENSO 3.4 · RECUPERACIÓN PARA GITHUB PAGES
+ASCENSO 4.0 — CAMPAÑA 01 · RECUPERAR MIS ALAS
 
-BASE
-Versión original ASCENSO 3.4 Nina Integral (archivo aportado). Se han conservado la lógica, las misiones, las habilidades, los entrenamientos, las finanzas y los registros.
+FECHAS: lunes 26 de octubre a martes 24 de noviembre de 2026 (30 días inclusivos).
 
 CAMBIOS
-- 5 pestañas: Inicio (Hoy+Ficha), Objetivos, Nina, Entrenamiento, Diario. Solo iconos en navegación, con accesibilidad.
-- Nina: 40% del espacio útil para el personaje, 60% para chat. Imagen transparente encima del borde del chat y solo título visible arriba.
-- 8 expresiones de nina.zip; la empática venía vacía y fue reconstruida desde la ilustración original ya aportada.
-- Configuración (engranaje): tema y acento, árbol, animaciones, Worker, pruebas de expresiones, privacidad, exportación/importación.
-- Conserva los datos locales v3.4: andy1_v1, ascenso_settings_v1, ascenso_nina_worker_url_v1, ascenso_nina_chat_v1.
-- Nina usa el mismo Worker Cloudflare de la 3.4 y formato {message,history}; reintentos moderados de errores temporales y botón de reenvío cuando falla.
+- Plan antiguo de 13 semanas reemplazado por 30 días de misiones específicas (las fechas y objetivos se mantienen fijos).
+- Físico: correr 5 km continuos. Registro real de tiempo, distancia, modalidad y pausas; bicicleta estática como alternativa, sin contabilizar sus kilómetros como carrera.
+- Personal: 20 sesiones de 30 minutos de trabajo intencional, registradas en Diario > Personal > Trabajo intencional.
+- Social: cultivar un vínculo significativo. Registro de acciones reales y confirmación manual de relación recíproca.
+- Académico: materias configurables y notas por parcial. Primer parcial hasta 6 de noviembre: promedio de las notas de cada materia superior a 15/20; segundo parcial: promedio mayor de 15/20 entre notas registradas del 7 al 24 de noviembre.
+- Espiritual: cuadrícula de lectura de los 31 capítulos de Proverbios (dos capítulos el último día).
+- Objetivos muestra las cinco conquistas, barras de progreso, registros y cinco árboles de habilidades (físico separado de personal).
+- Las misiones nuevas solo aparecen el día correspondiente; las pendientes reaparecen en una sección plegable, hasta una por área, sin saturar la agenda. No se marcan por sí solas: se validan manualmente; las conquistas dependen de registros reales.
+- Conserva las funciones anteriores: Nina y sus ocho expresiones, Worker y chat, cronómetro, circuitos, finanzas, diario, exportación/importación y opciones visuales.
 
-INSTALACIÓN EN GITHUB
-1. IMPORTANTE: en la aplicación actual ve a Configuración > Mis datos > Exportar y guarda el JSON antes de cambiar archivos. La exportación de esta versión incluye también el chat de Nina y la URL del Worker. Las versiones anteriores podrían no incluirlos; para conservar el historial antiguo, no borres datos del sitio ni desinstales la PWA.
-2. Extrae el ZIP y sube su contenido a la raíz del repositorio, no la carpeta contenedora.
-3. GitHub Pages servirá index.html, app.js, style.css, plan.json, sw.js, manifest.webmanifest, icon.svg y carpeta nina/. No necesitas modificar Cloudflare si tu Worker anterior funciona.
-4. Recarga la página tras su publicación; el SW versión nueva actualiza los recursos. No borres los datos del sitio.
-5. Abre Nina > Configuración > Nina conexión para guardar la URL de tu Worker si nunca se configuró en este navegador.
+INSTALACIÓN EN GITHUB PAGES
+1. EN TU APP ACTUAL: Configuración > Mis datos > Exportar. Guarda el archivo antes de subir cambios.
+2. Descomprime el ZIP y sube TODOS los archivos y la carpeta nina/ a la raíz del repositorio de GitHub Pages. No subas la carpeta contenedora.
+3. Abre la app y recarga una vez. El service worker usa un caché nuevo. En caso de servir una versión antigua, cierra todas las pestañas de ASCENSO, vuelve a abrir y recarga.
+4. No borres datos del sitio ni desinstales la PWA si quieres conservar tu progreso y el chat de Nina.
+5. Abre Objetivos y añade tus materias, registra notas y marca capítulos de Proverbios conforme los leas.
 
-LÍMITES DE PRUEBAS
-Las pantallas y la interacción local se prueban en Chromium emulando varios tamaños móviles. La conexión a Gemini real solo se puede verificar usando un Worker funcional, con clave y despliegue configurados en tu cuenta.
-
-ACTUALIZACIÓN 24 OCT 2026 · CENTRADO Y ARRANQUE
-- Fecha de inicio: sábado 24/10/2026 (hora local del dispositivo).
-- Sábado 24 y domingo 25: dos misiones nuevas de apertura; el plan anterior de 91 misiones permanece con sus fechas y nombres, comenzando lunes 26/10/2026.
-- 93 misiones en total (2 de lanzamiento + 91 de las 13 semanas). Las claves originales de misiones (w1d0 ... w13d6) no se alteran.
-- Árboles: SVG centrado si es angosto, centrado a la raíz si es ancho; al abrir Objetivos o elegir un área se centra con el diseño ya visible. El arrastre manual sigue disponible.
-- Cache actualizada y scripts identificados como 34r2 para facilitar la transición desde la app instalada.
-- Mantiene las mismas claves de localStorage y el resto de las funciones intactas.
+IMPORTANTE
+La meta de 5 km en 30 días es ambiciosa tras un período sin entrenamiento. Las misiones físicas son orientativas y sujetas a recuperación: nunca se fuerza una carrera con dolor fuerte o persistente. La app registra datos, no proporciona evaluación médica.
+Las notas parciales se basan en lo que ingreses. Para evaluar el primer parcial debes registrar todas tus materias; no se presupone la cantidad.
+Las relaciones significativas no se determinan automáticamente por el número de contactos.
+Los datos son locales. La función Nina requiere conexión y tu Worker original, tal como antes.

@@ -1,639 +1,682 @@
 [
   {
-    "week": 1,
-    "title": "Diagnóstico y sistema",
-    "days": [
+    "date": "2026-10-26",
+    "day": "Monday",
+    "tasks": [
       {
-        "day": "Lunes",
-        "date": "26/10",
-        "task": "Organizar entregas y calendarizar estudio (6 h/semana). Crear horario personal y priorizar las 5 materias."
+        "id": "c1d0-fis",
+        "area": "physical",
+        "task": "Prueba inicial suave: calienta 8–10 min y alterna trote/caminata. Registra cuánto corres seguido sin forzarte."
       },
       {
-        "day": "Martes",
-        "date": "27/10",
-        "task": "Registrar los $10 de pasajes y cualquier gasto real sin comprometer el transporte. · entrenamiento o caminata según calendario."
+        "id": "c1d0-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 1 y marca el capítulo en Objetivos."
       },
       {
-        "day": "Miércoles",
-        "date": "28/10",
-        "task": "Diseñar el presupuesto inicial del arroz relleno sin comprar todavía. · revisión breve de gastos y avances académicos."
+        "id": "c1d0-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
       },
       {
-        "day": "Jueves",
-        "date": "29/10",
-        "task": "Realizar 2 entrenamientos cortos de 20–25 min. · cerrar los deberes más urgentes."
+        "id": "c1d0-soc",
+        "area": "social",
+        "task": "Elige a una persona con la que quieras cultivar una amistad; busca una ocasión genuina de acercarte. Registra tu iniciativa en Objetivos."
       },
       {
-        "day": "Viernes",
-        "date": "30/10",
-        "task": "Escribir a dos amigos y proponer una conversación o encuentro. · revisar negocio y próximos compromisos."
-      },
-      {
-        "day": "Sábado",
-        "date": "31/10",
-        "task": "Establecer hora viable de sueño y un rincón de estudio distinto de la cama. · espacio para hobby, fe o amigos."
-      },
-      {
-        "day": "Domingo",
-        "date": "01/11",
-        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+        "id": "c1d0-aca",
+        "area": "academic",
+        "task": "Anota todas tus materias en Objetivos y consulta las evaluaciones del primer parcial."
       }
-    ],
-    "commitments": [
-      "Crear horario personal y priorizar las 5 materias.",
-      "Registrar los $10 de pasajes y cualquier gasto real sin comprometer el transporte.",
-      "Diseñar el presupuesto inicial del arroz relleno sin comprar todavía.",
-      "Realizar 2 entrenamientos cortos de 20–25 min.",
-      "Escribir a dos amigos y proponer una conversación o encuentro.",
-      "Establecer hora viable de sueño y un rincón de estudio distinto de la cama."
     ]
   },
   {
-    "week": 2,
-    "title": "Primera prueba pequeña",
-    "days": [
+    "date": "2026-10-27",
+    "day": "Tuesday",
+    "tasks": [
       {
-        "day": "Lunes",
-        "date": "02/11",
-        "task": "Organizar entregas y calendarizar estudio (7 h/semana). Pedir cotizaciones de ingredientes, envases y transporte."
+        "id": "c1d1-fis",
+        "area": "physical",
+        "task": "Fortalecimiento suave de piernas y tronco (15–20 min), movilidad y recuperación. Evita saltos intensos."
       },
       {
-        "day": "Martes",
-        "date": "03/11",
-        "task": "Definir una receta pequeña y el costo por porción. · entrenamiento o caminata según calendario."
+        "id": "c1d1-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 2 y marca el capítulo en Objetivos."
       },
       {
-        "day": "Miércoles",
-        "date": "04/11",
-        "task": "Encuestar a 5 posibles compradores y preguntar cuánto pagarían. · revisión breve de gastos y avances académicos."
-      },
-      {
-        "day": "Jueves",
-        "date": "05/11",
-        "task": "Completar 2–3 sesiones de actividad física. · cerrar los deberes más urgentes."
-      },
-      {
-        "day": "Viernes",
-        "date": "06/11",
-        "task": "Aplicar bloques de concentración 50/10 para tareas. · revisar negocio y próximos compromisos."
-      },
-      {
-        "day": "Sábado",
-        "date": "07/11",
-        "task": "Tener una conversación individual de calidad con un amigo. · espacio para hobby, fe o amigos."
-      },
-      {
-        "day": "Domingo",
-        "date": "08/11",
-        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+        "id": "c1d1-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
       }
-    ],
-    "commitments": [
-      "Pedir cotizaciones de ingredientes, envases y transporte.",
-      "Definir una receta pequeña y el costo por porción.",
-      "Encuestar a 5 posibles compradores y preguntar cuánto pagarían.",
-      "Completar 2–3 sesiones de actividad física.",
-      "Aplicar bloques de concentración 50/10 para tareas.",
-      "Tener una conversación individual de calidad con un amigo."
     ]
   },
   {
-    "week": 3,
-    "title": "Piloto por preventa",
-    "days": [
+    "date": "2026-10-28",
+    "day": "Wednesday",
+    "tasks": [
       {
-        "day": "Lunes",
-        "date": "09/11",
-        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Fijar un precio calculado que cubra costos y margen."
+        "id": "c1d2-fis",
+        "area": "physical",
+        "task": "Carrera/caminata suave 20–25 min; prioriza ritmo conversacional y registra la mejor distancia continua."
       },
       {
-        "day": "Martes",
-        "date": "10/11",
-        "task": "Ofrecer preventa a conocidos, sin prometer cantidades mayores a las posibles. · entrenamiento o caminata según calendario."
+        "id": "c1d2-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 3 y marca el capítulo en Objetivos."
       },
       {
-        "day": "Miércoles",
-        "date": "11/11",
-        "task": "Preparar un lote de prueba solo con pedidos o presupuesto disponible. · revisión breve de gastos y avances académicos."
+        "id": "c1d2-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
       },
       {
-        "day": "Jueves",
-        "date": "12/11",
-        "task": "Registrar ingresos, gastos y devoluciones del piloto. · cerrar los deberes más urgentes."
-      },
-      {
-        "day": "Viernes",
-        "date": "13/11",
-        "task": "Entrenar 3 días y mantener estudio programado. · revisar negocio y próximos compromisos."
-      },
-      {
-        "day": "Sábado",
-        "date": "14/11",
-        "task": "Organizar una salida sencilla o conversación significativa. · espacio para hobby, fe o amigos."
-      },
-      {
-        "day": "Domingo",
-        "date": "15/11",
-        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+        "id": "c1d2-aca",
+        "area": "academic",
+        "task": "Haz una sesión académica para preparar tus evaluaciones prioritarias."
       }
-    ],
-    "commitments": [
-      "Fijar un precio calculado que cubra costos y margen.",
-      "Ofrecer preventa a conocidos, sin prometer cantidades mayores a las posibles.",
-      "Preparar un lote de prueba solo con pedidos o presupuesto disponible.",
-      "Registrar ingresos, gastos y devoluciones del piloto.",
-      "Entrenar 3 días y mantener estudio programado.",
-      "Organizar una salida sencilla o conversación significativa."
     ]
   },
   {
-    "week": 4,
-    "title": "Revisión mensual 1",
-    "days": [
+    "date": "2026-10-29",
+    "day": "Thursday",
+    "tasks": [
       {
-        "day": "Lunes",
-        "date": "16/11",
-        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Cerrar ingresos/gastos y comparar con el presupuesto."
+        "id": "c1d3-fis",
+        "area": "physical",
+        "task": "Bicicleta estática suave o caminata 20 min. Día de bajo impacto."
       },
       {
-        "day": "Martes",
-        "date": "17/11",
-        "task": "Calcular margen unitario y decidir continuar, ajustar o pausar el arroz relleno. · entrenamiento o caminata según calendario."
+        "id": "c1d3-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 4 y marca el capítulo en Objetivos."
       },
       {
-        "day": "Miércoles",
-        "date": "18/11",
-        "task": "Revisar notas y fechas de evaluaciones en las cinco materias. · revisión breve de gastos y avances académicos."
+        "id": "c1d3-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
       },
       {
-        "day": "Jueves",
-        "date": "19/11",
-        "task": "Entrenar 3 veces y corregir problemas de adherencia. · cerrar los deberes más urgentes."
-      },
-      {
-        "day": "Viernes",
-        "date": "20/11",
-        "task": "Evaluar si los contactos sociales se sintieron recíprocos. · revisar negocio y próximos compromisos."
-      },
-      {
-        "day": "Sábado",
-        "date": "21/11",
-        "task": "Hacer revisión mensual: 3 avances, 3 obstáculos y 3 decisiones. · espacio para hobby, fe o amigos."
-      },
-      {
-        "day": "Domingo",
-        "date": "22/11",
-        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+        "id": "c1d3-soc",
+        "area": "social",
+        "task": "Inicia una conversación sin apresurarte: escucha y descubre algo de la otra persona. Registra tu iniciativa en Objetivos."
       }
-    ],
-    "commitments": [
-      "Cerrar ingresos/gastos y comparar con el presupuesto.",
-      "Calcular margen unitario y decidir continuar, ajustar o pausar el arroz relleno.",
-      "Revisar notas y fechas de evaluaciones en las cinco materias.",
-      "Entrenar 3 veces y corregir problemas de adherencia.",
-      "Evaluar si los contactos sociales se sintieron recíprocos.",
-      "Hacer revisión mensual: 3 avances, 3 obstáculos y 3 decisiones."
     ]
   },
   {
-    "week": 5,
-    "title": "Ventas repetibles",
-    "days": [
+    "date": "2026-10-30",
+    "day": "Friday",
+    "tasks": [
       {
-        "day": "Lunes",
-        "date": "23/11",
-        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Establecer un día de pedidos y uno de entrega, si es viable."
+        "id": "c1d4-fis",
+        "area": "physical",
+        "task": "Trote/caminata 20–30 min, cómodo, en el mismo circuito cuando sea posible. Sin buscar esprints."
       },
       {
-        "day": "Martes",
-        "date": "24/11",
-        "task": "Separar dinero de reposición, utilidad y ahorro. · entrenamiento o caminata según calendario."
+        "id": "c1d4-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 5 y marca el capítulo en Objetivos."
       },
       {
-        "day": "Miércoles",
-        "date": "25/11",
-        "task": "Revisar dos temas difíciles de las materias más exigentes. · revisión breve de gastos y avances académicos."
+        "id": "c1d4-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
       },
       {
-        "day": "Jueves",
-        "date": "26/11",
-        "task": "Ejercitarse 3 veces y caminar otros 2 días. · cerrar los deberes más urgentes."
-      },
-      {
-        "day": "Viernes",
-        "date": "27/11",
-        "task": "Reservar un encuentro o actividad compartida con amigos. · revisar negocio y próximos compromisos."
-      },
-      {
-        "day": "Sábado",
-        "date": "28/11",
-        "task": "Bloquear entretenimiento después de estudio prioritario. · espacio para hobby, fe o amigos."
-      },
-      {
-        "day": "Domingo",
-        "date": "29/11",
-        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+        "id": "c1d4-aca",
+        "area": "academic",
+        "task": "Revisa pendientes del primer parcial y prioriza la materia con mayor riesgo."
       }
-    ],
-    "commitments": [
-      "Establecer un día de pedidos y uno de entrega, si es viable.",
-      "Separar dinero de reposición, utilidad y ahorro.",
-      "Revisar dos temas difíciles de las materias más exigentes.",
-      "Ejercitarse 3 veces y caminar otros 2 días.",
-      "Reservar un encuentro o actividad compartida con amigos.",
-      "Bloquear entretenimiento después de estudio prioritario."
     ]
   },
   {
-    "week": 6,
-    "title": "Mejora de productividad",
-    "days": [
+    "date": "2026-10-31",
+    "day": "Saturday",
+    "tasks": [
       {
-        "day": "Lunes",
-        "date": "30/11",
-        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Hacer un bloque semanal de planificación de exámenes y entregas."
+        "id": "c1d5-fis",
+        "area": "physical",
+        "task": "Descanso o paseo relajado opcional. Observa cómo responden tus piernas."
       },
       {
-        "day": "Martes",
-        "date": "01/12",
-        "task": "Completar cuatro sesiones de estudio profundo de 2 horas. · entrenamiento o caminata según calendario."
-      },
-      {
-        "day": "Miércoles",
-        "date": "02/12",
-        "task": "Simplificar compras y preparación del producto. · revisión breve de gastos y avances académicos."
-      },
-      {
-        "day": "Jueves",
-        "date": "03/12",
-        "task": "Entrenar 3–4 veces de forma progresiva. · cerrar los deberes más urgentes."
-      },
-      {
-        "day": "Viernes",
-        "date": "04/12",
-        "task": "Conversar con un amigo sobre un interés o dificultad real, sin forzar apertura. · revisar negocio y próximos compromisos."
-      },
-      {
-        "day": "Sábado",
-        "date": "05/12",
-        "task": "Sostener un bloque para un hobby creativo. · espacio para hobby, fe o amigos."
-      },
-      {
-        "day": "Domingo",
-        "date": "06/12",
-        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+        "id": "c1d5-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 6 y marca el capítulo en Objetivos."
       }
-    ],
-    "commitments": [
-      "Hacer un bloque semanal de planificación de exámenes y entregas.",
-      "Completar cuatro sesiones de estudio profundo de 2 horas.",
-      "Simplificar compras y preparación del producto.",
-      "Entrenar 3–4 veces de forma progresiva.",
-      "Conversar con un amigo sobre un interés o dificultad real, sin forzar apertura.",
-      "Sostener un bloque para un hobby creativo."
     ]
   },
   {
-    "week": 7,
-    "title": "Relaciones con intención",
-    "days": [
+    "date": "2026-11-01",
+    "day": "Sunday",
+    "tasks": [
       {
-        "day": "Lunes",
-        "date": "07/12",
-        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Proponer tiempo uno a uno con un amigo de confianza."
+        "id": "c1d6-fis",
+        "area": "physical",
+        "task": "Descanso. Revisa registros y molestias; no compenses días perdidos."
       },
       {
-        "day": "Martes",
-        "date": "08/12",
-        "task": "Practicar escucha y compartir algo personal de forma gradual si te nace. · entrenamiento o caminata según calendario."
-      },
-      {
-        "day": "Miércoles",
-        "date": "09/12",
-        "task": "Planificar al menos una actividad social que no requiera mucho dinero. · revisión breve de gastos y avances académicos."
-      },
-      {
-        "day": "Jueves",
-        "date": "10/12",
-        "task": "Mantener ventas solo si no afectan universidad y descanso. · cerrar los deberes más urgentes."
-      },
-      {
-        "day": "Viernes",
-        "date": "11/12",
-        "task": "Entrenar 4 veces ajustando intensidad. · revisar negocio y próximos compromisos."
-      },
-      {
-        "day": "Sábado",
-        "date": "12/12",
-        "task": "Revisar avances de cada una de las cinco materias. · espacio para hobby, fe o amigos."
-      },
-      {
-        "day": "Domingo",
-        "date": "13/12",
-        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+        "id": "c1d6-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 7 y marca el capítulo en Objetivos."
       }
-    ],
-    "commitments": [
-      "Proponer tiempo uno a uno con un amigo de confianza.",
-      "Practicar escucha y compartir algo personal de forma gradual si te nace.",
-      "Planificar al menos una actividad social que no requiera mucho dinero.",
-      "Mantener ventas solo si no afectan universidad y descanso.",
-      "Entrenar 4 veces ajustando intensidad.",
-      "Revisar avances de cada una de las cinco materias."
     ]
   },
   {
-    "week": 8,
-    "title": "Revisión mensual 2",
-    "days": [
+    "date": "2026-11-02",
+    "day": "Monday",
+    "tasks": [
       {
-        "day": "Lunes",
-        "date": "14/12",
-        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Calcular ingreso neto de las últimas cuatro semanas."
+        "id": "c1d7-fis",
+        "area": "physical",
+        "task": "Carrera suave con intervalos de caminata, 22–28 min según recuperación. No subas distancia si hay dolor."
       },
       {
-        "day": "Martes",
-        "date": "15/12",
-        "task": "Comprobar que el negocio no use el dinero de transporte. · entrenamiento o caminata según calendario."
+        "id": "c1d7-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 8 y marca el capítulo en Objetivos."
       },
       {
-        "day": "Miércoles",
-        "date": "16/12",
-        "task": "Revisar calificaciones, pendientes y prioridades académicas. · revisión breve de gastos y avances académicos."
+        "id": "c1d7-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
       },
       {
-        "day": "Jueves",
-        "date": "17/12",
-        "task": "Mantener 4 entrenamientos o adaptar si hay sobrecarga. · cerrar los deberes más urgentes."
+        "id": "c1d7-soc",
+        "area": "social",
+        "task": "Invita a esa persona a conversar o compartir tiempo, respetando su disponibilidad. Registra tu iniciativa en Objetivos."
       },
       {
-        "day": "Viernes",
-        "date": "18/12",
-        "task": "Evaluar la calidad de las dos amistades que deseas cultivar. · revisar negocio y próximos compromisos."
-      },
-      {
-        "day": "Sábado",
-        "date": "19/12",
-        "task": "Escribir 3 modificaciones concretas al plan. · espacio para hobby, fe o amigos."
-      },
-      {
-        "day": "Domingo",
-        "date": "20/12",
-        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+        "id": "c1d7-aca",
+        "area": "academic",
+        "task": "Verifica fechas y prepara ejercicios o tareas evaluables de esta semana."
       }
-    ],
-    "commitments": [
-      "Calcular ingreso neto de las últimas cuatro semanas.",
-      "Comprobar que el negocio no use el dinero de transporte.",
-      "Revisar calificaciones, pendientes y prioridades académicas.",
-      "Mantener 4 entrenamientos o adaptar si hay sobrecarga.",
-      "Evaluar la calidad de las dos amistades que deseas cultivar.",
-      "Escribir 3 modificaciones concretas al plan."
     ]
   },
   {
-    "week": 9,
-    "title": "Cierre de año consciente",
-    "days": [
+    "date": "2026-11-03",
+    "day": "Tuesday",
+    "tasks": [
       {
-        "day": "Lunes",
-        "date": "21/12",
-        "task": "Organizar entregas y calendarizar estudio (6 h/semana). Planear compromisos de fin de año y proteger el descanso."
+        "id": "c1d8-fis",
+        "area": "physical",
+        "task": "Piernas y core a intensidad moderada-baja, 15–25 min. Técnica antes que cantidad."
       },
       {
-        "day": "Martes",
-        "date": "22/12",
-        "task": "Cerrar registros de diciembre y preparar presupuesto de enero. · entrenamiento o caminata según calendario."
+        "id": "c1d8-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 9 y marca el capítulo en Objetivos."
       },
       {
-        "day": "Miércoles",
-        "date": "23/12",
-        "task": "Mantener un mínimo académico según entregas vigentes. · revisión breve de gastos y avances académicos."
-      },
-      {
-        "day": "Jueves",
-        "date": "24/12",
-        "task": "Entrenar 3 veces si los días festivos alteran la rutina. · cerrar los deberes más urgentes."
-      },
-      {
-        "day": "Viernes",
-        "date": "25/12",
-        "task": "Dedicar tiempo de calidad a familia, amigos y fe. · revisar negocio y próximos compromisos."
-      },
-      {
-        "day": "Sábado",
-        "date": "26/12",
-        "task": "Dedicar un bloque creativo a Nahomi, música u otro hobby. · espacio para hobby, fe o amigos."
-      },
-      {
-        "day": "Domingo",
-        "date": "27/12",
-        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+        "id": "c1d8-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
       }
-    ],
-    "commitments": [
-      "Planear compromisos de fin de año y proteger el descanso.",
-      "Cerrar registros de diciembre y preparar presupuesto de enero.",
-      "Mantener un mínimo académico según entregas vigentes.",
-      "Entrenar 3 veces si los días festivos alteran la rutina.",
-      "Dedicar tiempo de calidad a familia, amigos y fe.",
-      "Dedicar un bloque creativo a Nahomi, música u otro hobby."
     ]
   },
   {
-    "week": 10,
-    "title": "Reinicio ordenado",
-    "days": [
+    "date": "2026-11-04",
+    "day": "Wednesday",
+    "tasks": [
       {
-        "day": "Lunes",
-        "date": "28/12",
-        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Actualizar horario académico según el período vigente."
+        "id": "c1d9-fis",
+        "area": "physical",
+        "task": "Trote conversacional 20–30 min; intenta aumentar un poco la distancia continua solo si te sientes bien."
       },
       {
-        "day": "Martes",
-        "date": "29/12",
-        "task": "Reactivar o ajustar las preventas según demanda real. · entrenamiento o caminata según calendario."
+        "id": "c1d9-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 10 y marca el capítulo en Objetivos."
       },
       {
-        "day": "Miércoles",
-        "date": "30/12",
-        "task": "Revisar contenidos académicos pendientes. · revisión breve de gastos y avances académicos."
+        "id": "c1d9-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
       },
       {
-        "day": "Jueves",
-        "date": "31/12",
-        "task": "Retomar 4 entrenamientos progresivamente. · cerrar los deberes más urgentes."
-      },
-      {
-        "day": "Viernes",
-        "date": "01/01",
-        "task": "Proponer un plan social sencillo para enero. · revisar negocio y próximos compromisos."
-      },
-      {
-        "day": "Sábado",
-        "date": "02/01",
-        "task": "Definir un objetivo concreto de sueño y concentración. · espacio para hobby, fe o amigos."
-      },
-      {
-        "day": "Domingo",
-        "date": "03/01",
-        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+        "id": "c1d9-aca",
+        "area": "academic",
+        "task": "Revisa tareas, entregas y simulaciones antes del cierre del primer parcial."
       }
-    ],
-    "commitments": [
-      "Actualizar horario académico según el período vigente.",
-      "Reactivar o ajustar las preventas según demanda real.",
-      "Revisar contenidos académicos pendientes.",
-      "Retomar 4 entrenamientos progresivamente.",
-      "Proponer un plan social sencillo para enero.",
-      "Definir un objetivo concreto de sueño y concentración."
     ]
   },
   {
-    "week": 11,
-    "title": "Calidad y consistencia",
-    "days": [
+    "date": "2026-11-05",
+    "day": "Thursday",
+    "tasks": [
       {
-        "day": "Lunes",
-        "date": "04/01",
-        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Revisar cuál actividad tiene el mayor efecto positivo en tus días."
+        "id": "c1d10-fis",
+        "area": "physical",
+        "task": "Bicicleta suave 20–30 min o paseo regenerativo. Mantén energía para el viernes."
       },
       {
-        "day": "Martes",
-        "date": "05/01",
-        "task": "Optimizar el margen por porción sin sacrificar calidad. · entrenamiento o caminata según calendario."
+        "id": "c1d10-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 11 y marca el capítulo en Objetivos."
       },
       {
-        "day": "Miércoles",
-        "date": "06/01",
-        "task": "Cerrar tareas académicas importantes antes del último momento. · revisión breve de gastos y avances académicos."
+        "id": "c1d10-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
       },
       {
-        "day": "Jueves",
-        "date": "07/01",
-        "task": "Mantener 4 entrenamientos y un día de recuperación. · cerrar los deberes más urgentes."
-      },
-      {
-        "day": "Viernes",
-        "date": "08/01",
-        "task": "Compartir tiempo con amigos y evaluar satisfacción personal. · revisar negocio y próximos compromisos."
-      },
-      {
-        "day": "Sábado",
-        "date": "09/01",
-        "task": "Registrar 2 bloques de hobbies y reflexión personal. · espacio para hobby, fe o amigos."
-      },
-      {
-        "day": "Domingo",
-        "date": "10/01",
-        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+        "id": "c1d10-soc",
+        "area": "social",
+        "task": "Ten una conversación con interés real: haz preguntas y escucha sin convertirla en examen. Registra tu iniciativa en Objetivos."
       }
-    ],
-    "commitments": [
-      "Revisar cuál actividad tiene el mayor efecto positivo en tus días.",
-      "Optimizar el margen por porción sin sacrificar calidad.",
-      "Cerrar tareas académicas importantes antes del último momento.",
-      "Mantener 4 entrenamientos y un día de recuperación.",
-      "Compartir tiempo con amigos y evaluar satisfacción personal.",
-      "Registrar 2 bloques de hobbies y reflexión personal."
     ]
   },
   {
-    "week": 12,
-    "title": "Auditoría personal",
-    "days": [
+    "date": "2026-11-06",
+    "day": "Friday",
+    "tasks": [
       {
-        "day": "Lunes",
-        "date": "11/01",
-        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Sumar ingresos netos y costos totales del trimestre."
+        "id": "c1d11-fis",
+        "area": "physical",
+        "task": "Sesión aeróbica progresiva 25–35 min combinando trote y caminata. Registra distancia sin pausas."
       },
       {
-        "day": "Martes",
-        "date": "12/01",
-        "task": "Calcular tasa de sesiones de ejercicio y horas de estudio. · entrenamiento o caminata según calendario."
+        "id": "c1d11-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 12 y marca el capítulo en Objetivos."
       },
       {
-        "day": "Miércoles",
-        "date": "13/01",
-        "task": "Revisar tendencias de sueño, estrés y energía de forma cualitativa. · revisión breve de gastos y avances académicos."
+        "id": "c1d11-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
       },
       {
-        "day": "Jueves",
-        "date": "14/01",
-        "task": "Valorar avances en amistades sin convertir personas en puntuaciones. · cerrar los deberes más urgentes."
-      },
-      {
-        "day": "Viernes",
-        "date": "15/01",
-        "task": "Identificar tres hábitos que seguirás sosteniendo. · revisar negocio y próximos compromisos."
-      },
-      {
-        "day": "Sábado",
-        "date": "16/01",
-        "task": "Preparar un borrador del siguiente trimestre. · espacio para hobby, fe o amigos."
-      },
-      {
-        "day": "Domingo",
-        "date": "17/01",
-        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+        "id": "c1d11-aca",
+        "area": "academic",
+        "task": "Cierre del primer parcial (6 nov.): registra las notas conocidas; objetivo >15 en cada materia."
       }
-    ],
-    "commitments": [
-      "Sumar ingresos netos y costos totales del trimestre.",
-      "Calcular tasa de sesiones de ejercicio y horas de estudio.",
-      "Revisar tendencias de sueño, estrés y energía de forma cualitativa.",
-      "Valorar avances en amistades sin convertir personas en puntuaciones.",
-      "Identificar tres hábitos que seguirás sosteniendo.",
-      "Preparar un borrador del siguiente trimestre."
     ]
   },
   {
-    "week": 13,
-    "title": "Cierre y ANDY 2.0",
-    "days": [
+    "date": "2026-11-07",
+    "day": "Saturday",
+    "tasks": [
       {
-        "day": "Lunes",
-        "date": "18/01",
-        "task": "Organizar entregas y calendarizar estudio (8 h/semana). Cerrar todas las entradas pendientes del tablero."
+        "id": "c1d12-fis",
+        "area": "physical",
+        "task": "Descanso activo opcional; estira suavemente, sin dolor."
       },
       {
-        "day": "Martes",
-        "date": "19/01",
-        "task": "Evaluar factibilidad del emprendimiento y próximas ventas. · entrenamiento o caminata según calendario."
-      },
-      {
-        "day": "Miércoles",
-        "date": "20/01",
-        "task": "Revisar resultados académicos disponibles sin atribuirte notas aún no publicadas. · revisión breve de gastos y avances académicos."
-      },
-      {
-        "day": "Jueves",
-        "date": "21/01",
-        "task": "Completar actividad física adaptada a la semana. · cerrar los deberes más urgentes."
-      },
-      {
-        "day": "Viernes",
-        "date": "22/01",
-        "task": "Agradecer y cuidar los vínculos que has cultivado. · revisar negocio y próximos compromisos."
-      },
-      {
-        "day": "Sábado",
-        "date": "23/01",
-        "task": "Redactar el informe de cierre y tres objetivos del trimestre siguiente. · espacio para hobby, fe o amigos."
-      },
-      {
-        "day": "Domingo",
-        "date": "24/01",
-        "task": "Recuperación, balance de finanzas, revisión de indicadores y programación de la semana siguiente."
+        "id": "c1d12-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 13 y marca el capítulo en Objetivos."
       }
-    ],
-    "commitments": [
-      "Cerrar todas las entradas pendientes del tablero.",
-      "Evaluar factibilidad del emprendimiento y próximas ventas.",
-      "Revisar resultados académicos disponibles sin atribuirte notas aún no publicadas.",
-      "Completar actividad física adaptada a la semana.",
-      "Agradecer y cuidar los vínculos que has cultivado.",
-      "Redactar el informe de cierre y tres objetivos del trimestre siguiente."
+    ]
+  },
+  {
+    "date": "2026-11-08",
+    "day": "Sunday",
+    "tasks": [
+      {
+        "id": "c1d13-fis",
+        "area": "physical",
+        "task": "Descanso. Compara sensaciones y distancia continua de la semana."
+      },
+      {
+        "id": "c1d13-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 14 y marca el capítulo en Objetivos."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-09",
+    "day": "Monday",
+    "tasks": [
+      {
+        "id": "c1d14-fis",
+        "area": "physical",
+        "task": "Carrera suave 25–35 min con pausas si necesitas. Aumenta solo si la semana anterior fue bien."
+      },
+      {
+        "id": "c1d14-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 15 y marca el capítulo en Objetivos."
+      },
+      {
+        "id": "c1d14-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
+      },
+      {
+        "id": "c1d14-soc",
+        "area": "social",
+        "task": "Busca un momento de calidad y comparte algo auténtico, sin forzar reciprocidad. Registra tu iniciativa en Objetivos."
+      },
+      {
+        "id": "c1d14-aca",
+        "area": "academic",
+        "task": "Identifica qué mejorar para el segundo parcial y distribuye el estudio de la semana."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-10",
+    "day": "Tuesday",
+    "tasks": [
+      {
+        "id": "c1d15-fis",
+        "area": "physical",
+        "task": "Fortalecimiento suave 20–25 min y movilidad, sin agotamiento."
+      },
+      {
+        "id": "c1d15-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 16 y marca el capítulo en Objetivos."
+      },
+      {
+        "id": "c1d15-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-11",
+    "day": "Wednesday",
+    "tasks": [
+      {
+        "id": "c1d16-fis",
+        "area": "physical",
+        "task": "Prueba intermedia: después de calentar, mide distancia continua a ritmo cómodo. Detente si hay molestias."
+      },
+      {
+        "id": "c1d16-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 17 y marca el capítulo en Objetivos."
+      },
+      {
+        "id": "c1d16-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-12",
+    "day": "Thursday",
+    "tasks": [
+      {
+        "id": "c1d17-fis",
+        "area": "physical",
+        "task": "Bicicleta estática cómoda 20–30 min o caminata. Recuperación."
+      },
+      {
+        "id": "c1d17-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 18 y marca el capítulo en Objetivos."
+      },
+      {
+        "id": "c1d17-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
+      },
+      {
+        "id": "c1d17-soc",
+        "area": "social",
+        "task": "Anota qué has aprendido de la persona y si la cercanía es mutua. Registra tu iniciativa en Objetivos."
+      },
+      {
+        "id": "c1d17-aca",
+        "area": "academic",
+        "task": "Registra notas del segundo parcial que ya conozcas y calcula el promedio parcial."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-13",
+    "day": "Friday",
+    "tasks": [
+      {
+        "id": "c1d18-fis",
+        "area": "physical",
+        "task": "Carrera/caminata 25–40 min según tolerancia. Prioriza consistencia, no velocidad."
+      },
+      {
+        "id": "c1d18-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 19 y marca el capítulo en Objetivos."
+      },
+      {
+        "id": "c1d18-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-14",
+    "day": "Saturday",
+    "tasks": [
+      {
+        "id": "c1d19-fis",
+        "area": "physical",
+        "task": "Descanso activo si te apetece; escucha al cuerpo."
+      },
+      {
+        "id": "c1d19-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 20 y marca el capítulo en Objetivos."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-15",
+    "day": "Sunday",
+    "tasks": [
+      {
+        "id": "c1d20-fis",
+        "area": "physical",
+        "task": "Descanso. Decide si estás listo para una prueba más larga la próxima semana."
+      },
+      {
+        "id": "c1d20-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 21 y marca el capítulo en Objetivos."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-16",
+    "day": "Monday",
+    "tasks": [
+      {
+        "id": "c1d21-fis",
+        "area": "physical",
+        "task": "Carrera tranquila 25–40 min sin exigirte récord; camina cuando lo necesites."
+      },
+      {
+        "id": "c1d21-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 22 y marca el capítulo en Objetivos."
+      },
+      {
+        "id": "c1d21-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
+      },
+      {
+        "id": "c1d21-soc",
+        "area": "social",
+        "task": "Propón un encuentro o conversación tranquila, si la relación lo permite. Registra tu iniciativa en Objetivos."
+      },
+      {
+        "id": "c1d21-aca",
+        "area": "academic",
+        "task": "Revisa tu promedio del segundo parcial: ¿qué materia necesita más atención?"
+      }
+    ]
+  },
+  {
+    "date": "2026-11-17",
+    "day": "Tuesday",
+    "tasks": [
+      {
+        "id": "c1d22-fis",
+        "area": "physical",
+        "task": "Fuerza ligera y movilidad 15–20 min. Evita fatiga acumulada."
+      },
+      {
+        "id": "c1d22-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 23 y marca el capítulo en Objetivos."
+      },
+      {
+        "id": "c1d22-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-18",
+    "day": "Wednesday",
+    "tasks": [
+      {
+        "id": "c1d23-fis",
+        "area": "physical",
+        "task": "Ensayo controlado: intenta una distancia continua mayor si estás recuperado; si no, mantén la anterior."
+      },
+      {
+        "id": "c1d23-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 24 y marca el capítulo en Objetivos."
+      },
+      {
+        "id": "c1d23-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-19",
+    "day": "Thursday",
+    "tasks": [
+      {
+        "id": "c1d24-fis",
+        "area": "physical",
+        "task": "Bicicleta/caminata ligera 20–25 min, recuperación activa."
+      },
+      {
+        "id": "c1d24-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 25 y marca el capítulo en Objetivos."
+      },
+      {
+        "id": "c1d24-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
+      },
+      {
+        "id": "c1d24-soc",
+        "area": "social",
+        "task": "Cultiva una conversación significativa; no dependes de controlar la respuesta ajena. Registra tu iniciativa en Objetivos."
+      },
+      {
+        "id": "c1d24-aca",
+        "area": "academic",
+        "task": "Trabaja en una evaluación relevante y registra cualquier nota recibida."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-20",
+    "day": "Friday",
+    "tasks": [
+      {
+        "id": "c1d25-fis",
+        "area": "physical",
+        "task": "Carrera suave 20–30 min, sin apretar. Prepara piernas para la prueba de cierre."
+      },
+      {
+        "id": "c1d25-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 26 y marca el capítulo en Objetivos."
+      },
+      {
+        "id": "c1d25-per",
+        "area": "personal",
+        "task": "Realiza 30 minutos de trabajo intencional en algo importante que sueles posponer y regístralo en el Diario."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-21",
+    "day": "Saturday",
+    "tasks": [
+      {
+        "id": "c1d26-fis",
+        "area": "physical",
+        "task": "Descanso o paseo corto opcional."
+      },
+      {
+        "id": "c1d26-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 27 y marca el capítulo en Objetivos."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-22",
+    "day": "Sunday",
+    "tasks": [
+      {
+        "id": "c1d27-fis",
+        "area": "physical",
+        "task": "Descanso. Revisa la recuperación; la meta de 5 km no justifica correr lesionado."
+      },
+      {
+        "id": "c1d27-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 28 y marca el capítulo en Objetivos."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-23",
+    "day": "Monday",
+    "tasks": [
+      {
+        "id": "c1d28-fis",
+        "area": "physical",
+        "task": "Trote suave 15–25 min o descanso si sigues cansado. No es día de récord."
+      },
+      {
+        "id": "c1d28-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 29 y marca el capítulo en Objetivos."
+      },
+      {
+        "id": "c1d28-soc",
+        "area": "social",
+        "task": "Evalúa con sinceridad si nació un vínculo significativo. Registrar el intento también cuenta. Registra tu iniciativa en Objetivos."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-24",
+    "day": "Tuesday",
+    "tasks": [
+      {
+        "id": "c1d29-fis",
+        "area": "physical",
+        "task": "Prueba final: busca 5 km continuos solo si estás sin dolor y tu progresión lo permite. Registra la distancia real y celebra la mejora."
+      },
+      {
+        "id": "c1d29-bib",
+        "area": "spiritual",
+        "task": "Lee Proverbios 30 y 31 y marca los capítulos terminados en Objetivos."
+      },
+      {
+        "id": "c1d29-aca",
+        "area": "academic",
+        "task": "Cierre de campaña: revisa promedio del segundo parcial con las notas disponibles hasta hoy."
+      }
     ]
   }
 ]
