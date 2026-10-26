@@ -189,3 +189,68 @@ body.nina-focus #nina.view.active {display:grid;grid-template-rows:minmax(0,40fr
 .campaign-banner-top{display:flex;justify-content:space-between;gap:8px;align-items:center;color:#c9b7ff;font-size:10px;letter-spacing:.6px;font-weight:700}
 .campaign-banner-top strong{font-size:10px;color:#f1eaff}.campaign-banner h2{font-size:20px;margin:13px 0 6px}.campaign-banner p{font-size:12px;line-height:1.6;color:#d4cce4;margin:0 0 15px}.campaign-banner small{display:block;color:var(--muted);margin-top:9px;font-size:10px}.campaign-hint{margin:10px 1px 18px}
 .conquest-list{display:grid;gap:11px;margin-bottom:20px}.conquest-card{border:1px solid #454052;background:linear-gradient(130deg,#211d30,#161720);padding:16px;border-radius:17px}.conquest-card:first-child{border-color:#896cae;background:linear-gradient(135deg,#322546,#191721)}.conquest-heading{display:flex;align-items:start;gap:9px}.conquest-heading>div{flex:1;min-width:0}.conquest-heading strong{display:block;font-size:14px;line-height:1.3}.conquest-heading small{display:block;font-size:11px;line-height:1.45;color:var(--muted);margin-top:4px}.conquest-icon{font-size:23px;width:33px;flex:0 0 33px}.conquest-state{font-size:9px;color:#cab6ef;white-space:nowrap;border:1px solid #66547f;padding:5px 7px;border-radius:999px}.conquest-won .conquest-state{color:#8ce8bb;border-color:#347963}.conquest-meter{height:7px;border-radius:8px;background:#383346;margin-top:14px;overflow:hidden}.conquest-meter div{height:100%;background:linear-gradient(90deg,#a184ee,#8bdccb);border-radius:8px}.conquest-detail{display:flex;justify-content:space-between;gap:13px;align-items:center;margin-top:9px}.conquest-detail b{white-space:nowrap;font-size:12px;color:#e5d7ff}.conquest-detail small{color:var(--muted);font-size:10px;line-height:1.5;text-align:right}.conquest-action{margin-top:11px;width:100%;font-size:11px;padding:9px}.campaign-trackers{margin-bottom:20px}.campaign-trackers .fold{margin-top:11px}.proverbs-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;padding-top:10px;padding-bottom:17px}.proverb{background:#242236;color:#e6dcfc;border:1px solid #4c415c;border-radius:9px;min-height:39px;min-width:0;font-size:12px}.proverb.read{background:#264438;border-color:#499374;color:#bbf8d7}.compact-form{display:flex;gap:8px;margin:13px 0}.compact-form input{flex:1;min-width:0}.compact-form button{flex-shrink:0}.compact-list{display:grid;gap:8px;margin:10px 0}.mini-record{background:#21202e;border:1px solid #383547;border-radius:11px;display:flex;align-items:center;gap:9px;justify-content:space-between;padding:10px 11px;font-size:12px}.mini-record span{flex:1;min-width:0;overflow-wrap:anywhere}.mini-record small{display:block;font-size:10px;color:var(--muted);margin-top:4px;line-height:1.5}.mini-record b{white-space:nowrap}.mini-record button{flex-shrink:0;border:0;background:transparent;color:#eeb6c8;font-size:20px;padding:5px}.campaign-trackers .form{margin-top:10px;padding:12px}.social-victory{display:flex;align-items:start;gap:10px;border:1px solid #554263;background:#2a2134;border-radius:12px;padding:12px;margin:14px 0 9px;font-size:12px;line-height:1.5}.social-victory input{flex-shrink:0;margin-top:2px}.training-tip{background:#242033;border:1px solid #55476f;border-radius:13px;padding:14px 15px;font-size:13px;margin:20px 0}.training-tip strong{display:block;color:#e7d5ff}.training-tip p{color:var(--muted);font-size:11px;line-height:1.6;margin:6px 0 0}.tree-tabs{grid-template-columns:repeat(5,minmax(0,1fr))}.tree-tabs button{padding:10px 2px;letter-spacing:-.2px}.tree-tabs button span{font-size:17px}@media(max-width:440px){.tree-tabs button{font-size:9px}.conquest-heading{flex-wrap:wrap}.conquest-state{margin-left:auto}.conquest-detail{align-items:start;flex-direction:column;gap:3px}.conquest-detail small{text-align:left}}
+
+/* ASCENSO 4.1 — Minimalismo: jerarquía clara, detalles progresivos */
+.sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+[hidden]{display:none!important}
+#home>h1,#talents>h1,#train>h1,#register>h1{font-size:clamp(34px,8vw,44px);line-height:1.06;margin:11px 0 22px;letter-spacing:-1.7px}
+#home .eyebrow,#talents .eyebrow,#train .eyebrow,#register .eyebrow{font-size:10px;letter-spacing:1.6px}
+.minimal-campaign{border:1px solid var(--border);border-radius:14px;padding:14px 16px;background:var(--surface);margin:17px 0 13px}
+.minimal-campaign>.between{font-size:11px;align-items:center;gap:10px}
+.minimal-campaign .between strong{font-size:11px;color:var(--violet);letter-spacing:.5px}
+.minimal-campaign .between span{font-size:11px;color:var(--muted);text-align:right}
+.minimal-campaign .bar{height:5px;margin-top:12px}
+.minimal-level{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:12px 2px 16px;border-bottom:1px solid var(--border)}
+.minimal-level>div:first-child{display:flex;align-items:baseline;gap:8px}
+.minimal-level small{color:var(--muted);font-size:10px;white-space:nowrap}
+.minimal-level strong{font-size:15px}
+.minimal-level .level-right{width:106px;text-align:right;flex-shrink:0}
+.minimal-level .level-right>span{display:block;font-size:10px;color:var(--muted);margin-bottom:6px}
+.minimal-level .bar{height:4px}
+.section-title.minimal-today{margin-top:19px;align-items:center}
+.section-title.minimal-today h3{font-size:19px;margin:0 0 11px}
+.section-title.minimal-today>span{font-size:11px;color:var(--muted)}
+#home .tasklist{gap:8px}
+#home .task{border-radius:13px;padding:12px 13px;background:var(--surface)}
+#home .tasktext{font-size:12.5px;line-height:1.45}
+#home .tasktext small{font-size:9px}
+#home .fold{margin-top:12px}
+#home .fold>summary{padding:13px 15px;font-size:12px}
+.profile-inside{display:block}.profile-inside>.stats{margin:9px 0 15px}.profile-inside .between{margin-top:12px}
+.profile-inside .bar{margin-top:9px}.profile-inside>.hint{margin:8px 0 16px}
+.profile-inside>h3{font-size:14px;margin-top:22px}
+.campaign-objectives{margin-top:14px}
+#talents .conquest-list{display:grid;gap:9px}
+#talents .conquest-card{margin:0;background:var(--surface);border:1px solid var(--border);padding:0;border-radius:14px;overflow:hidden;box-shadow:none}
+#talents .conquest-card summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:11px;padding:13px 13px 11px}
+#talents .conquest-card summary::-webkit-details-marker{display:none}
+#talents .conquest-card .conquest-icon{font-size:23px;flex:0 0 29px;line-height:1}
+#talents .conquest-card .conquest-title{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
+#talents .conquest-card .conquest-title strong{font-size:13px;line-height:1.15;letter-spacing:0}
+#talents .conquest-card .conquest-title small{color:var(--muted);font-size:10px;line-height:1.4}
+#talents .conquest-card .conquest-number{display:flex;flex-direction:column;text-align:right;color:var(--violet);font-weight:750;font-size:12px;min-width:60px;white-space:nowrap}
+#talents .conquest-card .conquest-number small{font-weight:400;color:var(--muted);font-size:9px}
+#talents .conquest-card .conquest-meter{margin:0 13px 12px;height:4px}
+#talents .conquest-card .conquest-extras{padding:0 13px 13px;display:grid;gap:12px}
+#talents .conquest-card .conquest-extras>small{color:var(--muted);font-size:11px;line-height:1.45}
+#talents .conquest-card .conquest-action{width:100%;padding:11px;font-size:12px}
+#talents .campaign-trackers{margin-top:22px}
+#talents .campaign-trackers>.fold{margin-top:9px}
+#talents .tree-fold{margin-top:20px}
+#talents .tree-fold-body{padding:13px 12px 17px}
+#talents .tree-heading{margin:15px 0 10px}
+#talents .tree-heading h2{font-size:15px}
+#talents .tree-graph{height:clamp(335px,51dvh,430px)}
+#train .mode-switch{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:7px;padding:4px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+#train .mode-switch button{background:transparent;color:var(--muted);font-size:13px;border:none;border-radius:9px;padding:11px 8px;cursor:pointer}
+#train .mode-switch button.active{background:var(--surface2);color:var(--text);font-weight:700;box-shadow:0 1px 5px #0004}
+#train .timer-panel{margin-top:12px}
+#train .timer-time{margin:16px 0;font-size:clamp(49px,13vw,72px)}
+#train .focus-progress{margin-top:15px}
+#train .focus-progress .bar{height:5px;margin-bottom:7px}
+#train .focus-progress small{color:var(--muted);font-size:11px}
+#train .focus-timer-entry{margin-top:14px;background:var(--surface);border:1px solid var(--border);padding:15px;border-radius:15px;display:grid;gap:12px}
+#train .focus-timer-entry .hint{margin:0}
+#train .focus-timer-entry button:disabled{opacity:.5;cursor:not-allowed}
+#register .form{margin-top:18px}
+@media(max-width:390px){#talents .conquest-card .conquest-title small{font-size:9.5px}#talents .conquest-card summary{gap:8px}}

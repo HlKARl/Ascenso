@@ -1,27 +1,17 @@
-ASCENSO 4.0 — CAMPAÑA 01 · RECUPERAR MIS ALAS
+ASCENSO 4.1 · Recuperar mis alas
 
-FECHAS: lunes 26 de octubre a martes 24 de noviembre de 2026 (30 días inclusivos).
+NOVEDADES
+- Inicio mucho más limpio: campaña, nivel, misiones y ficha plegable.
+- Objetivos en cinco tarjetas compactas; registros y árbol plegables.
+- Cronómetro con dos modos: Carrera y Enfoque de 30 minutos.
+- Las sesiones de estudio de 30 min registradas desde el cronómetro cuentan para la diligencia y para las habilidades académicas de estudio.
+- Archivos esenciales precargados en el dispositivo para uso offline, sin depender de parámetros de versión. Nina requiere conexión para el chat; imágenes y registros funcionan sin internet.
 
-CAMBIOS
-- Plan antiguo de 13 semanas reemplazado por 30 días de misiones específicas (las fechas y objetivos se mantienen fijos).
-- Físico: correr 5 km continuos. Registro real de tiempo, distancia, modalidad y pausas; bicicleta estática como alternativa, sin contabilizar sus kilómetros como carrera.
-- Personal: 20 sesiones de 30 minutos de trabajo intencional, registradas en Diario > Personal > Trabajo intencional.
-- Social: cultivar un vínculo significativo. Registro de acciones reales y confirmación manual de relación recíproca.
-- Académico: materias configurables y notas por parcial. Primer parcial hasta 6 de noviembre: promedio de las notas de cada materia superior a 15/20; segundo parcial: promedio mayor de 15/20 entre notas registradas del 7 al 24 de noviembre.
-- Espiritual: cuadrícula de lectura de los 31 capítulos de Proverbios (dos capítulos el último día).
-- Objetivos muestra las cinco conquistas, barras de progreso, registros y cinco árboles de habilidades (físico separado de personal).
-- Las misiones nuevas solo aparecen el día correspondiente; las pendientes reaparecen en una sección plegable, hasta una por área, sin saturar la agenda. No se marcan por sí solas: se validan manualmente; las conquistas dependen de registros reales.
-- Conserva las funciones anteriores: Nina y sus ocho expresiones, Worker y chat, cronómetro, circuitos, finanzas, diario, exportación/importación y opciones visuales.
+INSTALACIÓN / GITHUB PAGES
+1. Desde la app antigua, exporta tus datos en Configuración > Mis datos.
+2. Extrae el ZIP y sube TODOS sus archivos y la carpeta nina a la raíz del repositorio de GitHub Pages.
+3. Abre la app con conexión, recarga una vez y espera a que cargue. Luego cierra y prueba modo avión.
+4. Si Brave conserva un service worker antiguo, cierra y reabre la PWA después de visitar la web actualizada una vez con conexión. No borres los datos del sitio.
+5. Si hiciera falta, importa el respaldo desde Configuración.
 
-INSTALACIÓN EN GITHUB PAGES
-1. EN TU APP ACTUAL: Configuración > Mis datos > Exportar. Guarda el archivo antes de subir cambios.
-2. Descomprime el ZIP y sube TODOS los archivos y la carpeta nina/ a la raíz del repositorio de GitHub Pages. No subas la carpeta contenedora.
-3. Abre la app y recarga una vez. El service worker usa un caché nuevo. En caso de servir una versión antigua, cierra todas las pestañas de ASCENSO, vuelve a abrir y recarga.
-4. No borres datos del sitio ni desinstales la PWA si quieres conservar tu progreso y el chat de Nina.
-5. Abre Objetivos y añade tus materias, registra notas y marca capítulos de Proverbios conforme los leas.
-
-IMPORTANTE
-La meta de 5 km en 30 días es ambiciosa tras un período sin entrenamiento. Las misiones físicas son orientativas y sujetas a recuperación: nunca se fuerza una carrera con dolor fuerte o persistente. La app registra datos, no proporciona evaluación médica.
-Las notas parciales se basan en lo que ingreses. Para evaluar el primer parcial debes registrar todas tus materias; no se presupone la cantidad.
-Las relaciones significativas no se determinan automáticamente por el número de contactos.
-Los datos son locales. La función Nina requiere conexión y tu Worker original, tal como antes.
+NOTA: la primera instalación o actualización NECESITA conectividad. La app instalada, su diseño, misiones, datos, personajes y cronómetros podrán operar sin internet después de instalarse por completo. La conexión real a Nina no se probó contra tu Worker remoto.

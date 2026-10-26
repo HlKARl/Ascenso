@@ -1,8 +1,28 @@
-const CACHE='andy-ascenso-v40-campana-20261026a';
-const ASSETS=['./','./index.html','./style.css','./app.js','./plan.json','./manifest.webmanifest','./icon.svg','./nina/normal.webp','./nina/feliz.webp','./nina/emocionada.webp','./nina/pensativa.webp','./nina/empatica.webp','./nina/picara.webp','./nina/sorprendida.webp','./nina/dormida.webp'];
-self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
-self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('andy-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
-self.addEventListener('fetch',e=>{if(e.request.method!=='GET'||new URL(e.request.url).origin!==self.location.origin)return;
- if(e.request.mode==='navigate'){e.respondWith(fetch(e.request).then(r=>{if(r.ok){const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy))}return r}).catch(()=>caches.match(e.request).then(r=>r||caches.match('./index.html'))));return}
- e.respondWith(fetch(e.request).then(r=>{if(r.ok){const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy))}return r}).catch(()=>caches.match(e.request)));
+/* ASCENSO 4.1 · Offline real: precarga atómica del núcleo, imágenes opcionales. */
+const CACHE='andy-ascenso-v41-offline-20261026';
+const CORE=['./','./index.html','./style.css','./app.js','./plan.json','./manifest.webmanifest','./icon.svg'];
+const IMAGES=['normal','feliz','emocionada','pensativa','empatica','picara','sorprendida','dormida'].map(n=>'./nina/'+n+'.webp');
+self.addEventListener('install',event=>event.waitUntil((async()=>{
+ const cache=await caches.open(CACHE);
+ // La instalación no se considera lista si faltan HTML, CSS, JS o plan.
+ await cache.addAll(CORE);
+ // Una imagen ausente no debe impedir que la aplicación trabaje offline.
+ await Promise.allSettled(IMAGES.map(async path=>{const r=await fetch(path,{cache:'reload'});if(r.ok)await cache.put(path,r)}));
+ await self.skipWaiting();
+})()));
+self.addEventListener('activate',event=>event.waitUntil((async()=>{
+ const keys=await caches.keys();await Promise.all(keys.filter(k=>k.startsWith('andy-ascenso-')&&k!==CACHE).map(k=>caches.delete(k)));
+ await self.clients.claim();
+})()));
+self.addEventListener('fetch',event=>{
+ const req=event.request;if(req.method!=='GET'||new URL(req.url).origin!==self.location.origin)return;
+ event.respondWith((async()=>{
+  const cache=await caches.open(CACHE);
+  // Elimina la diferencia entre style.css y style.css?v=... al consultar.
+  const key=req.mode==='navigate'?'./index.html':req;
+  const hit=await cache.match(key,{ignoreSearch:true});
+  if(hit)return hit;
+  try{const response=await fetch(req);if(response.ok)await cache.put(req,response.clone());return response}
+  catch(err){if(req.mode==='navigate'){const page=await cache.match('./index.html');if(page)return page}throw err}
+ })());
 });
